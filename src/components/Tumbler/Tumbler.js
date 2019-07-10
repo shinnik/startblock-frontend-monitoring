@@ -56,8 +56,7 @@ function powerIconClass(direction) {
     }
 }
 
-function Tumbler({direction, power, label}) {
-
+function Tumbler({direction}) {
     return <div className={arrowClass(direction)}>
             <ReactHover options={{
                 followCursor: false,

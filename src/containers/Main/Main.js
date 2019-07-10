@@ -24,10 +24,10 @@ function Main() {
                 <LabeledTumbler power={true} direction={'u'} label={'Hello'} type={'vr'} align={'up'} />
             </Box>
             <Box className={classes.Item16}>
-                <LabeledTumbler power={false} direction={'ru'} label={'Hello'} type={'ru'} align={'ru'} />
+                <LabeledTumbler power={false} direction={'lu'} label={'Hello'} type={'lu'}  />
             </Box>
             <Box className={classes.Item16} >
-                <LabeledTumbler power={false} direction={'rd'} label={'Hello'} type={'rd'} align={'rd'} />
+                <LabeledTumbler power={false} direction={'ld'} label={'Hello'} type={'ld'}  />
             </Box>
             <Box className={classes.Item9} >
                 <LabeledTumbler power={false} direction={'r'} label={'Hello'} type={'hu'} align={'c'} />

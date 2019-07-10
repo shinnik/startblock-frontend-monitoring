@@ -1,0 +1,85 @@
+@import '../../constants/constants';
+
+.LabeledTumbler {
+    display: grid;
+    grid-template-columns: $triangle-size 1fr $triangle-size;
+    grid-template-rows: $triangle-size 1fr $triangle-size;
+
+    &__ru, &__rd, &__lu, &__ld {
+        grid-template-columns: $triangle-size $tumbler-length*1.2 $triangle-size;
+    }
+    &__ru {
+        transform: rotate(-48deg);
+    }
+
+    &__rd {
+        transform: rotate(48deg);
+    }
+
+    &__lu {
+        transform: rotate(-132deg);
+    }
+
+    &__ld {
+        transform: rotate(132deg);
+    }
+}
+
+.Arrow {
+    &__ru, &__rd {
+        grid-area: 2/1/3/4;
+    }
+    &__hu, &__hd
+     {
+        grid-area: 2/1/3/4;
+    }
+
+    &__vl, &__vr {
+        grid-area: 1/2/4/3;
+    }
+}
+
+.Label {
+    &__hu,
+    &__ru, &__rd
+    {
+        grid-area: 1/1/2/4;
+    }
+
+    &__hd {
+        grid-area: 3/1/4/4;
+    }
+
+    &__vl {
+        grid-area: 1/1/4/2;
+        justify-self: end;
+    }
+
+    &__vr {
+        grid-area: 1/3/4/4;
+        justify-self: start;
+    }
+
+    &__vl, &__vr {
+        padding: 0.5em 0;
+    }
+
+    &__hu, &__hd {
+        padding: 0 1em;
+    }
+}
+
+.Align {
+    &_down {
+        align-self: end;
+    }
+
+    &_up {
+        align-self: start;
+    }
+
+    &_c {
+        align-self: center;
+    }
+
+}

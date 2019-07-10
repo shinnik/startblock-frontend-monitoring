@@ -11,22 +11,6 @@
   //align-items: center;
   //justify-content: center;
 
-  &__ru {
-    transform: rotate(-47deg);
-  }
-
-  &__rd {
-    transform: rotate(47deg);
-  }
-
-  &__lu {
-    transform: rotate(-133deg);
-  }
-
-  &__ld {
-    transform: rotate(133deg);
-  }
-
   &:hover {
       background-color: rgba(black, 0.15);
       border: 3px solid transparent;
@@ -41,23 +25,6 @@
   cursor: pointer;
   //width: fit-content;
   //height: fit-content;
-
-
-  &__ru {
-    transform: rotate(-47deg);
-  }
-
-  &__rd {
-    transform: rotate(47deg);
-  }
-
-  &__lu {
-    transform: rotate(-133deg);
-  }
-
-  &__ld {
-    transform: rotate(133deg);
-  }
 
   &:hover {
     background-color: rgba($border-color, 0.3);

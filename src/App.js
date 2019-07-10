@@ -1,27 +1,16 @@
 import React from 'react';
 import Tumbler from './components/Tumbler/Tumbler';
+import EnergyCell from "./components/EnergyCell/EnergyCell";
+import {ThemeProvider} from "@material-ui/styles";
+import {createMuiTheme} from "@material-ui/core";
+import {responsiveFontSizes} from "@material-ui/core/styles";
+import theme from './styles/theme';
 
 function App() {
   return (
-    <div>
-      <Tumbler direction={"l"} />
-      <Tumbler direction={"r"} />
-      <Tumbler direction={"u"} />
-      <Tumbler direction={"d"} />
-      <Tumbler direction={"ru"} />
-      <br />
-      <br />
-      <br />
-      <Tumbler direction={"rd"} />
-        <br />
-        <br />
-        <br />
-      <Tumbler direction={"lu"} />
-        <br />
-        <br />
-        <br />
-      <Tumbler direction={"ld"} />
-    </div>
+    <ThemeProvider theme={theme}>
+        <EnergyCell name={'Alpha'} money={123} />
+    </ThemeProvider>
   );
 }
 

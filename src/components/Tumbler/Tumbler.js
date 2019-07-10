@@ -1,5 +1,4 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import classes from './Tumbler.module.scss';
 import constants from '../../constants/constants'
 import Arrow from 'react-arrow';

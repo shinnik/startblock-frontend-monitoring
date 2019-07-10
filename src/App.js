@@ -8,7 +8,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
         <EnergyCell name={'Alpha'} money={123} />
-        <Tumbler direction={'r'} />
+        <Tumbler direction={'r'} power={false} />
+        <Tumbler direction={'l'} power={false} />
+        <Tumbler direction={'u'} power={false} />
+        <Tumbler direction={'d'} power={false} />
+        <Tumbler direction={'ru'} power={false} />
+        <Tumbler direction={'rd'} power={false} />
+        <Tumbler direction={'lu'} power={false} />
+        <Tumbler direction={'ld'} power={false} />
     </ThemeProvider>
   );
 }

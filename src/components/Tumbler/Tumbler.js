@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './Tumbler.module.scss';
 import constants from '../../constants/constants'
 import Arrow from 'react-arrow';
@@ -56,8 +56,11 @@ function powerIconClass(direction) {
     }
 }
 
-function Tumbler({direction}) {
-    return <div className={arrowClass(direction)}>
+function Tumbler({direction, power}) {
+    const [state, setState] = useState(power);
+
+    if (state) {
+        return <div className={arrowClass(direction)}>
             <ReactHover options={{
                 followCursor: false,
             }}>
@@ -68,14 +71,38 @@ function Tumbler({direction}) {
                         shaftLength={constants.tumblerWidth-constants.triangleSize}
                         headWidth={constants.triangleSize}
                         headLength={constants.triangleSize}
-                        fill={'#EB5757'}
+                        fill={state ? '#EB5757' : '#D0D0D0'}
+                        onClick={() => setState(!state)}
                     />
                 </ReactHover.Trigger>
                 <ReactHover.Hover type='hover'>
-                    <PowerSettingsNew className={powerIconClass(direction)}/>
+                    <PowerSettingsNew onClick={() => setState(!state)} className={powerIconClass(direction)} />
                 </ReactHover.Hover>
             </ReactHover>
-        </div>
+        </div>;
+    }
+    else {
+        return <div className={arrowClass(direction)}>
+            <ReactHover options={{
+                followCursor: false,
+            }}>
+                <ReactHover.Trigger type='trigger'>
+                    <Arrow
+                        direction={arrowDirection(direction)}
+                        shaftWidth={constants.tumblerThickness/2}
+                        shaftLength={constants.tumblerWidth}
+                        headWidth={constants.triangleSize}
+                        headLength={0}
+                        fill={state ? '#EB5757' : '#D0D0D0'}
+                        onClick={() => setState(!state)}
+                    />
+                </ReactHover.Trigger>
+                <ReactHover.Hover type='hover'>
+                    <PowerSettingsNew onClick={() => setState(!state)} style={{backgroundColor: 'gray'}} className={powerIconClass(direction)}/>
+                </ReactHover.Hover>
+            </ReactHover>
+        </div>;
+    }
 }
 
 export default Tumbler;

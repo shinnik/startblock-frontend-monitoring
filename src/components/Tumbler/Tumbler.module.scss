@@ -1,0 +1,111 @@
+@import "../../constants/constants";
+
+.Tumbler {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.Arrow, .Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld {
+  border: 3px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  &__ru {
+    transform: rotate(-45deg);
+  }
+
+  &__rd {
+    transform: rotate(45deg);
+  }
+
+  &__lu {
+    transform: rotate(-135deg);
+  }
+
+  &__ld {
+    transform: rotate(135deg);
+  }
+
+  &:hover, &__ru:hover, &__rd:hover, &__lu:hover, &__ld:hover {
+    background-color: rgba($border-color, 0.3);
+    border: 3px solid transparent;
+    border-radius: 10px;
+  }
+}
+
+.PowerIcon {
+
+  &__Right {
+    background-color: $border-color;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+    left: $tumbler-length*0.5;
+    top: - $triangle-size - $tumbler-thickness*0.5;
+  }
+
+  &__Left {
+    background-color: $border-color;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+    left: $tumbler-length*0.5 - $triangle-size;
+    top: - $triangle-size - $tumbler-thickness*0.5;
+  }
+
+  &__Up {
+    background-color: $border-color;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+    left: -$tumbler-thickness*0.5;
+    top: -$tumbler-length*0.5 - $triangle-size;
+  }
+
+  &__Down {
+    background-color: $border-color;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+    left: -$tumbler-thickness*0.5;
+    bottom: $tumbler-length*0.5;
+  }
+
+  &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
+    background-color: $border-color;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+    left: $tumbler-length*0.5;
+    top: - $triangle-size - $tumbler-thickness*0.5;
+  }
+
+  &__RightUp {
+    transform: rotate(45deg);
+  }
+
+  &__RightDown {
+    transform: rotate(-45deg);
+  }
+
+  &__LeftUp {
+    transform: rotate(135deg);
+  }
+
+  &__LeftDown {
+    transform: rotate(-135deg);
+  }
+
+}
+
+

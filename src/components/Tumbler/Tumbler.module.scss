@@ -1,23 +1,15 @@
 @import "../../constants/constants";
 
-.Tumbler {
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-}
 
 .Arrow_g, .Arrow_g__ru, .Arrow_g__rd, .Arrow_g__lu, .Arrow_g__ld {
   border: 3px solid transparent;
   border-radius: 10px;
   cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  //width: fit-content;
+  //height: fit-content;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
 
   &__ru {
     transform: rotate(-47deg);
@@ -47,11 +39,8 @@
   border: 3px solid transparent;
   border-radius: 10px;
   cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  //width: fit-content;
+  //height: fit-content;
 
 
   &__ru {
@@ -140,8 +129,4 @@
     transform: rotate(-133deg);
   }
 
-}
-
-.Grey {
-  background-color: rgba(black, 0.15);
 }

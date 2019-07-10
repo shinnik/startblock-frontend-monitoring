@@ -9,7 +9,41 @@
   border: 1px solid black;
 }
 
-.Arrow, .Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld {
+.Arrow_g, .Arrow_g__ru, .Arrow_g__rd, .Arrow_g__lu, .Arrow_g__ld {
+  border: 3px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__ru {
+    transform: rotate(-47deg);
+  }
+
+  &__rd {
+    transform: rotate(47deg);
+  }
+
+  &__lu {
+    transform: rotate(-133deg);
+  }
+
+  &__ld {
+    transform: rotate(133deg);
+  }
+
+  &:hover {
+      background-color: rgba(black, 0.15);
+      border: 3px solid transparent;
+      border-radius: 10px;
+  }
+}
+
+.Arrow, .Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld
+{
   border: 3px solid transparent;
   border-radius: 10px;
   cursor: pointer;
@@ -21,22 +55,22 @@
 
 
   &__ru {
-    transform: rotate(-45deg);
+    transform: rotate(-47deg);
   }
 
   &__rd {
-    transform: rotate(45deg);
+    transform: rotate(47deg);
   }
 
   &__lu {
-    transform: rotate(-135deg);
+    transform: rotate(-133deg);
   }
 
   &__ld {
-    transform: rotate(135deg);
+    transform: rotate(133deg);
   }
 
-  &:hover, &__ru:hover, &__rd:hover, &__lu:hover, &__ld:hover {
+  &:hover {
     background-color: rgba($border-color, 0.3);
     border: 3px solid transparent;
     border-radius: 10px;
@@ -86,28 +120,28 @@
     border-radius: 50%;
     color: white;
     position: relative;
-    left: $tumbler-length*0.5;
+    left: $tumbler-length;
     top: - $triangle-size - $tumbler-thickness*0.5;
   }
 
   &__RightUp {
-    transform: rotate(45deg);
+    transform: rotate(47deg);
   }
 
   &__RightDown {
-    transform: rotate(-45deg);
+    transform: rotate(-47deg);
   }
 
   &__LeftUp {
-    transform: rotate(135deg);
+    transform: rotate(133deg);
   }
 
   &__LeftDown {
-    transform: rotate(-135deg);
+    transform: rotate(-133deg);
   }
 
 }
 
 .Grey {
-  color: rgba(black, 0.15);
+  background-color: rgba(black, 0.15);
 }

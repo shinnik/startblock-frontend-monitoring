@@ -4,4 +4,12 @@ $tumbler-length: 200px;
 $tumbler-thickness: 4px;
 $triangle-size: $tumbler-thickness*5;
 
-$paper-size: 100px;
+$blue-card-width: 122px;
+$blue-card-height: 106px;
+
+$x1: 20px;
+$x2: $tumbler-length + 300px;
+$x3: $blue-card-width;
+$x4: $tumbler-length;
+$y1: $x4;
+$y2: $x3*0.5;

@@ -1,6 +1,7 @@
 import {createMuiTheme} from "@material-ui/core";
 import {responsiveFontSizes} from "@material-ui/core/styles";
 import './fonts/manrope/web/index.css';
+import constants from '../constants/constants';
 
 let theme = createMuiTheme({
     typography: {
@@ -43,8 +44,8 @@ let theme = createMuiTheme({
                 padding: '10px 9.21px',
                 boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
                 borderRadius: '11.1621px',
-                width: '122px',
-                height: '106px'
+                width: constants.blueCardWidth,
+                height: constants.blueCardHeight,
             }
         },
         MuiTableCell: {

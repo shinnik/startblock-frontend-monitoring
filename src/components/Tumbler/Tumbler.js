@@ -126,7 +126,7 @@ function tumblerSizes(direction, state) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth*1.41,
+                    shaftLength: constants.tumblerWidth*1.41 - 12,
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };

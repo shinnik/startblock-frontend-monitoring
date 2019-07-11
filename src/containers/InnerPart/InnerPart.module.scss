@@ -78,3 +78,63 @@
   align-self: center;
   justify-self: center;
 }
+
+.Item7 {
+  grid-area: 2/2/2/2;
+}
+
+.Item12 {
+  grid-area: 3/2/3/2;
+}
+
+.Item11 {
+  grid-area: 2/6/2/6;
+}
+
+.Item13 {
+  grid-area: 3/6/3/6;
+}
+
+.Item19 {
+  grid-area: 5/2/5/2;
+}
+
+.Item20 {
+  grid-area: 6/2/6/2;
+}
+
+.Item24 {
+  grid-area: 5/6/5/6;
+}
+
+.Item25 {
+  grid-area: 6/6/6/6;
+}
+
+
+//----
+
+.Item7,
+.Item12,
+.Item11,
+.Item13,
+.Item19,
+.Item20,
+.Item24,
+.Item25 {
+  align-self: center;
+}
+
+.Item7,
+.Item12,
+.Item19,
+.Item20 {
+  justify-self: end;
+}
+
+.Item11,
+.Item13,
+.Item24,
+.Item25 {
+  justify-self: start;
+}

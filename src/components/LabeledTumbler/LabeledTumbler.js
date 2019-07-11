@@ -10,7 +10,7 @@ function LabeledTumbler({direction, power, label, type, align}) {
                 <Tumbler direction={direction} power={power} />
             </Box>
             <Box className={`Label__${type} Align_${align}`}>
-                <Typography variant='body2' color='secondary'>{`${label}_${direction}`}</Typography>
+                { power && <Typography variant='body2' color='secondary'>{`${label}`}</Typography> }
             </Box>
         </div>
     );

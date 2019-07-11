@@ -1,5 +1,4 @@
 import {createMuiTheme} from "@material-ui/core";
-import {responsiveFontSizes} from "@material-ui/core/styles";
 import './fonts/manrope/web/index.css';
 import constants from '../constants/constants';
 

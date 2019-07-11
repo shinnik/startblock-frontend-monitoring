@@ -123,8 +123,31 @@ const initialStore = {
 };
 
 function innerPartReducer(store=initialStore, action) {
+    console.log(action.payload);
     switch (action.type) {
         case actionTypes.TUMBLER_TOGGLE: {
+            switch (action.payload.id) {
+                case 5:
+                case 27:
+                case 29:
+                case 3: {
+                    let tmp = store;
+                    const tmp2 = tmp.energyCells[ [3, 5, 27, 29].indexOf(action.payload.id) ].net;
+                    tmp.energyCells[ [3, 5, 27, 29].indexOf(action.payload.id) ].net = !tmp2;
+                    return tmp;
+                }
+                case 9:
+                case 15:
+                case 16:
+                case 160:
+                case 17:
+                case 22: {
+                    let tmp = store;
+                    const tmp2 = tmp.connections[ [9, 15, 16, 160, 17, 22].indexOf(action.payload.id) ].active;
+                    tmp.connections[ [9, 15, 16, 160, 17, 22].indexOf(action.payload.id) ].active = !tmp2;
+                    return tmp;
+                }
+            }
             return store;
         }
         default:

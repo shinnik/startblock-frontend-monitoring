@@ -19,11 +19,11 @@ let theme = createMuiTheme({
             '"Segoe UI Symbol"',
         ].join(','),
         body1: {
-            fontSize: '23px',
+            fontSize: '28px',
             letterSpacing: '0.44px',
         },
         body2: {
-            fontSize: '20px',
+            fontSize: '25px',
             letterSpacing: '0.44px',
         }
     },
@@ -41,7 +41,10 @@ let theme = createMuiTheme({
             elevation1: {
                 backgroundColor: '#0099DC',
                 color: 'white',
-                padding: '10px 10px',
+                paddingTop: '10px',
+                paddingBottom: '25px',
+                paddingLeft: '15px',
+                paddingRight: '15px',
                 boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
                 borderRadius: '11.1621px',
                 width: constants.blueCardWidth,

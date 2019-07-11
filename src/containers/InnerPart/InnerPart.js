@@ -5,6 +5,8 @@ import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
 import {Box} from "@material-ui/core";
 import * as actionCreators from '../../store/actions/index';
 import {connect} from "react-redux";
+import Branch from "../Branch/Branch";
+export const InnerPartContext = React.createContext();
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
@@ -23,75 +25,87 @@ const connectionDirections = [
 ];
 
 
-function InnerPart({energyCells, connections}) {
+class InnerPart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-    return (
-        <div className={classes.Main}>
-            {
-                energyCells.map((value, index) => <EnergyCell
-                    {...value.profile}
-                    className={energyCellClassNames[index]}
-                >
-                </EnergyCell>)
-            }
-            {
-                connections.map((value, index) => <Box className={energyCellConnections[index]}>
-                    <LabeledTumbler
-                        power={value.active}
-                        type={connectionTypes[index](connectionDirections[index](value.output))}
-                        align={connectionAlignments[index](connectionDirections[index](value.output))}
-                        label={`${value.performance}`}
-                        direction={connectionDirections[index](value.output)} />
-                </Box>)
-            }
-            {
-                energyCells.map((value, index) => <Box className={energyCellNetClassNames[index]} >
-                    <LabeledTumbler
-                        direction={index <= 1 ? 'd' : 'u'}
-                        label={value.net.performance}
-                        align={index <= 1 ? 'down' : 'up'}
-                        type={'vr'}
-                        power={value.net.active}
+
+    render()
+    {
+        return (
+            <InnerPartContext.Provider value={this.props}>
+            <div className={classes.Main}>
+                {
+                    this.props.energyCells.map((value, index) => <EnergyCell
+                        key={index}
+                        {...value.profile}
+                        className={energyCellClassNames[index]}
+                    >
+                    </EnergyCell>)
+                }
+                {
+                    this.props.connections.map((value, index) => <Box key={index} className={energyCellConnections[index]}>
+                        <LabeledTumbler
+                            power={value.active}
+                            type={connectionTypes[index](connectionDirections[index](value.output))}
+                            align={connectionAlignments[index](connectionDirections[index](value.output))}
+                            label={`${value.performance}`}
+                            direction={connectionDirections[index](value.output)}
+                            id={[9, 15, 16, 160, 17, 22][index]}
+                            dispatch={this.props.onToggle}
                         />
-                </Box>)
-            }
-            {/*<Box className={classes.Item3} >*/}
-            {/*    <LabeledTumbler power={true} direction={'d'} label={'Hello'} type={'vr'} align={'down'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item5}>*/}
-            {/*    <LabeledTumbler power={true} direction={'d'} label={'Hello'} type={'vr'} align={'down'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item27} >*/}
-            {/*    <LabeledTumbler power={true} direction={'u'} label={'Hello'} type={'vr'} align={'up'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item29} >*/}
-            {/*    <LabeledTumbler power={true} direction={'u'} label={'Hello'} type={'vr'} align={'up'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item16}>*/}
-            {/*    <LabeledTumbler power={false} direction={'lu'} label={'Hello'} type={'lu'}  />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item16} >*/}
-            {/*    <LabeledTumbler power={false} direction={'ld'} label={'Hello'} type={'ld'}  />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item9} >*/}
-            {/*    <LabeledTumbler power={false} direction={'r'} label={'Hello'} type={'hu'} align={'c'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item22} >*/}
-            {/*    <LabeledTumbler power={false} direction={'l'} label={'Hello'} type={'hd'} align={'c'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item15}>*/}
-            {/*    <LabeledTumbler power={false} direction={'d'} label={'Hello'} type={'vl'} align={'c'} />*/}
-            {/*</Box>*/}
-            {/*<Box className={classes.Item17}>*/}
-            {/*    <LabeledTumbler power={false} direction={'u'} label={'Hello'} type={'vr'} align={'c'} />*/}
-            {/*</Box>*/}
-        </div>
-    );
+                    </Box>)
+                }
+                {
+                    this.props.energyCells.map((value, index) => <Box key={index} className={energyCellNetClassNames[index]}>
+                        <LabeledTumbler
+                            direction={index <= 1 ? 'd' : 'u'}
+                            label={value.net.performance}
+                            align={index <= 1 ? 'down' : 'up'}
+                            type={'vr'}
+                            power={value.net.active}
+                            id={[3, 5, 27, 29][index]}
+                            dispatch={this.props.onToggle}
+                        />
+                    </Box>)
+                }
+                {
+                    this.props.energyCells.map((value, index) => <Box key={index} className={energyCellGeneratorClassNames[index]}>
+                        <Branch
+                            type={value.generator.type}
+                            id={[7, 11, 19, 24][index]}
+                            label={value.generator.performance}
+                            dispatch={this.props.onToggle}
+                            power={value.generator.active}
+                            direction={index % 2 === 0 ? (value.generator.output ? 'l' : 'r') : (value.generator.output ? 'r' : 'l')}
+                            reversed={index % 2 !== 0}
+                        />
+                        </Box>)
+                }
+                {
+                    this.props.energyCells.map((value, index) => <Box key={index} className={energyCellLoadClassNames[index]}>
+                        <Branch
+                            type={3}
+                            id={[12, 13, 20, 25][index]}
+                            label={value.net.performance}
+                            dispatch={this.props.onToggle}
+                            power={value.net.active}
+                            direction={index % 2 === 0 ? ('r') : ('l')}
+                            reversed={index % 2 !== 0}
+                        />
+                        </Box>)
+                }
+            </div>
+            </InnerPartContext.Provider>
+        );
+    }
 }
 
 const mapStateToProps = store => {
     return {
-        ...store.innerPart
+        energyCells: store.innerPart.energyCells,
+        connections: store.innerPart.connections
     }
 };
 

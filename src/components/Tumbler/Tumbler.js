@@ -135,8 +135,13 @@ function tumblerSizes(direction, state) {
         }
 }
 
-function Tumbler({direction, power}) {
+function Tumbler({direction, power, id, dispatch, hell}) {
     const [state, setState] = useState(power);
+    const handle = () => {
+        dispatch({id, state});
+        setState(!state);
+        hell(!state);
+    };
 
     if (state) {
         return <div className={arrowClass(direction, state)}>
@@ -148,11 +153,14 @@ function Tumbler({direction, power}) {
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
-                        onClick={() => setState(!state)}
+                        onClick={handle}
                     />
                 </ReactHover.Trigger>
                 <ReactHover.Hover type='hover'>
-                    <PowerSettingsNew onClick={() => setState(!state)} className={powerIconClass(direction)} />
+                    <PowerSettingsNew
+                        onClick={handle}
+                        className={powerIconClass(direction)}
+                    />
                 </ReactHover.Hover>
             </ReactHover>
         </div>;
@@ -167,11 +175,14 @@ function Tumbler({direction, power}) {
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
-                        onClick={() => setState(!state)}
+                        onClick={handle}
                     />
                 </ReactHover.Trigger>
                 <ReactHover.Hover type='hover'>
-                    <PowerSettingsNew onClick={() => setState(!state)} style={{backgroundColor: 'gray'}} className={powerIconClass(direction)}/>
+                    <PowerSettingsNew
+                        onClick={handle}
+                        style={{backgroundColor: 'gray'}}
+                        className={powerIconClass(direction)}/>
                 </ReactHover.Hover>
             </ReactHover>
         </div>;

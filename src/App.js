@@ -6,7 +6,7 @@ import Main from "./containers/Main/Main";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-        <Main/>
+        <Main />
     </ThemeProvider>
   );
 }

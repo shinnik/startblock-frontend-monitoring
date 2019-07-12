@@ -6,22 +6,22 @@
     grid-template-rows: $triangle-size 1fr $triangle-size;
 
     &__ru, &__rd, &__lu, &__ld {
-        grid-template-columns: $triangle-size $tumbler-length*1.2 $triangle-size;
+        grid-template-columns: $triangle-size $tumbler-length*1.5 $triangle-size;
     }
     &__ru {
-        transform: rotate(-48deg);
+        transform: rotate(-40deg);
     }
 
     &__rd {
-        transform: rotate(48deg);
+        transform: rotate(40deg);
     }
 
     &__lu {
-        transform: rotate(-132deg);
+        transform: rotate(-140deg);
     }
 
     &__ld {
-        transform: rotate(132deg);
+        transform: rotate(140deg);
     }
 }
 
@@ -33,10 +33,10 @@
      {
         grid-area: 2/1/3/4;
     }
-
     &__vl, &__vr {
         grid-area: 1/2/4/3;
     }
+
 }
 
 .Label {

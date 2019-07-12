@@ -5,8 +5,8 @@
   border: 3px solid transparent;
   border-radius: 10px;
   cursor: pointer;
-  //width: fit-content;
-  //height: fit-content;
+  width: fit-content;
+  height: fit-content;
   //display: flex;
   //align-items: center;
   //justify-content: center;
@@ -23,8 +23,8 @@
   border: 3px solid transparent;
   border-radius: 10px;
   cursor: pointer;
-  //width: fit-content;
-  //height: fit-content;
+  width: fit-content;
+  height: fit-content;
 
   &:hover {
     background-color: rgba($border-color, 0.3);
@@ -40,8 +40,8 @@
     border-radius: 50%;
     color: white;
     position: relative;
-    left: $tumbler-length*0.5;
-    top: - $triangle-size - $tumbler-thickness*0.5;
+    left: 100px;
+    top: - $triangle-size;
   }
 
   &__Left {
@@ -49,8 +49,8 @@
     border-radius: 50%;
     color: white;
     position: relative;
-    left: $tumbler-length*0.5 - $triangle-size;
-    top: - $triangle-size - $tumbler-thickness*0.5;
+    left: 60px;
+    top: - $triangle-size;
   }
 
   &__Up {
@@ -58,8 +58,9 @@
     border-radius: 50%;
     color: white;
     position: relative;
-    left: -$tumbler-thickness*0.5;
-    top: -$tumbler-length*0.5 - $triangle-size;
+    //left: -$tumbler-thickness*0.5;
+    left: 0;
+    top: -70px;
   }
 
   &__Down {
@@ -67,8 +68,9 @@
     border-radius: 50%;
     color: white;
     position: relative;
-    left: -$tumbler-thickness*0.5;
-    bottom: $tumbler-length*0.5;
+    //left: -$tumbler-thickness*0.3;
+    left: 0;
+    bottom: 80px;
   }
 
   &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
@@ -76,24 +78,24 @@
     border-radius: 50%;
     color: white;
     position: relative;
-    left: $tumbler-length;
-    top: - $triangle-size - $tumbler-thickness*0.5;
+    left: 80px;
+    top: - $triangle-size;
   }
 
   &__RightUp {
-    transform: rotate(47deg);
+    transform: rotate(40deg);
   }
 
   &__RightDown {
-    transform: rotate(-47deg);
+    transform: rotate(-40deg);
   }
 
   &__LeftUp {
-    transform: rotate(133deg);
+    transform: rotate(140deg);
   }
 
   &__LeftDown {
-    transform: rotate(-133deg);
+    transform: rotate(-140deg);
   }
 
 }

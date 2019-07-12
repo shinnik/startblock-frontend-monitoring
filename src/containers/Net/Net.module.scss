@@ -1,0 +1,56 @@
+@import "../../constants/constants";
+
+.Net {
+  display: grid;
+  grid-template-columns: $x5 $x6 $x7 $x8;
+  grid-template-rows: $y3 $y4 $y3;
+}
+
+.Item1, .Item2, .Item3, .Item4 {
+  align-self: center;
+}
+.Item1, .Item2, .Item3 {
+  justify-self: center;
+}
+
+.Item1 {
+  grid-area: 2/1/2/1;
+  padding-right: 10px;
+}
+
+.Item2 {
+  grid-area: 2/2/2/2;
+  background-color: $border-color;
+  height: $tumbler-thickness;
+  width: $x6;
+}
+
+.Item3 {
+  grid-area: 2/3/2/3;
+  background-color: black;
+  width: $x7;
+  height: $image-size;
+}
+
+.Item4 {
+  grid-area: 2/4/2/4;
+  background-color: $border-color;
+  height: $tumbler-thickness;
+  width: $x8;
+}
+
+.Item5 {
+  grid-area: 3/1/3/1;
+}
+
+.Item7 {
+  grid-area: 3/3/4/5;
+}
+
+.Item8 {
+  grid-area: 1/4/1/4;
+  align-self: end;
+  justify-self: center;
+  position: relative;
+  bottom: -$y4*0.4;
+}

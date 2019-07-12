@@ -118,12 +118,11 @@ const initialStore = {
 
     _net: {
         money: 100,
-        performance: 2000,
+        maxPerformance: 2,
     }
 };
 
 function innerPartReducer(store=initialStore, action) {
-    console.log(action.payload);
     switch (action.type) {
         case actionTypes.TUMBLER_TOGGLE: {
             switch (action.payload.id) {
@@ -147,8 +146,9 @@ function innerPartReducer(store=initialStore, action) {
                     tmp.connections[ [9, 15, 16, 160, 17, 22].indexOf(action.payload.id) ].active = !tmp2;
                     return tmp;
                 }
+                default:
+                    return store
             }
-            return store;
         }
         default:
             return store;

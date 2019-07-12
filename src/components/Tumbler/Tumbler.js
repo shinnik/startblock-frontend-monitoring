@@ -4,6 +4,7 @@ import constants from '../../constants/constants'
 import Arrow from 'react-arrow';
 import ReactHover from 'react-hover';
 import { PowerSettingsNew } from '@material-ui/icons';
+import {Typography} from "@material-ui/core";
 
 function arrowClass(direction, power) {
     if (power)
@@ -70,14 +71,14 @@ function powerIconClass(direction) {
     }
 }
 
-function tumblerSizes(direction, state) {
+function tumblerSizes(direction, state, koeff) {
     if (state)
         switch (direction) {
             case 'r':
             case 'l':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth-constants.triangleSize*2+5,
+                    shaftLength: (constants.tumblerWidth-constants.triangleSize*2+5)*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize,
                 };
@@ -85,7 +86,7 @@ function tumblerSizes(direction, state) {
             case 'u':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth-constants.triangleSize,
+                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize,
                 };
@@ -95,7 +96,7 @@ function tumblerSizes(direction, state) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*1.41,
+                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*1.25*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize,
                 };
@@ -108,7 +109,7 @@ function tumblerSizes(direction, state) {
             case 'l':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth - 12,
+                    shaftLength: (constants.tumblerWidth - 12)*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };
@@ -116,7 +117,7 @@ function tumblerSizes(direction, state) {
             case 'u':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth,
+                    shaftLength: (constants.tumblerWidth)*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };
@@ -126,7 +127,7 @@ function tumblerSizes(direction, state) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth*1.41 - 12,
+                    shaftLength: (constants.tumblerWidth*1.25 - 12)*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };
@@ -135,7 +136,7 @@ function tumblerSizes(direction, state) {
         }
 }
 
-function Tumbler({direction, power, id, dispatch, hell}) {
+function Tumbler({direction, power, id, dispatch, hell, koeff}) {
     const [state, setState] = useState(power);
     const handle = () => {
         dispatch({id, state});
@@ -151,10 +152,11 @@ function Tumbler({direction, power, id, dispatch, hell}) {
                 <ReactHover.Trigger type='trigger'>
                     <Arrow
                         direction={arrowDirection(direction)}
-                        {...tumblerSizes(direction, state)}
+                        {...tumblerSizes(direction, state, koeff)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />
+
                 </ReactHover.Trigger>
                 <ReactHover.Hover type='hover'>
                     <PowerSettingsNew
@@ -173,7 +175,7 @@ function Tumbler({direction, power, id, dispatch, hell}) {
                 <ReactHover.Trigger type='trigger'>
                     <Arrow
                         direction={arrowDirection(direction)}
-                        {...tumblerSizes(direction, state)}
+                        {...tumblerSizes(direction, state, koeff)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />

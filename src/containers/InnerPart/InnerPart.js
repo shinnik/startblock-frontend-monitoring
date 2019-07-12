@@ -26,16 +26,11 @@ const connectionDirections = [
 
 
 class InnerPart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-
     render()
     {
         return (
             <InnerPartContext.Provider value={this.props}>
-            <div className={classes.Main}>
+            <div className={classes.InnerPart}>
                 {
                     this.props.energyCells.map((value, index) => <EnergyCell
                         key={index}
@@ -54,6 +49,7 @@ class InnerPart extends React.Component {
                             direction={connectionDirections[index](value.output)}
                             id={[9, 15, 16, 160, 17, 22][index]}
                             dispatch={this.props.onToggle}
+                            koeff={[1, 3, 4, 6].indexOf(index+1) !== -1 ? 1.45 : 1}
                         />
                     </Box>)
                 }
@@ -67,6 +63,7 @@ class InnerPart extends React.Component {
                             power={value.net.active}
                             id={[3, 5, 27, 29][index]}
                             dispatch={this.props.onToggle}
+                            koeff={0.6}
                         />
                     </Box>)
                 }
@@ -96,6 +93,7 @@ class InnerPart extends React.Component {
                         />
                         </Box>)
                 }
+                <div  className={classes.Item1} />
             </div>
             </InnerPartContext.Provider>
         );

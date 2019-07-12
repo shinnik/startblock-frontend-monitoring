@@ -1,7 +1,7 @@
 export default {
     tumblerWidth: 200,
-    tumblerThickness: 4,
-    triangleSize: 20,
-    blueCardWidth: '122px',
-    blueCardHeight: '106px'
+    tumblerThickness: 5,
+    triangleSize: 25,
+    blueCardWidth: '130px',
+    blueCardHeight: '110px'
 };

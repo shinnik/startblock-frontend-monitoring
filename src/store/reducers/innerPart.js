@@ -117,7 +117,7 @@ const initialStore = {
     ],
 
     _net: {
-        money: 100,
+        money: -100,
         maxPerformance: 2,
     }
 };

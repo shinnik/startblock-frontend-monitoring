@@ -9,7 +9,7 @@ const imageData = [
         src: 'images/solar.png',
     },
     {
-        name: 'Бензогенератор',
+        name: 'Бензо-генератор',
         src: 'images/benz.png',
     },
     {
@@ -25,9 +25,11 @@ const imageData = [
 function Branch({type, dispatch, power, label, id, direction, reversed}) {
     return (
         <div className={!reversed ? classes.Branch : classes.BranchReversed}>
-            <Typography variant='body1' className={reversed ? classes.Item1_r : classes.Item1} >
-                {imageData[type].name}
-            </Typography>
+            <Box className={reversed ? classes.Item1_r : classes.Item1}>
+                <Typography variant='body1'>
+                    {imageData[type].name}
+                </Typography>
+            </Box>
             <Box className={reversed ? classes.Item2_r : classes.Item2}>
                 <img src={imageData[type].src} alt={imageData[type].name}/>
             </Box>

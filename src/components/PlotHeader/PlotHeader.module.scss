@@ -5,7 +5,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 15px 0 0 70px;
+    margin: 20px 0 0 75px;
+    //min-width: 700px;
   }
   &__header-container {
     display: flex;
@@ -27,12 +28,13 @@
   &__legend {
     font-family: "Manrope", sans-serif;
     font-size: 12px;
+    font-weight: 900;
     padding: 0;
-    margin: 0 10px 0 10px;
+    margin: 0 5px 0 10px;
     cursor: default;
     &--traditional {
       color: #EB5757;
-      margin: 0 10px 0 20px;
+      margin: 0 5px 0 15px;
     }
     &--distributed {
       color: goldenrod;

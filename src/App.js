@@ -7,7 +7,7 @@ import PlotContainer from "./containers/PlotContainer/PlotContainer";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-        <Main/>
+        {/*<Main/>*/}
         <PlotContainer/>
     </ThemeProvider>
   );

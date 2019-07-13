@@ -1,36 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js';
-import generateMock from '../../helpers/generateMockPlotData';
 import PlotHeader from "../PlotHeader/PlotHeader";
 
-const mockOffset3 = generateMock(3);
-const mockOffset5 = generateMock(5, 1.5);
-const mockOffset6 = generateMock(6);
-
-Chart.plugins.register({
-    beforeDraw: function (chart) {
-        if (chart.config.data.datasets[0].labelColor) {
-            let legends = chart.legend.legendItems;
-            legends.forEach(function (e, i) {
-                e.fillStyle = chart.config.data.datasets[i].labelColor;
-                e.strokeStyle = chart.config.data.datasets[i].labelColor;
-            });
-        }
-    }
-});
-
-const Plot = () => {
+const Plot = ({ internetData, distributionData, traditionalData }) => {
     const plot = useRef(null);
 
     const update = () => {
-        console.log(plot);
         new Chart(plot.current, {
             type: 'line',
             data: {
-                labels: mockOffset3.labels,
+                labels: traditionalData.labels,
                 datasets: [{
                     label: 'Традиционная энергосистема',
-                    data: mockOffset3.data,
+                    data: traditionalData.data,
                     borderColor: 'goldenrod',
                     borderWidth: 3,
                     lineTension: 0,
@@ -39,35 +21,73 @@ const Plot = () => {
                     radius: 0
                 },
                 {
+                    data: traditionalData.last,
+                    borderColor: 'goldenrod',
+                    borderWidth: 3,
+                    lineTension: 0,
+                    fill: false,
+                    backgroundColor: 'goldenrod',
+                    radius: 3
+                },
+                {
                     label: 'Распределенная генерация',
-                    data: mockOffset5.data,
+                    data: distributionData.data,
                     borderColor: 'rgb(235, 87, 87)',
                     borderWidth: 3,
                     lineTension: 0,
                     fill: false,
                     backgroundColor: 'rgb(235, 87, 87)',
                     radius: 0
-                }, {
+                },
+                    {
+                        data: distributionData.last,
+                        label: 'Текущее значение',
+                        borderColor: 'rgb(235, 87, 87)',
+                        borderWidth: 3,
+                        lineTension: 0,
+                        fill: false,
+                        backgroundColor: 'rgb(235, 87, 87)',
+                        radius: 3
+                    },
+                    {
                     label: 'Интернет энергии',
-                    data: mockOffset6.data,
+                    data: internetData.data,
                     borderColor: 'rgb(50,205,50)',
                     borderWidth: 3,
                     lineTension: 0,
                     fill: false,
                     backgroundColor: 'rgb(50,205,50)',
                     radius: 0
-                }
+                },
+                    {
+                        data: internetData.last,
+                        label: 'Текущее значение',
+                        borderColor: 'rgb(50,205,50)',
+                        borderWidth: 3,
+                        lineTension: 0,
+                        fill: false,
+                        backgroundColor: 'rgb(50,205,50)',
+                        radius: 3
+                    },
             ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: false,
                 legend: {
                     display: false
                 },
+                tooltips: {
+                    filter: function (tooltipItem) {
+                        return tooltipItem.datasetIndex === 0
+                            || tooltipItem.datasetIndex === 2
+                            || tooltipItem.datasetIndex === 4;
+                    }
+                },
                 layout: {
                     padding: {
-                        top: 50,
+                        top: 55,
                         bottom: 10,
                         right: 70,
                         left: 70
@@ -81,6 +101,7 @@ const Plot = () => {
                         },
                         ticks: {
                             autoSkip: true,
+                            minTicksLimit: 7,
                             maxTicksLimit: 7,
                             maxRotation: 0,
                             minRotation: 0,
@@ -93,10 +114,10 @@ const Plot = () => {
                         position: 'right',
                         scaleLabel: {
                             display: true,
-                            labelString: 'MIPTik/кВт⋅ч ',
+                            labelString: 'MIPTik/кВт⋅ч',
                             fontFamily: "'Manrope', sans-serif",
                             fontColor: 'rgb(255, 255, 255, 0.8)',
-                            fontSize: 12
+                            fontSize: 12,
                         },
                         gridLines: {
                             color: 'rgb(0, 0, 0, 0)',
@@ -119,10 +140,9 @@ const Plot = () => {
 
         })
     };
-    useEffect(() => update(), []);
-
+    useEffect(() => update());
     return (
-        <section style={{ minWidth: '100vw', maxHeight: '35vh', backgroundColor: '#283148' }}>
+        <section style={{ minWidth: '100vw', maxHeight: '35vh', backgroundColor: '#283148', position: 'absolute', bottom: 0 }}>
             <PlotHeader/>
             <canvas style={{ minWidth: '100vw', maxHeight: '30vh', backgroundColor: '#283148' }} ref={plot}></canvas>
         </section>

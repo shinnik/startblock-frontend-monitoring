@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-
 import styles from './PlotHeader.module.scss';
 
 const PlotHeader = () => {
@@ -17,6 +16,7 @@ const PlotHeader = () => {
         styles['plot-header__legend'],
         styles['plot-header__legend--internet']
     );
+
     return (
         <div className={styles['plot-header__container']}>
             <div className={styles['plot-header__header-container']}>
@@ -24,13 +24,13 @@ const PlotHeader = () => {
             </div>
             <div className={styles['plot-header__legend-container']}>
                 <p className={traditionalLegendClasses}>
-                    <b>Традиционная энергосистема</b>
+                    Традиционная энергосистема
                 </p>
                 <p className={distributedLegendClasses}>
-                    <b>Распределенная генерация</b>
+                    Распределенная генерация
                 </p>
                 <p className={internetLegendClasses}>
-                    <b>Интернет энергии</b>
+                    Интернет энергии
                 </p>
             </div>
         </div>

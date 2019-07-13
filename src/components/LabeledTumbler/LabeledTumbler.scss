@@ -4,6 +4,8 @@
     display: grid;
     grid-template-columns: $triangle-size 1fr $triangle-size;
     grid-template-rows: $triangle-size 1fr $triangle-size;
+    //grid-template-columns: repeat(3, 1fr);
+    //grid-template-rows: $triangle-size 1fr $triangle-size;
 
     &__ru, &__rd, &__lu, &__ld {
         grid-template-columns: $triangle-size $tumbler-length*1.5 $triangle-size;
@@ -42,6 +44,14 @@
 .Label {
     &__hu,
     &__ru, &__rd,
+    &__lu, &__ld,
+    &__vl, &__vr {
+        width: max-content;
+    }
+
+
+    &__hu,
+    &__ru, &__rd,
     &__lu, &__ld
     {
         grid-area: 1/1/2/4;
@@ -68,6 +78,7 @@
 
     &__vl, &__vr {
         padding: 0.5em 0;
+
     }
 
     &__hu, &__hd {

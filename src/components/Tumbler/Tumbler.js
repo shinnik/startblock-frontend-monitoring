@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import classes from './Tumbler.module.scss';
 import constants from '../../constants/constants'
 import Arrow from 'react-arrow';
-import ReactHover from 'react-hover';
-import { PowerSettingsNew } from '@material-ui/icons';
-import {Typography} from "@material-ui/core";
 
 function arrowClass(direction, power) {
     if (power)
@@ -146,47 +143,22 @@ function Tumbler({direction, power, id, dispatch, hell, koeff}) {
 
     if (state) {
         return <div className={arrowClass(direction, state)}>
-            <ReactHover options={{
-                followCursor: false,
-            }}>
-                <ReactHover.Trigger type='trigger'>
                     <Arrow
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state, koeff)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />
-
-                </ReactHover.Trigger>
-                <ReactHover.Hover type='hover'>
-                    <PowerSettingsNew
-                        onClick={handle}
-                        className={powerIconClass(direction)}
-                    />
-                </ReactHover.Hover>
-            </ReactHover>
         </div>;
     }
     else {
         return <div className={arrowClass(direction, state)}>
-            <ReactHover options={{
-                followCursor: false,
-            }}>
-                <ReactHover.Trigger type='trigger'>
                     <Arrow
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state, koeff)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />
-                </ReactHover.Trigger>
-                <ReactHover.Hover type='hover'>
-                    <PowerSettingsNew
-                        onClick={handle}
-                        style={{backgroundColor: 'gray'}}
-                        className={powerIconClass(direction)}/>
-                </ReactHover.Hover>
-            </ReactHover>
         </div>;
     }
 }

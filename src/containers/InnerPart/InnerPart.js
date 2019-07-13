@@ -26,6 +26,8 @@ const connectionDirections = [
 
 
 class InnerPart extends React.Component {
+
+
     render()
     {
         return (

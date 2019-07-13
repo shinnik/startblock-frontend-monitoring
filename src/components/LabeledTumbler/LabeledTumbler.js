@@ -8,7 +8,7 @@ function LabeledTumbler({direction, power, label, type, align, id, dispatch, koe
 
     return (
         <div className={`LabeledTumbler LabeledTumbler__${direction}`}>
-            <Box className={`Arrow__${type}`}>
+            <Box className={`Arrow__${type}`} >
                 <Tumbler direction={direction} power={state} id={id} dispatch={dispatch} hell={setState} koeff={koeff}/>
             </Box>
             <Box className={`Label__${type} Align_${align}`}>

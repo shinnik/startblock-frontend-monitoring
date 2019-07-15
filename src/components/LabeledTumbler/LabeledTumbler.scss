@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: $triangle-size 1fr $triangle-size;
     grid-template-rows: $triangle-size 1fr $triangle-size;
+    z-index: -1;
     //grid-template-columns: repeat(3, 1fr);
     //grid-template-rows: $triangle-size 1fr $triangle-size;
 
@@ -11,19 +12,19 @@
         grid-template-columns: $triangle-size $tumbler-length*1.5 $triangle-size;
     }
     &__ru {
-        transform: rotate(-40deg);
+        transform: rotate(-37deg);
     }
 
     &__rd {
-        transform: rotate(40deg);
+        transform: rotate(37deg);
     }
 
     &__lu {
-        transform: rotate(-140deg);
+        transform: rotate(-143deg);
     }
 
     &__ld {
-        transform: rotate(140deg);
+        transform: rotate(143deg);
     }
 }
 

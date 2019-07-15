@@ -141,7 +141,6 @@ function Tumbler({direction, power, id, dispatch, hell, koeff}) {
         hell(!state);
     };
 
-    if (state) {
         return <div className={arrowClass(direction, state)}>
                     <Arrow
                         direction={arrowDirection(direction)}
@@ -150,17 +149,6 @@ function Tumbler({direction, power, id, dispatch, hell, koeff}) {
                         onClick={handle}
                     />
         </div>;
-    }
-    else {
-        return <div className={arrowClass(direction, state)}>
-                    <Arrow
-                        direction={arrowDirection(direction)}
-                        {...tumblerSizes(direction, state, koeff)}
-                        fill={state ? '#EB5757' : '#D0D0D0'}
-                        onClick={handle}
-                    />
-        </div>;
-    }
 }
 
 export default Tumbler;

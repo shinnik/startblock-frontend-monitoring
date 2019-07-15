@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import classes from './Main.module.scss';
 import InnerPart from "../InnerPart/InnerPart";
 import {Box} from "@material-ui/core";

@@ -28,10 +28,10 @@ function koeffs(id) {
     switch (id) {
         case 1:
         case 6:
-            return 1.3;
+            return 1.37;
         case 3:
         case 4:
-            return 1.7;
+            return 1.75;
         default:
             return 1;
     }

@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: $triangle-size 1fr $triangle-size;
     grid-template-rows: $triangle-size 1fr $triangle-size;
+    z-index: -1;
     //grid-template-columns: repeat(3, 1fr);
     //grid-template-rows: $triangle-size 1fr $triangle-size;
 

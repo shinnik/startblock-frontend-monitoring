@@ -23,7 +23,6 @@
     `sudo apt-get update && sudo apt-get install yarn`
  - Для Windows нужно проследовать инструкции по ссылке:
   https://yarnpkg.com/lang/en/docs/install/#windows-stable
-
 *5. Проверьте, установлен ли yarn с помощью команды* `yarn --version` *в терминале Ubuntu или в консоли Windows*
 *6. Если yarn установлен, склонируйте репозиторий с помощью команды* `git clone https://github.com/shinnik/startblock-frontend-demo.git`
 *После этого выполните команду* `git checkout development` *, чтобы перейти в ветку разработки.*

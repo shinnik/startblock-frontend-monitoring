@@ -102,7 +102,7 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
                         ticks: {
                             autoSkip: true,
                             minTicksLimit: 7,
-                            maxTicksLimit: 7,
+                            maxTicksLimit: 8,
                             maxRotation: 0,
                             minRotation: 0,
                             fontColor: 'rgb(255, 255, 255, 0.8)',

@@ -1,0 +1,16 @@
+.header {
+  &__container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: calc(100% - 40px);
+    height: 15vh;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 40px;
+  }
+  &__label {
+    font-family: "Manrope", sans-serif;
+    font-weight: 900;
+  }
+}

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import classes from './Tumbler.module.scss';
 import constants from '../../constants/constants'
 import Arrow from 'react-arrow';
+import {PowerSettingsNew} from "@material-ui/icons";
+import {Box} from "@material-ui/core";
 
 function arrowClass(direction, power) {
     if (power)
@@ -133,8 +135,11 @@ function tumblerSizes(direction, state, koeff) {
         }
 }
 
-function Tumbler({direction, power, id, dispatch, hell, koeff}) {
+
+
+function Tumbler({direction, power, id, dispatch, hell, koeff, hovered}) {
     const [state, setState] = useState(power);
+
     const handle = () => {
         dispatch({id, state});
         setState(!state);
@@ -148,6 +153,7 @@ function Tumbler({direction, power, id, dispatch, hell, koeff}) {
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />
+            {hovered && <Box onClick={handle} ><PowerSettingsNew style={{backgroundColor: state ? '#EB5757' : '#878787', width: constants.triangleSize, height: constants.triangleSize, alignSelf: 'center', justifySelf: 'center'}} className={powerIconClass(direction)}/> </Box>}
         </div>;
 }
 

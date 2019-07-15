@@ -7,6 +7,7 @@
   cursor: pointer;
   width: fit-content;
   height: fit-content;
+  position: relative;
   //display: flex;
   //align-items: center;
   //justify-content: center;
@@ -25,6 +26,7 @@
   cursor: pointer;
   width: fit-content;
   height: fit-content;
+  position: relative;
 
   &:hover {
     background-color: rgba($border-color, 0.3);
@@ -34,68 +36,73 @@
 }
 
 .PowerIcon {
+  &__Right, &__Left, &__Up, &__Down,
+  &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
+    width: $triangle-size;
+    height: $triangle-size;
+  }
 
   &__Right {
     background-color: $border-color;
     border-radius: 50%;
     color: white;
-    position: relative;
-    left: 100px;
-    top: - $triangle-size;
+    position: absolute;
+    right: 60px;
+    top: 0;
   }
 
   &__Left {
     background-color: $border-color;
     border-radius: 50%;
     color: white;
-    position: relative;
+    position: absolute;
     left: 60px;
-    top: - $triangle-size;
+    top: 0;
   }
 
   &__Up {
     background-color: $border-color;
     border-radius: 50%;
     color: white;
-    position: relative;
-    //left: -$tumbler-thickness*0.5;
+    position: absolute;
     left: 0;
-    top: -70px;
+    top: 60px;
   }
 
   &__Down {
     background-color: $border-color;
     border-radius: 50%;
     color: white;
-    position: relative;
+    position: absolute;
     //left: -$tumbler-thickness*0.3;
     left: 0;
-    bottom: 80px;
+    bottom: 60px;
+
   }
 
   &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
     background-color: $border-color;
     border-radius: 50%;
     color: white;
-    position: relative;
-    left: 80px;
-    top: - $triangle-size;
+    position: absolute;
+    right: 60px;
+    top: - $tumbler-thickness*0.1;
   }
 
   &__RightUp {
-    transform: rotate(40deg);
+    transform: rotate(37deg);
   }
 
   &__RightDown {
-    transform: rotate(-40deg);
+    transform: rotate(-37deg);
   }
 
   &__LeftUp {
-    transform: rotate(140deg);
+    transform: rotate(143deg);
   }
 
   &__LeftDown {
-    transform: rotate(-140deg);
+    transform: rotate(-143deg);
   }
 
 }

@@ -24,6 +24,19 @@ const connectionDirections = [
     x => x ? 'r' : 'l'
 ];
 
+function koeffs(id) {
+    switch (id) {
+        case 1:
+        case 6:
+            return 1.3;
+        case 3:
+        case 4:
+            return 1.7;
+        default:
+            return 1;
+    }
+}
+
 
 class InnerPart extends React.Component {
 
@@ -51,7 +64,7 @@ class InnerPart extends React.Component {
                             direction={connectionDirections[index](value.output)}
                             id={[9, 15, 16, 160, 17, 22][index]}
                             dispatch={this.props.onToggle}
-                            koeff={[1, 3, 4, 6].indexOf(index+1) !== -1 ? 1.45 : 1}
+                            koeff={koeffs(index+1)}
                         />
                     </Box>)
                 }

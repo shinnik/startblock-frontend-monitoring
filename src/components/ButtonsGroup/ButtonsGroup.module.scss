@@ -8,12 +8,12 @@
   &__button {
     margin: 0;
     outline: none;
-    padding: 2px 10px 2px 10px;
-    background-color: #FAFAFA;
+    padding: 3px 10px 3px 10px;
+    background-color: #FCFCFC;
     font-family: "Manrope", sans-serif;
     font-size: 9px;
     font-weight: 800;
-    border: 1px solid #DCDCDC;
+    border: 1px solid #CCCCCC;
     transition: background-color 200ms, color 200ms, border-color 200ms;
     cursor: pointer;
     &--active {

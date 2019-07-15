@@ -147,7 +147,7 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
             <canvas style={{ minWidth: '100vw', maxHeight: '30vh', backgroundColor: '#283148' }} ref={plot}></canvas>
         </section>
     )
-}
+};
 
 export default Plot;
 

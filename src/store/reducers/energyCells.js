@@ -92,26 +92,13 @@ function energyCellsReducer(state = initialStore, action) {
                 case 29:
                 case 3: {
                     let tmp = Array.from(state);
-                    let tmp2 = Object.assign({}, tmp[ [3, 5, 27, 29].indexOf(action.payload.id) ]);
+                    const i = [3, 5, 27, 29].indexOf(action.payload.id);
+                    let tmp2 = Object.assign({}, tmp[ i ]);
+                    console.log(tmp2);
+                    tmp2.net = Object.assign({}, tmp2.net);
                     tmp2.net.active = !tmp2.net.active;
-                    tmp[ [3, 5, 27, 29].indexOf(action.payload.id) ] = tmp2;
+                    tmp[ i ] = tmp2;
                     return tmp;
-                    // console.log(tmp2);
-                    // tmp.energyCells[[3, 5, 27, 29].indexOf(action.payload.id)].net.active= !tmp2;
-                    // console.log(tmp);
-                    // return tmp;
-                }
-                case 9:
-                case 15:
-                case 16:
-                case 160:
-                case 17:
-                case 22: {
-                    // let tmp=store;
-                    // const tmp2=tmp.connections[[9, 15, 16, 160, 17, 22].indexOf(action.payload.id)].active;
-                    // tmp.connections[[9, 15, 16, 160, 17, 22].indexOf(action.payload.id)].active= !tmp2;
-                    // return tmp;
-                    return state;
                 }
                 default:
                     return state;

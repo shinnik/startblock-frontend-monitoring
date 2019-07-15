@@ -142,7 +142,7 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
     };
     useEffect(() => update());
     return (
-        <section style={{ minWidth: '100vw', maxHeight: '35vh', backgroundColor: '#283148', position: 'absolute', bottom: 0 }}>
+        <section style={{ minWidth: '100vw', maxHeight: '35vh', backgroundColor: '#283148' }}>
             <PlotHeader/>
             <canvas style={{ minWidth: '100vw', maxHeight: '30vh', backgroundColor: '#283148' }} ref={plot}></canvas>
         </section>

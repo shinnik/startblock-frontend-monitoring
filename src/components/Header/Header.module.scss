@@ -1,13 +1,14 @@
 .header {
   &__container {
     display: flex;
-    position: absolute;
-    top: 0;
-    width: calc(100% - 40px);
+    //position: absolute;
+    //top: 0;
+    //width: calc(100% - 40px);
+    width: 100vw;
     height: 15vh;
     align-items: center;
     flex-direction: row;
-    margin-left: 40px;
+    //margin-left: 40px;
   }
   &__label {
     font-family: "Manrope", sans-serif;

@@ -75,7 +75,7 @@ function tumblerSizes(direction, state, koeff) {
             case 'l':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize*2+5)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*2+5,
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize,
                 };
@@ -83,7 +83,7 @@ function tumblerSizes(direction, state, koeff) {
             case 'u':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize,
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize,
                 };
@@ -93,7 +93,7 @@ function tumblerSizes(direction, state, koeff) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*1.25*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize,
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize,
                 };
@@ -106,7 +106,7 @@ function tumblerSizes(direction, state, koeff) {
             case 'l':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: (constants.tumblerWidth - 12)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1) - 12,
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };
@@ -114,7 +114,7 @@ function tumblerSizes(direction, state, koeff) {
             case 'u':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: (constants.tumblerWidth)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1),
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };
@@ -124,7 +124,7 @@ function tumblerSizes(direction, state, koeff) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: (constants.tumblerWidth*1.25 - 12)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1) - 12,
                     headWidth: constants.triangleSize,
                     headLength: 0,
                 };

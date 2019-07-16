@@ -23,7 +23,7 @@ const initialStore = [
     },
     {
         generator: {
-            type: 1,
+            type: 2,
             output: false,
             performance: 0.052,
             active: true,
@@ -43,7 +43,7 @@ const initialStore = [
     },
     {
         generator: {
-            type: 1,
+            type: 0,
             output: false,
             performance: 0.052,
             active: true,

@@ -1,28 +1,23 @@
 import React from 'react';
 import classes from './Main.module.scss';
 import InnerPart from "../InnerPart/InnerPart";
-import {Box} from "@material-ui/core";
+import {Box, Typography} from "@material-ui/core";
 import Net from "../Net/Net";
-import classNames from 'classnames';
-import { makeStyles } from "@material-ui/styles";
 import * as actionCreators from "../../store/actions";
 import {connect} from "react-redux";
-
-
-const useStyles = makeStyles({
-    root: {
-        zoom: window.innerWidth/2500,
-    }
-});
+import useWindowSize from '@rehooks/window-size';
 
 
 function Main({energyCells, connections, onToggle}) {
-    const styles = useStyles();
+    let windowSize = useWindowSize();
 
     return (
-        <Box className={classNames(styles.root, classes.Main)} >
+        <Box style={{zoom: windowSize.innerWidth/2500}} className={classes.Main} >
                 <Net/>
                 <InnerPart onToggle={onToggle} energyCells={energyCells} connections={connections}/>
+                <Typography className={classes.Label}>
+                    Все значения указаны в Ваттах
+                </Typography>
         </Box>
     );
 }

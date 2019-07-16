@@ -94,7 +94,6 @@ function energyCellsReducer(state = initialStore, action) {
                     let tmp = Array.from(state);
                     const i = [3, 5, 27, 29].indexOf(action.payload.id);
                     let tmp2 = Object.assign({}, tmp[ i ]);
-                    console.log(tmp2);
                     tmp2.net = Object.assign({}, tmp2.net);
                     tmp2.net.active = !tmp2.net.active;
                     tmp[ i ] = tmp2;

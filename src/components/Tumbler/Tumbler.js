@@ -71,23 +71,22 @@ function powerIconClass(direction) {
 }
 
 function tumblerSizes(direction, state, koeff) {
-    if (state)
         switch (direction) {
             case 'r':
             case 'l':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize,
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
                     headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize,
+                    headLength: constants.triangleSize*state,
                 };
             case 'd':
             case 'u':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize,
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
                     headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize,
+                    headLength: constants.triangleSize*state,
                 };
             case 'ru':
             case 'rd':
@@ -95,44 +94,14 @@ function tumblerSizes(direction, state, koeff) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize,
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
                     headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize,
+                    headLength: constants.triangleSize*state,
                 };
             default:
                 throw new Error('Unknown direction.');
         }
-    else
-        switch (direction) {
-            case 'r':
-            case 'l':
-                return {
-                    shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1),
-                    headWidth: constants.triangleSize,
-                    headLength: 0,
-                };
-            case 'd':
-            case 'u':
-                return {
-                    shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1),
-                    headWidth: constants.triangleSize,
-                    headLength: 0,
-                };
-            case 'ru':
-            case 'rd':
-            case 'lu':
-            case 'ld':
-                return {
-                    shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1),
-                    headWidth: constants.triangleSize,
-                    headLength: 0,
-                };
-            default:
-                throw new Error('Unknown direction.');
-        }
+
 }
 
 
@@ -148,6 +117,7 @@ function Tumbler({direction, power, id, dispatch, hell, koeff, hovered}) {
 
         return <div className={arrowClass(direction, state)}>
                     <Arrow
+                        className={classes.PureArrow}
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state, koeff)}
                         fill={state ? '#EB5757' : '#D0D0D0'}

@@ -41,14 +41,11 @@ let theme = createMuiTheme({
             elevation1: {
                 backgroundColor: '#0099DC',
                 color: 'white',
-                paddingTop: '10px',
-                paddingBottom: '15px',
-                paddingLeft: '10px',
-                paddingRight: '10px',
+                // padding: '10px',
                 boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
                 borderRadius: '11.1621px',
-                width: constants.blueCardWidth,
-                height: constants.blueCardHeight,
+                minWidth: constants.blueCardWidth,
+                minHeight: constants.blueCardHeight,
             }
         },
         MuiTableCell: {

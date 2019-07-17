@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider theme={theme}>
         <div className={classes.App}>
             <HeaderContainer/>
-            {/*<Main/>*/}
+            <Main/>
             <PlotContainer/>
         </div>
     </ThemeProvider>

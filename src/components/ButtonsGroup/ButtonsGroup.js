@@ -12,7 +12,7 @@ const ButtonsGroup = ({ setMode, mode }) => {
     return (
         <div className={styles['buttons-group__container']}>
             { buttons.map(button =>
-                <button id={button.id}
+                <button key={button.id} id={button.id}
                         className={ button.id === mode
                             ? buttonActiveStyle
                             : styles['buttons-group__button']}

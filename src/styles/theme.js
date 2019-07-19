@@ -41,7 +41,6 @@ let theme = createMuiTheme({
             elevation1: {
                 backgroundColor: '#0099DC',
                 color: 'white',
-                // padding: '10px',
                 boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
                 borderRadius: '11.1621px',
                 minWidth: constants.blueCardWidth,

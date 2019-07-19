@@ -4,16 +4,16 @@ $tumbler-length: 200px;
 $tumbler-thickness: 5px;
 $triangle-size: $tumbler-thickness*5;
 
-$blue-card-width: 150px;
-$blue-card-height: 130px;
+$blue-card-width: 122px;
+$blue-card-height: 106px;
 
 $x1: 100px;
 $x2: 450px;
 $x3: $blue-card-width;
-$x4: $tumbler-length - $tumbler-thickness;
-$y1: $tumbler-length*0.6+$tumbler-thickness;
+$x4: $tumbler-length+$triangle-size - $tumbler-thickness;
+$y1: $tumbler-length*0.6+$tumbler-thickness*1.5;
 $y2: $blue-card-height*0.5;
-$x40: $tumbler-length*1.35;
+$x40: $tumbler-length*1.4 + $tumbler-thickness;
 
 $y3: 100px;
 $y4: 70px;

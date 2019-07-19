@@ -74,27 +74,15 @@ function tumblerSizes(direction, state, koeff) {
         switch (direction) {
             case 'r':
             case 'l':
-                return {
-                    shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
-                    headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize*state,
-                };
             case 'd':
             case 'u':
-                return {
-                    shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
-                    headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize*state,
-                };
             case 'ru':
             case 'rd':
             case 'lu':
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state+constants.triangleSize*(koeff ? koeff : 1)-constants.tumblerThickness*1.5,
                     headWidth: constants.triangleSize,
                     headLength: constants.triangleSize*state,
                 };

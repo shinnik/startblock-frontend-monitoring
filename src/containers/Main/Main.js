@@ -12,7 +12,7 @@ function Main({energyCells, connections, onToggle}) {
     let windowSize = useWindowSize();
 
     return (
-        <Box style={{zoom: windowSize.innerWidth/2500}} className={classes.Main} >
+        <Box style={{zoom: Math.min(windowSize.innerWidth/2500, 1)}} className={classes.Main} >
                 <Net/>
                 <InnerPart onToggle={onToggle} energyCells={energyCells} connections={connections}/>
                 <Typography className={classes.Label}>

@@ -19,11 +19,11 @@ let theme = createMuiTheme({
             '"Segoe UI Symbol"',
         ].join(','),
         body1: {
-            fontSize: '28px',
+            fontSize: '23px',
             letterSpacing: '0.44px',
         },
         body2: {
-            fontSize: '25px',
+            fontSize: '20px',
             letterSpacing: '0.44px',
         }
     },
@@ -41,11 +41,10 @@ let theme = createMuiTheme({
             elevation1: {
                 backgroundColor: '#0099DC',
                 color: 'white',
-                // padding: '10px',
                 boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
                 borderRadius: '11.1621px',
-                minWidth: constants.blueCardWidth,
-                minHeight: constants.blueCardHeight,
+                // minWidth: constants.blueCardWidth,
+                // minHeight: constants.blueCardHeight,
             }
         },
         MuiTableCell: {
@@ -62,4 +61,4 @@ let theme = createMuiTheme({
 });
 
 
-export default responsiveFontSizes(theme);
+export default theme;

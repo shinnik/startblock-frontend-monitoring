@@ -6,7 +6,6 @@
 }
 
 .Arrow_g, .Arrow_g__ru, .Arrow_g__rd, .Arrow_g__lu, .Arrow_g__ld {
-  border: 5px solid transparent;
   border-radius: 20px;
   cursor: pointer;
   width: fit-content;
@@ -15,14 +14,12 @@
 
   &:hover {
       background-color: rgba(black, 0.15);
-      border: 5px solid transparent;
       border-radius: 20px;
   }
 }
 
 .Arrow, .Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld
 {
-  border: 5px solid transparent;
   border-radius: 20px;
   cursor: pointer;
   width: fit-content;
@@ -31,10 +28,16 @@
 
   &:hover {
     background-color: rgba($border-color, 0.3);
-    border: 5px solid transparent;
     border-radius: 20px;
   }
 }
+
+.Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld,
+.Arrow_g__ru, .Arrow_g__rd, .Arrow_g__lu, .Arrow_g__ld
+{
+  left: -$tumbler-thickness*2;
+}
+
 
 .PowerIcon {
   &__Right, &__Left, &__Up, &__Down,
@@ -91,19 +94,19 @@
   }
 
   &__RightUp {
-    transform: rotate(37deg);
+    transform: rotate(38deg);
   }
 
   &__RightDown {
-    transform: rotate(-37deg);
+    transform: rotate(-38deg);
   }
 
   &__LeftUp {
-    transform: rotate(143deg);
+    transform: rotate(142deg);
   }
 
   &__LeftDown {
-    transform: rotate(-143deg);
+    transform: rotate(-142deg);
   }
 
 }

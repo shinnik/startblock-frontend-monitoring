@@ -9,7 +9,7 @@
   border-left: $tumbler-thickness solid $border-color;
   border-top: $tumbler-thickness solid $border-color;
   width: $x1 + $x2 + $x3 + $x40 + $x3*0.5 + $tumbler-thickness*0.5;
-  height: 2*$y1 + 4*$y2 + $x4 - $tumbler-thickness;
+  height: 2*$y1 + 4*$y2 + $x4;
 }
 
 .Item8 {
@@ -66,8 +66,6 @@
 
 .Item8, .Item10, .Item21, .Item23 {
   z-index: 1;
-  align-self: center;
-  justify-self: center;
 }
 
 .Item3, .Item5, .Item27, .Item29, .Item15, .Item17 {
@@ -142,6 +140,8 @@
 .Item19,
 .Item20 {
   justify-self: end;
+  position: relative;
+  right: 10px;
 }
 
 .Item11,
@@ -149,4 +149,11 @@
 .Item24,
 .Item25 {
   justify-self: start;
+}
+
+.Item3, .Item5, .Item7, .Item8, .Item9, .Item10, .Item11,
+.Item12, .Item13, .Item15, .Item16, .Item17, .Item19,
+.Item20, .Item21, .Item22, .Item23, .Item24, .Item25,
+.Item27, .Item29 {
+  position: relative;
 }

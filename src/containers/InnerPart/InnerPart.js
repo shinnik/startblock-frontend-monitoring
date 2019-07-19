@@ -4,6 +4,7 @@ import EnergyCell from "../../components/EnergyCell/EnergyCell";
 import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
 import {Box} from "@material-ui/core";
 import Branch from "../Branch/Branch";
+import {connect} from "react-redux";
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
@@ -93,9 +94,9 @@ function InnerPart({onToggle, connections, energyCells}) {
                         <Branch
                             type={3}
                             id={[12, 13, 20, 25][index]}
-                            label={value.net.performance}
+                            label={value.load.performance}
                             dispatch={onToggle}
-                            power={value.net.active}
+                            power={value.load.active}
                             direction={index % 2 === 0 ? ('l') : ('r')}
                             reversed={index % 2 !== 0}
                         />

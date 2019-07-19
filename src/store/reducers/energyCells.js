@@ -85,17 +85,54 @@ const initialStore = [
 
 function energyCellsReducer(state = initialStore, action) {
     switch (action.type) {
+        case actionTypes.SET_MODE: {
+            switch (action.mode) {
+                case 'regular': {
+                    let tmp = Array.from(state);
+                    tmp.forEach((value, index, array) => {
+                        let tmp2 = Object.assign({}, array[index]);
+                        tmp2.generator = Object.assign({}, tmp2.generator);
+                        tmp2.net = Object.assign({}, tmp2.net);
+                        tmp2.load = Object.assign({}, tmp2.load);
+                        tmp2.generator.active = true;
+                        tmp2.net.active = true;
+                        tmp2.load.active = true;
+                        array[index] = tmp2;
+                    });
+                    return tmp;
+                }
+                case 'limited_network': {
+                    return state;
+                }
+                case 'no_neighbors': {
+                    return state;
+                }
+                case 'no_network': {
+                    let tmp = Array.from(state);
+                    tmp.forEach((value, index, array) => {
+                        let tmp2 = Object.assign({}, array[index]);
+                        tmp2.net = Object.assign({}, tmp2.net);
+                        tmp2.net.active = false;
+                        array[index] = tmp2;
+                    });
+                    return tmp;
+                }
+                    return state;
+                default:
+                    throw new Error('Unknown mode');
+            }
+        }
         case actionTypes.TUMBLER_TOGGLE: {
             switch (action.payload.id) {
-                case 5:
-                case 27:
-                case 29:
-                case 3: {
+                case 7:
+                case 19:
+                case 11:
+                case 24: {
                     let tmp = Array.from(state);
-                    const i = [3, 5, 27, 29].indexOf(action.payload.id);
+                    const i = [7, 11, 19, 24].indexOf(action.payload.id);
                     let tmp2 = Object.assign({}, tmp[ i ]);
-                    tmp2.net = Object.assign({}, tmp2.net);
-                    tmp2.net.active = !tmp2.net.active;
+                    tmp2.generator = Object.assign({}, tmp2.generator);
+                    tmp2.generator.active = !tmp2.generator.active;
                     tmp[ i ] = tmp2;
                     return tmp;
                 }

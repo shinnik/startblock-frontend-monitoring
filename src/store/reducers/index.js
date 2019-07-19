@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
-import innerPartReducer from "./innerPart";
 import headerReducer from "./header";
+import energyCellsReducer from './energyCells';
+import connectionsReducer from './connections';
+import _netReducer from './_net';
 
 export const reducers = combineReducers({
-    innerPart: innerPartReducer,
+    energyCells: energyCellsReducer,
+    connections: connectionsReducer,
+    _net: _netReducer,
     hdr: headerReducer
 });
 

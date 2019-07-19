@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js';
 import PlotHeader from "../PlotHeader/PlotHeader";
 
@@ -142,12 +142,12 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
     };
     useEffect(() => update());
     return (
-        <section style={{ minWidth: '100vw', maxHeight: '35vh', backgroundColor: '#283148', position: 'absolute', bottom: 0 }}>
+        <section style={{ width: '100%', height: '25%', backgroundColor: '#283148', position: 'absolute', bottom: '0px' }}>
             <PlotHeader/>
-            <canvas style={{ minWidth: '100vw', maxHeight: '30vh', backgroundColor: '#283148' }} ref={plot}></canvas>
+            <canvas style={{ width: '100%', height: '25%', backgroundColor: '#283148' }} ref={plot}></canvas>
         </section>
     )
-}
+};
 
 export default Plot;
 

@@ -6,12 +6,11 @@
   }
 
   &:hover &__hover {
-    opacity: 1;
+    display: none;
   }
 
   &__hover {
     position: absolute;
-    top: 0;
     opacity: 0;
   }
 

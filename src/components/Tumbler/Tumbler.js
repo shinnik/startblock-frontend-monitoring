@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import classes from './Tumbler.module.scss';
 import constants from '../../constants/constants'
 import Arrow from 'react-arrow';
+import {PowerSettingsNew} from "@material-ui/icons";
+import {Box} from "@material-ui/core";
 
 function arrowClass(direction, power) {
     if (power)
@@ -69,23 +71,22 @@ function powerIconClass(direction) {
 }
 
 function tumblerSizes(direction, state, koeff) {
-    if (state)
         switch (direction) {
             case 'r':
             case 'l':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize*2+5)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
                     headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize,
+                    headLength: constants.triangleSize*state,
                 };
             case 'd':
             case 'u':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
                     headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize,
+                    headLength: constants.triangleSize*state,
                 };
             case 'ru':
             case 'rd':
@@ -93,74 +94,37 @@ function tumblerSizes(direction, state, koeff) {
             case 'ld':
                 return {
                     shaftWidth: constants.tumblerThickness,
-                    shaftLength: (constants.tumblerWidth-constants.triangleSize)*1.25*(koeff ? koeff : 1),
+                    shaftLength: constants.tumblerWidth*(koeff ? koeff : 1)-constants.triangleSize*state,
                     headWidth: constants.triangleSize,
-                    headLength: constants.triangleSize,
+                    headLength: constants.triangleSize*state,
                 };
             default:
                 throw new Error('Unknown direction.');
         }
-    else
-        switch (direction) {
-            case 'r':
-            case 'l':
-                return {
-                    shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: (constants.tumblerWidth - 12)*(koeff ? koeff : 1),
-                    headWidth: constants.triangleSize,
-                    headLength: 0,
-                };
-            case 'd':
-            case 'u':
-                return {
-                    shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: (constants.tumblerWidth)*(koeff ? koeff : 1),
-                    headWidth: constants.triangleSize,
-                    headLength: 0,
-                };
-            case 'ru':
-            case 'rd':
-            case 'lu':
-            case 'ld':
-                return {
-                    shaftWidth: constants.tumblerThickness/2,
-                    shaftLength: (constants.tumblerWidth*1.25 - 12)*(koeff ? koeff : 1),
-                    headWidth: constants.triangleSize,
-                    headLength: 0,
-                };
-            default:
-                throw new Error('Unknown direction.');
-        }
+
 }
 
-function Tumbler({direction, power, id, dispatch, hell, koeff}) {
+
+
+function Tumbler({direction, power, id, dispatch, hell, koeff, hovered}) {
     const [state, setState] = useState(power);
+
     const handle = () => {
         dispatch({id, state});
         setState(!state);
         hell(!state);
     };
 
-    if (state) {
         return <div className={arrowClass(direction, state)}>
                     <Arrow
+                        className={classes.PureArrow}
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state, koeff)}
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />
+            {hovered && <Box onClick={handle} ><PowerSettingsNew style={{backgroundColor: state ? '#EB5757' : '#878787', width: constants.triangleSize, height: constants.triangleSize, alignSelf: 'center', justifySelf: 'center'}} className={powerIconClass(direction)}/> </Box>}
         </div>;
-    }
-    else {
-        return <div className={arrowClass(direction, state)}>
-                    <Arrow
-                        direction={arrowDirection(direction)}
-                        {...tumblerSizes(direction, state, koeff)}
-                        fill={state ? '#EB5757' : '#D0D0D0'}
-                        onClick={handle}
-                    />
-        </div>;
-    }
 }
 
 export default Tumbler;

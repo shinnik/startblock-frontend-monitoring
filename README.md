@@ -1,68 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Инструкция по запуску
 
-## Available Scripts
+**Превью**: убедитесь, что на вашем компьютере установлен git. Если git отсутствует, то:
+ Для Windows скачайте по ссылке https://git-scm.com/download/win и установите, следуя инструкциям
+ Для Ubuntu выполните следующие команды в терминале:
+  `sudo apt-get update`
+  `sudo apt-get install git-core`
+  `git --version`
 
-In the project directory, you can run:
+*1. Для запуска необходима установленная среда Node.js*
+  - Для Ubuntu Node.js можно установить через менеджер пакетов. Откройте терминал и введите следующие команды:
+    `curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
+    `sudo apt-get install -y nodejs`
+  - Для Windows нужно перейти по ссылке https://nodejs.org/en/download/ и скачать, следуя инструкциям
+  - Перезагрузите компьютер
 
-### `npm start`
+*2. Проверьте, что Node.js установлен с помощью команды `node -v` в терминале Ubuntu или в консоли Windows*
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*3. Проверьте, что менеджер пакетов npm установлен с помощью команды `npm -v` (Устанавливается вместе с Node.js)*
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+*4. Также необходим менеджер пакетов yarn*
+ - Для Ubuntu нужно выполнить в терминале следующие команды:
+    - `curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -`
+    - `echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
+    - `sudo apt-get update && sudo apt-get install yarn`
+ - Для Windows нужно проследовать инструкции по ссылке:
+  https://yarnpkg.com/lang/en/docs/install/#windows-stable
 
-### `npm test`
+*5. Проверьте, установлен ли yarn с помощью команды* `yarn --version` *в терминале Ubuntu или в консоли Windows*
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*6. Если yarn установлен, склонируйте репозиторий с помощью команды* `git clone https://github.com/shinnik/startblock-frontend-demo.git`
+*После этого выполните команду* `git checkout development` *, чтобы перейти в ветку разработки.*
 
-### `npm run build`
+*7. Перейдите в папку с проектом и выполните следующие команды:*
+ `sudo yarn install`
+ `yarn start`
+ 
+*8. Проект должен открыться в браузере по адресу localhost:3000*
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Инструкция по коду
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Используется стэк React + redux.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Кодовая база UI разделена на несколько частей:
 
-### `npm run eject`
+### Директория src
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Хранит основные компоненты и почти всю кодовую базу связанную с React.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*1. Компоненты (директория components)*
+  - Основные элементы приложения. В идеале - атомарные. В текущей версии кодовой базы это может не всегда соблюдаться. Как правило, вкладываются в контейнеры и получают свойства из них.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+*2. Контейнеры (директория containers)*
+  - Сгруппированные компоненты, подключенные к глобальному стору (т.н. умные компоненты). Управляют состоянием компонентов,   которые в них содержатся
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+*3. Константы/Модели (директории constants/models)*
+  - Вынесенные в отдельные js-файлы переменные для отрисовки. Смысл их использования в упрощении кодовой базы и централизации управления компонентами 
 
-## Learn More
+*4. Страницы (директория pages)*
+  - Можно понимать как большие контейнеры. Подключены к redux, и могут содержать неподключенные к глобальному стору контейнеры внутри себя
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*5. Обертки (директория wrappers)*
+  - Компоненты-обертки для придания стилей вложенным компонентам. Похоже на atomic-css в стиле React-components.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*6. Хранилище (директория store)*
+  - Хранит логику взаимодействия компонентов React с redux. В том числе действия, которые пользователь может производить с интерфейсом и функции, отвечающие за свою часть хранилища и меняющие состояние этой части
 
-### Code Splitting
+*7. Стили (директория styles)*
+  - Хранит константы стилей
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

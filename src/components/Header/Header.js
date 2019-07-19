@@ -12,6 +12,6 @@ const Header = ({ setMode, mode }) => {
             <ButtonsGroup setMode={setMode} mode={mode}/>
         </div>
     )
-}
+};
 
 export default Header;

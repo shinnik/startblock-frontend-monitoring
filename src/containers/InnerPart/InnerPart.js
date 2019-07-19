@@ -3,10 +3,7 @@ import classes from './InnerPart.module.scss';
 import EnergyCell from "../../components/EnergyCell/EnergyCell";
 import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
 import {Box} from "@material-ui/core";
-import * as actionCreators from '../../store/actions/index';
-import {connect} from "react-redux";
 import Branch from "../Branch/Branch";
-export const InnerPartContext = React.createContext();
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
@@ -24,17 +21,26 @@ const connectionDirections = [
     x => x ? 'r' : 'l'
 ];
 
+function koeffs(id) {
+    switch (id) {
+        case 1:
+        case 6:
+            return 1.37;
+        case 3:
+        case 4:
+            return 1.75;
+        default:
+            return 1;
+    }
+}
 
-class InnerPart extends React.Component {
 
+function InnerPart({onToggle, connections, energyCells}) {
 
-    render()
-    {
-        return (
-            <InnerPartContext.Provider value={this.props}>
+    return (
             <div className={classes.InnerPart}>
                 {
-                    this.props.energyCells.map((value, index) => <EnergyCell
+                    energyCells.map((value, index) => <EnergyCell
                         key={index}
                         {...value.profile}
                         className={energyCellClassNames[index]}
@@ -42,7 +48,7 @@ class InnerPart extends React.Component {
                     </EnergyCell>)
                 }
                 {
-                    this.props.connections.map((value, index) => <Box key={index} className={energyCellConnections[index]}>
+                    connections.map((value, index) => <Box key={index} className={energyCellConnections[index]}>
                         <LabeledTumbler
                             power={value.active}
                             type={connectionTypes[index](connectionDirections[index](value.output))}
@@ -50,13 +56,13 @@ class InnerPart extends React.Component {
                             label={`${value.performance}`}
                             direction={connectionDirections[index](value.output)}
                             id={[9, 15, 16, 160, 17, 22][index]}
-                            dispatch={this.props.onToggle}
-                            koeff={[1, 3, 4, 6].indexOf(index+1) !== -1 ? 1.45 : 1}
+                            dispatch={onToggle}
+                            koeff={koeffs(index+1)}
                         />
                     </Box>)
                 }
                 {
-                    this.props.energyCells.map((value, index) => <Box key={index} className={energyCellNetClassNames[index]}>
+                    energyCells.map((value, index) => <Box key={index} className={energyCellNetClassNames[index]}>
                         <LabeledTumbler
                             direction={index <= 1 ? 'd' : 'u'}
                             label={value.net.performance}
@@ -64,18 +70,18 @@ class InnerPart extends React.Component {
                             type={'vr'}
                             power={value.net.active}
                             id={[3, 5, 27, 29][index]}
-                            dispatch={this.props.onToggle}
+                            dispatch={onToggle}
                             koeff={0.6}
                         />
                     </Box>)
                 }
                 {
-                    this.props.energyCells.map((value, index) => <Box key={index} className={energyCellGeneratorClassNames[index]}>
+                    energyCells.map((value, index) => <Box key={index} className={energyCellGeneratorClassNames[index]}>
                         <Branch
                             type={value.generator.type}
                             id={[7, 11, 19, 24][index]}
                             label={value.generator.performance}
-                            dispatch={this.props.onToggle}
+                            dispatch={onToggle}
                             power={value.generator.active}
                             direction={index % 2 === 0 ? (value.generator.output ? 'l' : 'r') : (value.generator.output ? 'r' : 'l')}
                             reversed={index % 2 !== 0}
@@ -83,37 +89,21 @@ class InnerPart extends React.Component {
                         </Box>)
                 }
                 {
-                    this.props.energyCells.map((value, index) => <Box key={index} className={energyCellLoadClassNames[index]}>
+                    energyCells.map((value, index) => <Box key={index} className={energyCellLoadClassNames[index]}>
                         <Branch
                             type={3}
                             id={[12, 13, 20, 25][index]}
                             label={value.net.performance}
-                            dispatch={this.props.onToggle}
+                            dispatch={onToggle}
                             power={value.net.active}
-                            direction={index % 2 === 0 ? ('r') : ('l')}
+                            direction={index % 2 === 0 ? ('l') : ('r')}
                             reversed={index % 2 !== 0}
                         />
                         </Box>)
                 }
                 <div  className={classes.Item1} />
             </div>
-            </InnerPartContext.Provider>
         );
-    }
 }
 
-const mapStateToProps = store => {
-    return {
-        energyCells: store.innerPart.energyCells,
-        connections: store.innerPart.connections
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onToggle: (tumbler) => dispatch(actionCreators.onToggle(tumbler)),
-
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(InnerPart);
+export default InnerPart;

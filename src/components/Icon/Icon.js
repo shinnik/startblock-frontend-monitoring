@@ -13,9 +13,9 @@ const Icon = () => {
     const stringArr = varObj => Object.keys(varObj);
     return (
         <div className={styles.LogoContainer}>
-            { logos.map((logo, index) => <img key={index} className={styles[stringArr({ I, D, E, A })[index]]} src={logo}/>) }
+            { logos.map((logo, index) => <img alt={['I', 'D', 'E', 'A'][index]} key={index} className={styles[stringArr({ I, D, E, A })[index]]} src={logo}/>) }
         </div>
     )
-}
+};
 
 export default Icon;

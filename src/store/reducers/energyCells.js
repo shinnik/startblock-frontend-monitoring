@@ -136,6 +136,30 @@ function energyCellsReducer(state = initialStore, action) {
                     tmp[ i ] = tmp2;
                     return tmp;
                 }
+                case 12:
+                case 13:
+                case 20:
+                case 25: {
+                    let tmp = Array.from(state);
+                    const i = [12, 13, 20, 25].indexOf(action.payload.id);
+                    let tmp2 = Object.assign({}, tmp[ i ]);
+                    tmp2.load = Object.assign({}, tmp2.load);
+                    tmp2.load.active = !tmp2.load.active;
+                    tmp[ i ] = tmp2;
+                    return tmp;
+                }
+                case 3:
+                case 5:
+                case 27:
+                case 29: {
+                    let tmp = Array.from(state);
+                    const i = [3, 5, 27, 29].indexOf(action.payload.id);
+                    let tmp2 = Object.assign({}, tmp[ i ]);
+                    tmp2.net = Object.assign({}, tmp2.net);
+                    tmp2.net.active = !tmp2.net.active;
+                    tmp[ i ] = tmp2;
+                    return tmp;
+                }
                 default:
                     return state;
             }

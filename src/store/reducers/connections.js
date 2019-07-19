@@ -46,6 +46,7 @@ function connectionsReducer(state=initialStore, action) {
                     return tmp;
                 }
                 case 'limited_network':
+                    return state;
                 case 'regular': {
                     let tmp = Array.from(state);
                     tmp.forEach((value, index, array) => {

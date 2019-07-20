@@ -1,11 +1,8 @@
 .header {
   &__container {
     display: flex;
-    //position: absolute;
-    //top: 0;
     width: calc(100% - 50px);
-     //width: 100vw;
-    height: 10vh;
+    height: 15%;
     align-items: center;
     flex-direction: row;
     padding-left: 50px;

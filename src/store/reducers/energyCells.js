@@ -117,7 +117,6 @@ function energyCellsReducer(state = initialStore, action) {
                     });
                     return tmp;
                 }
-                    return state;
                 default:
                     throw new Error('Unknown mode');
             }

@@ -26,9 +26,6 @@ export default class PlotContainer extends Component {
                 : mockOffset6.data[index]);
         this.setState({traditional: mockOffset3, distributed: mockOffset5, internet: mockOffset6});
     }
-    updateStateWithMocks() {
-
-    }
     updateMock(mock, offset, factor) {
         const copy = JSON.parse(JSON.stringify(mock));
         const point = generateMock(offset, factor, 1);
@@ -41,8 +38,6 @@ export default class PlotContainer extends Component {
         console.log(point);
         copy.labels.shift();
         copy.labels.push(point.labels[0]);
-        console.log(copy.labels, point.labels, copy.labels.concat(point.labels));
-        // console.log({ data: copy.data, labels: copy.labels, last: last });
         return { data: copy.data, labels: copy.labels, last: last }
 
     }
@@ -52,7 +47,6 @@ export default class PlotContainer extends Component {
             const newTraditional = this.updateMock(this.state.traditional, 3, 1);
             const newDistributed = this.updateMock(this.state.distributed, 5, 1.5);
             const newInternet = this.updateMock(this.state.internet, 6, 1);
-            console.log(newTraditional, newDistributed, newInternet);
             this.setState({ traditional: newTraditional, distributed: newDistributed, internet: newInternet })
         }, 60000);
     }
@@ -61,7 +55,6 @@ export default class PlotContainer extends Component {
         clearInterval(this.interval);
     }
     render() {
-        console.log(this.state);
         return (
             <Plot traditionalData={this.state.traditional}
                   distributionData={this.state.distributed}

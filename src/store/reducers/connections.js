@@ -4,32 +4,32 @@ const initialStore = [
     {
         active: true,
         output: true,
-        performance: 0.052
+        performance: 0.01
     },
     {
         active: true,
         output: true,
-        performance: 0.052
+        performance: 0.02
     },
     {
         active: true,
         output: true,
-        performance: 0.052
+        performance: 0.03
     },
     {
         active: true,
         output: true,
-        performance: 0.052
+        performance: 0.04
     },
     {
         active: true,
         output: true,
-        performance: 0.052
+        performance: 0.05
     },
     {
         active: true,
         output: true,
-        performance: 0.052
+        performance: 0.06
     },
 ];
 

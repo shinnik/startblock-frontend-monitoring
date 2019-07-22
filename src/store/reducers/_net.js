@@ -2,7 +2,7 @@
 
 const initialStore = {
     money: -100,
-        maxPerformance: 2,
+    maxPerformance: 2,
 };
 
 function _netReducer(state=initialStore, action) {

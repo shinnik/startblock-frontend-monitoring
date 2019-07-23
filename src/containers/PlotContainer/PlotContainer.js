@@ -35,7 +35,6 @@ export default class PlotContainer extends Component {
                 : point.data);
         copy.data.shift();
         copy.data.push(point.data[0]);
-        console.log(point);
         copy.labels.shift();
         copy.labels.push(point.labels[0]);
         return { data: copy.data, labels: copy.labels, last: last }
@@ -51,7 +50,6 @@ export default class PlotContainer extends Component {
         }, 60000);
     }
     componentWillUnmount() {
-        console.log(this.interval);
         clearInterval(this.interval);
     }
     render() {

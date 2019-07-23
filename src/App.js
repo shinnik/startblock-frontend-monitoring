@@ -7,7 +7,7 @@ import classes from './App.module.scss';
 import HeaderContainer from "./containers/HeaderContainer/HeaderContainer";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
-const client = new W3CWebSocket('ws://onder2.herokuapp.com');
+const client = new W3CWebSocket('wss://onder2.herokuapp.com');
 
 function App() {
     useEffect(() => {

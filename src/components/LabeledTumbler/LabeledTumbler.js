@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Tumbler from "../Tumbler/Tumbler";
 import './LabeledTumbler.scss';
 import {Box, Typography} from "@material-ui/core";
-import {watt} from "../../constants/names";
+import {power} from "../../constants/names";
 
 
 function LabeledTumbler({direction, power: state, label, type, align, id, dispatch, koeff}) {
@@ -17,7 +17,7 @@ function LabeledTumbler({direction, power: state, label, type, align, id, dispat
                     setHovered(false);
                 }}
                      onMouseEnter={() => {
-                         setLabelState(` ${watt}`);
+                         setLabelState(` ${power}`);
                          setHovered(true);
                      }}
                      className={`Arrow__${type}`} >

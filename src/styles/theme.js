@@ -1,5 +1,6 @@
 import {createMuiTheme} from "@material-ui/core";
 import './fonts/manrope/web/index.css';
+import './fonts/robotomono/robotomono.css';
 
 let theme = createMuiTheme({
     typography: {

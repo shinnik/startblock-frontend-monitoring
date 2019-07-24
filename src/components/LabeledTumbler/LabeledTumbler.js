@@ -24,7 +24,8 @@ function LabeledTumbler({direction, power: state, label, type, align, id, dispat
                     <Tumbler direction={direction} power={state} id={id} dispatch={dispatch} koeff={koeff} hovered={hovered}/>
                 </Box>
             <Box hidden={!state} className={`Label__${type} Align_${align}`}>
-                <Typography variant='body2' color='secondary'>{`${label}${labelState}`}</Typography>
+                <Typography style={{fontFamily: 'Roboto Mono'}} display={"inline"} variant='body2' color='secondary'>{`${label}`}</Typography>
+                <Typography display={"inline"} variant='body2' color='secondary' >{`${labelState}`}</Typography>
             </Box>
         </div>
     );

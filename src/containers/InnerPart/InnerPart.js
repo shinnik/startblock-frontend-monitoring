@@ -7,7 +7,7 @@ import Branch from "../Branch/Branch";
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
-const energyCellConnections = [classes.Item9, classes.Item15, classes.Item16, classes.Item16, classes.Item17, classes.Item22];
+const energyCellConnections = [classes.Item9, classes.Item15, classes.Item16, classes.Item160, classes.Item17, classes.Item22];
 const energyCellGeneratorClassNames = [classes.Item7, classes.Item11, classes.Item19, classes.Item24];
 const energyCellLoadClassNames = [classes.Item12, classes.Item13, classes.Item20, classes.Item25];
 const connectionTypes = [() => 'hu', () => 'vl', x => x, x => x, () => 'vr', () => 'hd'];

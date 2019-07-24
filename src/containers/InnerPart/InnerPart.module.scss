@@ -48,6 +48,10 @@
   grid-area: 4/4/4/4;
 }
 
+.Item160 {
+  grid-area: 4/4/4/4;
+}
+
 .Item9 {
   grid-area: 2/4/4/5
 }
@@ -79,6 +83,11 @@
 }
 
 .Item16 {
+  align-self: center;
+  justify-self: center;
+}
+
+.Item160 {
   align-self: center;
   justify-self: center;
 }

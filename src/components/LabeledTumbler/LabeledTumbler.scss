@@ -3,7 +3,8 @@
 .LabeledTumbler {
     display: grid;
     grid-template-columns: $triangle-size 1fr $triangle-size;
-    grid-template-rows: $triangle-size 1fr $triangle-size;
+    //grid-template-rows: $triangle-size 1fr $triangle-size;
+    grid-template-rows: 0 1fr 0;
     z-index: -1;
     //grid-template-columns: repeat(3, 1fr);
     //grid-template-rows: $triangle-size 1fr $triangle-size;
@@ -75,15 +76,27 @@
     &__vr {
         grid-area: 1/3/4/4;
         justify-self: start;
+        position: relative;
+        left: 0.5rem;
     }
 
     &__vl, &__vr {
-        padding: 0.5em 0;
+        padding: 0.5rem 0;
 
     }
 
     &__hu, &__hd {
-        padding: 0 1em;
+        padding: 0 1rem;
+    }
+
+    &__hu {
+        position: relative;
+        bottom: 1rem;
+    }
+
+    &__rd {
+        position: relative;
+        bottom: 1rem;
     }
 }
 

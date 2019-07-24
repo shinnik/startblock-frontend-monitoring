@@ -10,7 +10,7 @@ $blue-card-height: 106px;
 $x1: 100px;
 $x2: 450px;
 $x3: $blue-card-width;
-$x4: $tumbler-length+$triangle-size - $tumbler-thickness;
+$x4: $tumbler-length+$triangle-size - $tumbler-thickness*0.5;
 $y1: $tumbler-length*0.6+$tumbler-thickness*1.5;
 $y2: $blue-card-height*0.5;
 $x40: $tumbler-length*1.4 + $tumbler-thickness;

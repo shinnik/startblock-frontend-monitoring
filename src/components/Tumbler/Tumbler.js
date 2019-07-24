@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from './Tumbler.module.scss';
 import constants from '../../constants/constants'
 import Arrow from 'react-arrow';
@@ -96,7 +96,7 @@ function tumblerSizes(direction, state, koeff) {
 
 function Tumbler({direction, power: state, id, dispatch, koeff, hovered}) {
     const handle = () => {
-        dispatch({id, state})
+        dispatch({id, state: !state})
     };
 
         return <div className={arrowClass(direction, state)}>

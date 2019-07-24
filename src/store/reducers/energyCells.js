@@ -15,6 +15,8 @@ const initialStore = [
         net: {
             active: false,
             performance: 0.052,
+            limitedPerformance: 0.01,
+            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Alpha',
@@ -35,6 +37,8 @@ const initialStore = [
         net: {
             active: true,
             performance: 0.052,
+            limitedPerformance: 0.01,
+            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Beta',
@@ -55,6 +59,8 @@ const initialStore = [
         net: {
             active: true,
             performance: 0.052,
+            limitedPerformance: 0.01,
+            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Gamma',
@@ -75,6 +81,8 @@ const initialStore = [
         net: {
             active: true,
             performance: 0.052,
+            limitedPerformance: 0.01,
+            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Delta',
@@ -87,6 +95,7 @@ function energyCellsReducer(state = initialStore, action) {
     switch (action.type) {
         case actionTypes.SET_MODE: {
             switch (action.mode) {
+                case 'no_neighbors':
                 case 'regular': {
                     let tmp = Array.from(state);
                     tmp.forEach((value, index, array) => {
@@ -97,22 +106,38 @@ function energyCellsReducer(state = initialStore, action) {
                         tmp2.generator.active = true;
                         tmp2.net.active = true;
                         tmp2.load.active = true;
+                        tmp2.net.performance = tmp2.net.defaultPerformance;
                         array[index] = tmp2;
                     });
                     return tmp;
                 }
-                case 'limited_network': {
-                    return state;
-                }
-                case 'no_neighbors': {
-                    return state;
+                case 'limited_network':
+                {
+                    let tmp = Array.from(state);
+                    tmp.forEach((value, index, array) => {
+                        let tmp2 = Object.assign({}, array[index]);
+                        tmp2.generator = Object.assign({}, tmp2.generator);
+                        tmp2.net = Object.assign({}, tmp2.net);
+                        tmp2.load = Object.assign({}, tmp2.load);
+                        tmp2.generator.active = true;
+                        tmp2.net.active = true;
+                        tmp2.load.active = true;
+                        tmp2.net.performance = tmp2.net.limitedPerformance;
+                        array[index] = tmp2;
+                    });
+                    return tmp;
                 }
                 case 'no_network': {
                     let tmp = Array.from(state);
                     tmp.forEach((value, index, array) => {
                         let tmp2 = Object.assign({}, array[index]);
+                        tmp2.generator = Object.assign({}, tmp2.generator);
                         tmp2.net = Object.assign({}, tmp2.net);
+                        tmp2.load = Object.assign({}, tmp2.load);
+                        tmp2.generator.active = true;
                         tmp2.net.active = false;
+                        tmp2.load.active = true;
+                        tmp2.net.performance = tmp2.net.defaultPerformance;
                         array[index] = tmp2;
                     });
                     return tmp;

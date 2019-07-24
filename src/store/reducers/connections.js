@@ -46,7 +46,7 @@ function connectionsReducer(state=initialStore, action) {
                     return tmp;
                 }
                 case 'limited_network':
-                    return state;
+                case 'no_network':
                 case 'regular': {
                     let tmp = Array.from(state);
                     tmp.forEach((value, index, array) => {
@@ -55,8 +55,6 @@ function connectionsReducer(state=initialStore, action) {
                     });
                     return tmp;
                 }
-                case 'no_network':
-                    return state;
                 default:
                     throw new Error('Unknown mode.')
             }

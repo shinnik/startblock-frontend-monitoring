@@ -6,25 +6,25 @@ import {watt} from "../../constants/names";
 
 
 function LabeledTumbler({direction, power: state, label, type, align, id, dispatch, koeff}) {
-    const [labelState, setLabelState] = useState(label);
+    const [labelState, setLabelState] = useState('');
     const [hovered, setHovered] = useState(false);
 
     return (
         <div className={`LabeledTumbler LabeledTumbler__${direction}`}>
 
                 <Box onMouseLeave={() => {
-                    setLabelState(label);
+                    setLabelState('');
                     setHovered(false);
                 }}
                      onMouseEnter={() => {
-                         setLabelState(`${label} ${watt}`);
+                         setLabelState(` ${watt}`);
                          setHovered(true);
                      }}
                      className={`Arrow__${type}`} >
                     <Tumbler direction={direction} power={state} id={id} dispatch={dispatch} koeff={koeff} hovered={hovered}/>
                 </Box>
             <Box hidden={!state} className={`Label__${type} Align_${align}`}>
-                <Typography variant='body2' color='secondary'>{`${labelState}`}</Typography>
+                <Typography variant='body2' color='secondary'>{`${label}${labelState}`}</Typography>
             </Box>
         </div>
     );

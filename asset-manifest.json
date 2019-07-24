@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/startblock-frontend-monitoring/static/css/main.e04980fe.chunk.css",
-    "main.js": "/startblock-frontend-monitoring/static/js/main.408b2492.chunk.js",
-    "main.js.map": "/startblock-frontend-monitoring/static/js/main.408b2492.chunk.js.map",
+    "main.css": "/startblock-frontend-monitoring/static/css/main.948b2dfc.chunk.css",
+    "main.js": "/startblock-frontend-monitoring/static/js/main.99fe7ee1.chunk.js",
+    "main.js.map": "/startblock-frontend-monitoring/static/js/main.99fe7ee1.chunk.js.map",
     "runtime~main.js": "/startblock-frontend-monitoring/static/js/runtime~main.c8cb4a1b.js",
     "runtime~main.js.map": "/startblock-frontend-monitoring/static/js/runtime~main.c8cb4a1b.js.map",
-    "static/js/2.db3feb77.chunk.js": "/startblock-frontend-monitoring/static/js/2.db3feb77.chunk.js",
-    "static/js/2.db3feb77.chunk.js.map": "/startblock-frontend-monitoring/static/js/2.db3feb77.chunk.js.map",
+    "static/js/2.8595a96c.chunk.js": "/startblock-frontend-monitoring/static/js/2.8595a96c.chunk.js",
+    "static/js/2.8595a96c.chunk.js.map": "/startblock-frontend-monitoring/static/js/2.8595a96c.chunk.js.map",
     "index.html": "/startblock-frontend-monitoring/index.html",
-    "precache-manifest.381454c55edac6ebcaa5c83cb628b1cb.js": "/startblock-frontend-monitoring/precache-manifest.381454c55edac6ebcaa5c83cb628b1cb.js",
+    "precache-manifest.0c553d3bf4913df238fcd8f983725fdd.js": "/startblock-frontend-monitoring/precache-manifest.0c553d3bf4913df238fcd8f983725fdd.js",
     "service-worker.js": "/startblock-frontend-monitoring/service-worker.js",
-    "static/css/main.e04980fe.chunk.css.map": "/startblock-frontend-monitoring/static/css/main.e04980fe.chunk.css.map",
+    "static/css/main.948b2dfc.chunk.css.map": "/startblock-frontend-monitoring/static/css/main.948b2dfc.chunk.css.map",
     "static/media/A.svg": "/startblock-frontend-monitoring/static/media/A.df8e9f1e.svg",
     "static/media/E.svg": "/startblock-frontend-monitoring/static/media/E.3ee2f07b.svg",
     "static/media/I.svg": "/startblock-frontend-monitoring/static/media/I.c1bce14e.svg",
+    "static/media/robotomono.css": "/startblock-frontend-monitoring/static/media/Robotomonothinitalic.2f4a00b8.ttf",
     "static/media/Triangle.svg": "/startblock-frontend-monitoring/static/media/Triangle.98540fe6.svg",
     "static/media/index.css": "/startblock-frontend-monitoring/static/media/manrope-thin.bdfba78b.woff"
   }

@@ -96,7 +96,7 @@ function tumblerSizes(direction, state, koeff) {
 
 function Tumbler({direction, power: state, id, dispatch, koeff, hovered}) {
     const handle = () => {
-        dispatch({id, state})
+        dispatch({id, state: !state})
     };
 
         return <div className={arrowClass(direction, state)}>

@@ -4,7 +4,6 @@ import EnergyCell from "../../components/EnergyCell/EnergyCell";
 import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
 import {Box} from "@material-ui/core";
 import Branch from "../Branch/Branch";
-import {connect} from "react-redux";
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];

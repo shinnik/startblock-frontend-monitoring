@@ -6,6 +6,7 @@ import Net from "../Net/Net";
 import * as actionCreators from "../../store/actions";
 import {connect} from "react-redux";
 import useWindowSize from '@rehooks/window-size';
+import {power} from "../../constants/names";
 
 
 function Main({energyCells, connections, onToggle}) {
@@ -16,7 +17,7 @@ function Main({energyCells, connections, onToggle}) {
                 <Net/>
                 <InnerPart onToggle={onToggle} energyCells={energyCells} connections={connections}/>
                 <Typography className={classes.Label}>
-                    Все значения указаны в Ваттах
+                    Все значения указаны в {power}
                 </Typography>
         </Box>
     );

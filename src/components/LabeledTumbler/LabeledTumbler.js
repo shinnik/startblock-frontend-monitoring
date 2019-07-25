@@ -23,7 +23,7 @@ function LabeledTumbler({direction, power: state, label, type, align, id, dispat
                      className={`Arrow__${type}`} >
                     <Tumbler direction={direction} power={state} id={id} dispatch={dispatch} koeff={koeff} hovered={hovered}/>
                 </Box>
-            <Box hidden={!state} className={`Label__${type} Align_${align}`}>
+            <Box hidden={!state} className={id === 15 ? `Label__special Label__${type} Align_${align}` : `Label__${type} Align_${align}`}>
                 <Typography style={{fontFamily: 'Roboto Mono'}} display={"inline"} variant='body2' color='secondary'>{`${label}`}</Typography>
                 <Typography style={{opacity: labelOpacity}} display={"inline"} variant='body2' color='secondary' >{` ${power}`}</Typography>
             </Box>

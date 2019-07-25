@@ -15,20 +15,28 @@ class Net extends React.Component {
                 <div className={classes.Item2}/>
                 <div className={classes.Item3}/>
                 <div className={classes.Item4}/>
-                <Typography variant={'body2'} color={'secondary'} className={classes.Item8}>
+                <Typography style={{fontFamily: 'Roboto Mono'}} variant={'body2'} color={'secondary'} className={classes.Item8}>
                     {this.props.energyCells.reduce((acc, curr) => acc + curr.net.performance*curr.net.active, 0)}
                 </Typography>
                 <Box className={classes.Item7}>
                     <Typography>
                         Энергороутер
                     </Typography>
-                    <Typography variant={"body2"} color={'secondary'}>
-                        {`${this.props.maxPerformance} ${power}`}
+                    <Typography display={"inline"} style={{fontFamily: 'Roboto Mono'}} variant={"body2"} color={'secondary'}>
+                        {`${this.props.maxPerformance}`}
+                    </Typography>
+                    <Typography display={"inline"} variant={"body2"} color={'secondary'}>
+                        {` ${power}`}
                     </Typography>
                 </Box>
-                <Typography className={classes.Item5}>
-                    {`${this.props.money} ${currency}`}
-                </Typography>
+                <Box className={classes.Item5}>
+                    <Typography style={{fontFamily: 'Roboto Mono'}}>
+                        {`${this.props.money}`}
+                    </Typography>
+                    <Typography >
+                        {`${currency}`}
+                    </Typography>
+                </Box>
             </div>
         );
     }

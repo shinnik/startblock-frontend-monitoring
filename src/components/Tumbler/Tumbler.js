@@ -16,8 +16,16 @@ function arrowClass(direction, power) {
                 return classes.Arrow__lu;
             case 'ld':
                 return classes.Arrow__ld;
+            case 'r':
+                return classes.Arrow__r;
+            case 'l':
+                return classes.Arrow__l;
+            case 'u':
+                return classes.Arrow__u;
+            case 'd':
+                return classes.Arrow__d;
             default:
-                return classes.Arrow;
+                throw new Error('Unknown direction');
         }
     else
         switch (direction) {
@@ -29,8 +37,16 @@ function arrowClass(direction, power) {
                 return classes.Arrow_g__lu;
             case 'ld':
                 return classes.Arrow_g__ld;
+            case 'r':
+                return classes.Arrow_g__r;
+            case 'l':
+                return classes.Arrow_g__l;
+            case 'u':
+                return classes.Arrow_g__u;
+            case 'd':
+                return classes.Arrow_g__d;
             default:
-                return classes.Arrow_g;
+                throw new Error('Unknown direction');
         }
 }
 
@@ -99,7 +115,7 @@ function Tumbler({direction, power: state, id, dispatch, koeff, hovered}) {
         dispatch({id, state: !state})
     };
 
-        return <div className={arrowClass(direction, state)}>
+        return <Box className={arrowClass(direction, state)}>
                     <Arrow
                         className={classes.PureArrow}
                         direction={arrowDirection(direction)}
@@ -108,7 +124,7 @@ function Tumbler({direction, power: state, id, dispatch, koeff, hovered}) {
                         onClick={handle}
                     />
             {hovered && <Box onClick={handle} ><PowerSettingsNew style={{backgroundColor: state ? '#EB5757' : '#878787', width: constants.triangleSize, height: constants.triangleSize, alignSelf: 'center', justifySelf: 'center'}} className={powerIconClass(direction)}/> </Box>}
-        </div>;
+        </Box>;
 }
 
 export default Tumbler;

@@ -13,19 +13,19 @@
         grid-template-columns: $triangle-size $tumbler-length*1.5 $triangle-size;
     }
     &__ru {
-        transform: rotate(-38deg);
+        transform: rotate(-40deg);
     }
 
     &__rd {
-        transform: rotate(38deg);
+        transform: rotate(40deg);
     }
 
     &__lu {
-        transform: rotate(-142deg);
+        transform: rotate(-139deg);
     }
 
     &__ld {
-        transform: rotate(142deg);
+        transform: rotate(139deg);
     }
 }
 
@@ -86,7 +86,8 @@
     }
 
     &__vl, &__vr {
-        padding: 0.5*$triangle-size 0;
+        padding: 0.7*$triangle-size 0;
+        left: -10px;
     }
 
     &__hu, &__hd {
@@ -96,6 +97,11 @@
     &__hu {
         position: relative;
         bottom: $triangle-size;
+        left: 12px;
+    }
+    &__hd {
+        position: relative;
+        left: 12px;
     }
 
     &__rd {

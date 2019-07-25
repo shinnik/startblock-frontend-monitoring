@@ -25,10 +25,13 @@ function koeffs(id) {
     switch (id) {
         case 1:
         case 6:
-            return 1.3;
+            return 1.12;
         case 3:
         case 4:
-            return 1.68;
+            return 1.55;
+        case 2:
+        case 5:
+            return 0.97;
         default:
             return 1;
     }
@@ -71,7 +74,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                             power={value.net.active}
                             id={[3, 5, 27, 29][index]}
                             dispatch={onToggle}
-                            koeff={0.6}
+                            koeff={0.65}
                         />
                     </Box>)
                 }

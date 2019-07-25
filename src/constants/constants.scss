@@ -1,19 +1,19 @@
 $image-size: 50px;
 $border-color: #EB5757;
-$tumbler-length: 200px;
+$tumbler-length: 185px;
 $tumbler-thickness: 5px;
 $triangle-size: $tumbler-thickness*5;
 
-$blue-card-width: 122px;
-$blue-card-height: 106px;
+$blue-card-width: 158px;
+$blue-card-height: 135px;
 
-$x1: 100px;
+$x1: 110px;
 $x2: 450px;
 $x3: $blue-card-width;
-$x4: $tumbler-length+$triangle-size - $tumbler-thickness*0.5;
-$y1: $tumbler-length*0.6+$tumbler-thickness*1.5;
+$x4: $tumbler-length+$triangle-size;
+$y1: $tumbler-length*0.75;
 $y2: $blue-card-height*0.5;
-$x40: $tumbler-length*1.4 + $tumbler-thickness;
+$x40: $tumbler-length*1.3 + $tumbler-thickness;
 
 $y3: 100px;
 $y4: 70px;

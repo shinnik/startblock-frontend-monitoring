@@ -6,18 +6,18 @@ import {power} from "../../constants/names";
 
 
 function LabeledTumbler({direction, power: state, label, type, align, id, dispatch, koeff}) {
-    const [labelState, setLabelState] = useState('');
+    const [labelOpacity, setLabelOpacity] = useState(0);
     const [hovered, setHovered] = useState(false);
 
     return (
         <div className={`LabeledTumbler LabeledTumbler__${direction}`}>
 
                 <Box onMouseLeave={() => {
-                    setLabelState('');
+                    setLabelOpacity(0);
                     setHovered(false);
                 }}
                      onMouseEnter={() => {
-                         setLabelState(` ${power}`);
+                         setLabelOpacity(1);
                          setHovered(true);
                      }}
                      className={`Arrow__${type}`} >
@@ -25,7 +25,7 @@ function LabeledTumbler({direction, power: state, label, type, align, id, dispat
                 </Box>
             <Box hidden={!state} className={`Label__${type} Align_${align}`}>
                 <Typography style={{fontFamily: 'Roboto Mono'}} display={"inline"} variant='body2' color='secondary'>{`${label}`}</Typography>
-                <Typography display={"inline"} variant='body2' color='secondary' >{`${labelState}`}</Typography>
+                <Typography style={{opacity: labelOpacity}} display={"inline"} variant='body2' color='secondary' >{` ${power}`}</Typography>
             </Box>
         </div>
     );

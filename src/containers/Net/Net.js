@@ -23,7 +23,7 @@ class Net extends React.Component {
                         Энергороутер
                     </Typography>
                     <Typography display={"inline"} style={{fontFamily: 'Roboto Mono'}} variant={"body2"} color={'secondary'}>
-                        {`${this.props.maxPerformance}`}
+                        {`${this.props.performance}`}
                     </Typography>
                     <Typography display={"inline"} variant={"body2"} color={'secondary'}>
                         {` ${power}`}

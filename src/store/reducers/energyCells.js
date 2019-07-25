@@ -15,8 +15,6 @@ const initialStore = [
         net: {
             active: false,
             performance: 0.052,
-            limitedPerformance: 0.01,
-            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Alpha',
@@ -37,8 +35,6 @@ const initialStore = [
         net: {
             active: true,
             performance: 0.052,
-            limitedPerformance: 0.01,
-            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Beta',
@@ -59,8 +55,6 @@ const initialStore = [
         net: {
             active: true,
             performance: 0.052,
-            limitedPerformance: 0.01,
-            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Gamma',
@@ -81,8 +75,6 @@ const initialStore = [
         net: {
             active: true,
             performance: 0.052,
-            limitedPerformance: 0.01,
-            defaultPerformance: 0.052,
         },
         profile: {
             name: 'Delta',
@@ -106,7 +98,6 @@ function energyCellsReducer(state = initialStore, action) {
                         tmp2.generator.active = true;
                         tmp2.net.active = true;
                         tmp2.load.active = true;
-                        tmp2.net.performance = tmp2.net.defaultPerformance;
                         array[index] = tmp2;
                     });
                     return tmp;
@@ -122,7 +113,6 @@ function energyCellsReducer(state = initialStore, action) {
                         tmp2.generator.active = true;
                         tmp2.net.active = true;
                         tmp2.load.active = true;
-                        tmp2.net.performance = tmp2.net.limitedPerformance;
                         array[index] = tmp2;
                     });
                     return tmp;
@@ -137,7 +127,6 @@ function energyCellsReducer(state = initialStore, action) {
                         tmp2.generator.active = true;
                         tmp2.net.active = false;
                         tmp2.load.active = true;
-                        tmp2.net.performance = tmp2.net.defaultPerformance;
                         array[index] = tmp2;
                     });
                     return tmp;

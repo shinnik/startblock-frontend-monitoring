@@ -2,34 +2,70 @@
 
 .PureArrow {
   position: relative;
-  top: $tumbler-thickness*0.5;
 }
 
-.Arrow_g, .Arrow_g__ru, .Arrow_g__rd, .Arrow_g__lu, .Arrow_g__ld {
-  border-radius: 20px;
-  cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  position: relative;
+.Arrow_g {
+  &__ru, &__rd, &__lu, &__ld,
+  &__r, &__l, &__u, &__d {
+    border-radius: 20px;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &:hover {
+    &:hover {
       background-color: rgba(black, 0.15);
       border-radius: 20px;
+    }
   }
+
+  &__ru, &__rd, &__lu, &__ld {
+    height: 40px;
+  }
+
+  &__r, &__l {
+    height: 40px;
+  }
+  &__u, &__d {
+    width: 40px;
+  }
+
 }
 
-.Arrow, .Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld
+.Arrow
 {
-  border-radius: 20px;
-  cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  position: relative;
-
-  &:hover {
-    background-color: rgba($border-color, 0.3);
+  &__ru, &__rd, &__lu, &__ld,
+  &__r, &__l, &__u, &__d {
     border-radius: 20px;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba($border-color, 0.3);
+      border-radius: 20px;
+    }
   }
+
+  &__ru, &__rd, &__lu, &__ld {
+    height: 40px;
+  }
+
+  &__r, &__l {
+    height: 40px;
+  }
+  &__u, &__d {
+    width: 40px;
+  }
+
+
 }
 
 .Arrow__ru, .Arrow__rd, .Arrow__lu, .Arrow__ld,
@@ -52,7 +88,7 @@
     color: white;
     position: absolute;
     right: 60px;
-    top: 0;
+    top: 20px - $triangle-size*0.5;
   }
 
   &__Left {
@@ -61,7 +97,7 @@
     color: white;
     position: absolute;
     left: 60px;
-    top: 0;
+    top: 20px - $triangle-size*0.5;
   }
 
   &__Up {
@@ -69,7 +105,7 @@
     border-radius: 50%;
     color: white;
     position: absolute;
-    left: 0;
+    left: 20-$triangle-size*0.5;
     top: 60px;
   }
 
@@ -78,8 +114,7 @@
     border-radius: 50%;
     color: white;
     position: absolute;
-    //left: -$tumbler-thickness*0.3;
-    left: 0;
+    left: 20-$triangle-size*0.5;
     bottom: 60px;
 
   }
@@ -90,23 +125,23 @@
     color: white;
     position: absolute;
     right: 60px;
-    top: - $tumbler-thickness*0.1;
+    top: 20px - $triangle-size*0.5;
   }
 
   &__RightUp {
-    transform: rotate(38deg);
+    transform: rotate(40deg);
   }
 
   &__RightDown {
-    transform: rotate(-38deg);
+    transform: rotate(-40deg);
   }
 
   &__LeftUp {
-    transform: rotate(142deg);
+    transform: rotate(139deg);
   }
 
   &__LeftDown {
-    transform: rotate(-142deg);
+    transform: rotate(-139deg);
   }
 
 }

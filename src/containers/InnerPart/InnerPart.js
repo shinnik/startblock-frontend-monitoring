@@ -7,7 +7,7 @@ import Branch from "../Branch/Branch";
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
-const energyCellConnections = [classes.Item9, classes.Item15, classes.Item16, classes.Item16, classes.Item17, classes.Item22];
+const energyCellConnections = [classes.Item9, classes.Item15, classes.Item16, classes.Item160, classes.Item17, classes.Item22];
 const energyCellGeneratorClassNames = [classes.Item7, classes.Item11, classes.Item19, classes.Item24];
 const energyCellLoadClassNames = [classes.Item12, classes.Item13, classes.Item20, classes.Item25];
 const connectionTypes = [() => 'hu', () => 'vl', x => x, x => x, () => 'vr', () => 'hd'];
@@ -25,10 +25,13 @@ function koeffs(id) {
     switch (id) {
         case 1:
         case 6:
-            return 1.3;
+            return 1.12;
         case 3:
         case 4:
-            return 1.68;
+            return 1.55;
+        case 2:
+        case 5:
+            return 0.97;
         default:
             return 1;
     }
@@ -71,7 +74,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                             power={value.net.active}
                             id={[3, 5, 27, 29][index]}
                             dispatch={onToggle}
-                            koeff={0.6}
+                            koeff={0.65}
                         />
                     </Box>)
                 }

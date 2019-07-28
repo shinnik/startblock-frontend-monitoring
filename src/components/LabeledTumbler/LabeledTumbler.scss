@@ -3,7 +3,8 @@
 .LabeledTumbler {
     display: grid;
     grid-template-columns: $triangle-size 1fr $triangle-size;
-    grid-template-rows: $triangle-size 1fr $triangle-size;
+    //grid-template-rows: $triangle-size 1fr $triangle-size;
+    grid-template-rows: 0 1fr 0;
     z-index: -1;
     //grid-template-columns: repeat(3, 1fr);
     //grid-template-rows: $triangle-size 1fr $triangle-size;
@@ -12,19 +13,19 @@
         grid-template-columns: $triangle-size $tumbler-length*1.5 $triangle-size;
     }
     &__ru {
-        transform: rotate(-38deg);
+        transform: rotate(-40deg);
     }
 
     &__rd {
-        transform: rotate(38deg);
+        transform: rotate(40deg);
     }
 
     &__lu {
-        transform: rotate(-142deg);
+        transform: rotate(-139deg);
     }
 
     &__ld {
-        transform: rotate(142deg);
+        transform: rotate(139deg);
     }
 }
 
@@ -49,6 +50,11 @@
     &__vl, &__vr {
         width: max-content;
         cursor: default;
+        position: relative;
+    }
+
+    &__special {
+        width: fit-content;
     }
 
 
@@ -61,6 +67,7 @@
     &__hd {
         grid-area: 3/1/4/4;
     }
+
     &__lu, &__ld {
         text-align: end;
         rotation-point: 0 0;
@@ -75,15 +82,28 @@
     &__vr {
         grid-area: 1/3/4/4;
         justify-self: start;
+        position: relative;
+        left: $triangle-size*0.5;
     }
 
     &__vl, &__vr {
-        padding: 0.5em 0;
-
+        padding: 32px 0;
+        left: -10px;
     }
 
-    &__hu, &__hd {
-        padding: 0 1em;
+    &__hu {
+        position: relative;
+        bottom: $triangle-size;
+        left: 12px;
+    }
+    &__hd {
+        position: relative;
+        left: 12px;
+    }
+
+    &__rd {
+        position: relative;
+        bottom: $triangle-size;
     }
 }
 

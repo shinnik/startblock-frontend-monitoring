@@ -1,6 +1,7 @@
 @import "../../constants/constants";
 
 .InnerPart {
+  position: relative;
   display: grid;
   grid-template-columns: $x1 $x2 $x3 $x40 $x3 $x2;
   grid-template-rows: $y1 $y2 $y2 $x4 $y2 $y2 $y1;
@@ -8,8 +9,28 @@
   border-bottom: $tumbler-thickness solid $border-color;
   border-left: $tumbler-thickness solid $border-color;
   border-top: $tumbler-thickness solid $border-color;
-  width: $x1 + $x2 + $x3 + $x40 + $x3*0.5 + $tumbler-thickness*0.5;
+  width: $x1 + $x2 + $x3 + $x40 + $x3*0.5;
   height: 2*$y1 + 4*$y2 + $x4;
+
+  &::after {
+    content: '';
+    width: 3px;
+    height: 5px;
+    background-color: $border-color;
+    position: absolute;
+    top: -5px;
+    right: -3px;
+  }
+
+  &:before {
+    content: '';
+    width: 3px;
+    height: 5px;
+    background-color: $border-color;
+    position: absolute;
+    bottom: -5px;
+    right: -3px;
+  }
 }
 
 .Item8 {
@@ -48,6 +69,10 @@
   grid-area: 4/4/4/4;
 }
 
+.Item160 {
+  grid-area: 4/4/4/4;
+}
+
 .Item9 {
   grid-area: 2/4/4/5
 }
@@ -65,6 +90,8 @@
 }
 
 .Item8, .Item10, .Item21, .Item23 {
+  width: 158px;
+  height: 135px;
   z-index: 1;
 }
 
@@ -79,6 +106,11 @@
 }
 
 .Item16 {
+  align-self: center;
+  justify-self: center;
+}
+
+.Item160 {
   align-self: center;
   justify-self: center;
 }
@@ -135,25 +167,19 @@
   cursor: default;
 }
 
-.Item7,
-.Item12,
-.Item19,
-.Item20 {
-  justify-self: end;
-  position: relative;
-  right: 10px;
-}
-
-.Item11,
-.Item13,
-.Item24,
-.Item25 {
-  justify-self: start;
-}
-
 .Item3, .Item5, .Item7, .Item8, .Item9, .Item10, .Item11,
 .Item12, .Item13, .Item15, .Item16, .Item17, .Item19,
 .Item20, .Item21, .Item22, .Item23, .Item24, .Item25,
 .Item27, .Item29 {
   position: relative;
 }
+
+.Item11, .Item7, .Item19, .Item24 {
+  margin-bottom: 24px;
+}
+
+.Item13, .Item12, .Item20, .Item25 {
+  margin-top: 24px;
+}
+
+

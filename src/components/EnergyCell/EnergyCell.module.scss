@@ -6,7 +6,11 @@
 }
 
 .Box {
-
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 80px;
+  padding-left: 8px;
 }
 
 .Addition {

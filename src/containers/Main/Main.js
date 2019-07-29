@@ -7,34 +7,21 @@ import * as actionCreators from "../../store/actions";
 import {connect} from "react-redux";
 import useWindowSize from '@rehooks/window-size';
 import {power} from "../../constants/names";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
-import {WEBSOCKET_SERVER, WEBSOCKET_URIS} from "../../constants/endpoints";
+import {WEBSOCKET_URIS} from "../../constants/endpoints";
+import WebSocketClients from "./WebSocketClients";
 
+const WS = new WebSocketClients(WEBSOCKET_URIS);
 
-function Main({energyCells, connections, onToggle, onMessage}) {
+function Main({energyCells, connections, onMessage}) {
     let windowSize = useWindowSize();
     useEffect(() => {
-        let webSocketClients = [];
-        WEBSOCKET_URIS.forEach(value => {
-            const i = webSocketClients.push(new W3CWebSocket(`${WEBSOCKET_SERVER}/${value}`)) - 1;
-            webSocketClients[i].onopen = () => {
-                console.log(`Websocket connection to ${WEBSOCKET_SERVER}/${value} has been established.`);
-            };
-            webSocketClients[i].onmessage = (message) => {
-                try {
-                    const json = JSON.parse(message.data);
-                    onMessage({payload: {uri: value, data: json} });
-                } catch (e) {
-                    console.log(e);
-                }
-            };
-        })
+        WS.setHandler(onMessage);
     }, []);
 
     return (
         <Box style={{zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >
                 <Net/>
-                <InnerPart onToggle={onToggle} energyCells={energyCells} connections={connections}/>
+                <InnerPart onToggle={args => WS.sendSpecific(args)} energyCells={energyCells} connections={connections}/>
                 <Typography className={classes.Label}>
                     Все значения указаны в {power}
                 </Typography>
@@ -51,7 +38,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onToggle: (tumbler) => dispatch(actionCreators.onToggle(tumbler)),
+        // onToggle: (tumbler) => dispatch(actionCreators.onToggle(tumbler)),
         onMessage: message => dispatch(actionCreators.onWebsocketMessage(message))
     }
 };

@@ -1,35 +1,36 @@
 import * as actionTypes from '../actions/actionTypes';
+import {dots} from "../../constants/names";
 
 const initialStore = [
     {
-        active: true,
+        active: false,
         output: true,
-        performance: 0.01
+        performance: dots
     },
     {
-        active: true,
+        active: false,
         output: true,
-        performance: 0.02
+        performance: dots
     },
     {
-        active: true,
+        active: false,
         output: true,
-        performance: 0.03
+        performance: dots
     },
     {
-        active: true,
+        active: false,
         output: true,
-        performance: 0.04
+        performance: dots
     },
     {
-        active: true,
+        active: false,
         output: true,
-        performance: 0.05
+        performance: dots
     },
     {
-        active: true,
+        active: false,
         output: true,
-        performance: 0.06
+        performance: dots
     },
 ];
 

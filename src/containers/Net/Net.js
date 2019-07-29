@@ -16,7 +16,7 @@ class Net extends React.Component {
                 <div className={classes.Item3}/>
                 <div className={classes.Item4}/>
                 <Typography style={{fontFamily: 'Roboto Mono'}} variant={'body2'} color={'secondary'} className={classes.Item8}>
-                    {this.props.energyCells.reduce((acc, curr) => acc + curr.net.performance*curr.net.active, 0)}
+                    {this.props.sumPerformance}
                 </Typography>
                 <Box className={classes.Item7}>
                     <Typography>

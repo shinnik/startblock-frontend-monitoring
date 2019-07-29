@@ -1,84 +1,85 @@
 import * as actionTypes from '../actions/actionTypes';
+import {dots} from "../../constants/names";
 
 const initialStore = [
     {
         generator: {
-            type: 1,
+            type: 0,
             output: false,
-            performance: 0.052,
-            active: true,
+            performance: dots,
+            active: false,
         },
         load: {
-            performance: 0.052,
-            active: true,
+            performance: dots,
+            active: false,
         },
         net: {
             active: false,
-            performance: 0.052,
+            performance: dots,
         },
         profile: {
             name: 'Alpha',
-            money: 100
-        }
-    },
-    {
-        generator: {
-            type: 2,
-            output: false,
-            performance: 0.052,
-            active: true,
-        },
-        load: {
-            performance: 0.052,
-            active: true,
-        },
-        net: {
-            active: true,
-            performance: 0.052,
-        },
-        profile: {
-            name: 'Beta',
-            money: 100
+            money: dots
         }
     },
     {
         generator: {
             type: 0,
             output: false,
-            performance: 0.052,
-            active: true,
+            performance: dots,
+            active: false,
         },
         load: {
-            performance: 0.052,
-            active: true,
+            performance: dots,
+            active: false,
         },
         net: {
-            active: true,
-            performance: 0.052,
+            active: false,
+            performance: dots,
         },
         profile: {
-            name: 'Gamma',
-            money: 100
+            name: 'Beta',
+            money: dots
         }
     },
     {
         generator: {
-            type: 1,
+            type: 0,
             output: false,
-            performance: 0.052,
-            active: true,
+            performance: dots,
+            active: false,
         },
         load: {
-            active: true,
-            performance: 0.052,
+            performance: dots,
+            active: false,
         },
         net: {
-            active: true,
-            performance: 0.052,
+            active: false,
+            performance: dots,
+        },
+        profile: {
+            name: 'Gamma',
+            money: dots
+        }
+    },
+    {
+        generator: {
+            type: 0,
+            output: false,
+            performance: dots,
+            active: false,
+        },
+        load: {
+            active: false,
+            performance: dots,
+        },
+        net: {
+            active: false,
+            performance: dots,
         },
         profile: {
             name: 'Delta',
-            money: 100
+            money: dots
         }
     },
 ];
@@ -182,7 +183,7 @@ function energyCellsReducer(state = initialStore, action) {
                 case 'cells': {
                     let tmp = Array.from(state);
                     let tmp2 = tmp[action.payload.data.id-1];
-                    tmp2.profile.money = action.payload.data.value;
+                    tmp2.profile.money = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
                     tmp[action.payload.data.id-1] = {
                         ...state[action.payload.data.id-1],
                         ...tmp2
@@ -198,7 +199,7 @@ function energyCellsReducer(state = initialStore, action) {
                         case 4:
                         {
                             let tmp2 = tmp[action.payload.data.id - 1];
-                            tmp2.net.performance = action.payload.data.value;
+                            tmp2.net.performance = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
                             tmp2.net.active = action.payload.data.status;
                             tmp[action.payload.data.id - 1] = tmp2;
                             return tmp;
@@ -210,7 +211,7 @@ function energyCellsReducer(state = initialStore, action) {
                         {
                             const i = [5, 9, 7, 11].indexOf(action.payload.data.id);
                             let tmp2 = tmp[ i ];
-                            tmp2.generator.performance = action.payload.data.value;
+                            tmp2.generator.performance = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
                             tmp2.generator.active = action.payload.data.status;
                             tmp[ i ] = tmp2;
                             return tmp;
@@ -222,7 +223,7 @@ function energyCellsReducer(state = initialStore, action) {
                         {
                             const i = [6, 10, 8, 12].indexOf(action.payload.data.id);
                             let tmp2 = tmp[ i ];
-                            tmp2.load.performance = action.payload.data.value;
+                            tmp2.load.performance = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
                             tmp2.load.active = action.payload.data.status;
                             tmp[ i ] = tmp2;
                             return tmp;

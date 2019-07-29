@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from './Main.module.scss';
 import InnerPart from "../InnerPart/InnerPart";
 import {Box, Typography} from "@material-ui/core";
@@ -7,10 +7,15 @@ import * as actionCreators from "../../store/actions";
 import {connect} from "react-redux";
 import useWindowSize from '@rehooks/window-size';
 import {power} from "../../constants/names";
-
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 function Main({energyCells, connections, onToggle}) {
     let windowSize = useWindowSize();
+    const [message, setMessage] = useState({});
+    // const webSocketClient = new W3CWebSocket()
+    useEffect(() => {
+
+    }, []);
 
     return (
         <Box style={{zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >

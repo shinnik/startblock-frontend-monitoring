@@ -77,6 +77,24 @@ function connectionsReducer(state=initialStore, action) {
                     return state;
             }
         }
+        case actionTypes.NEW_WEBSOCKET_MESSAGE: {
+            switch (action.payload.uri) {
+                case 'arrowdirections': {
+                    const i = [1, 4, 6, 5, 2, 3].indexOf(action.payload.data.id);
+                    const mapIdToIndex = [1, 1, 1, 2, 2, 3];
+                    const nodes = ['enode1, enode2, enode3, enode4'];
+                    let tmp = Array.from(state);
+                    let tmp2 = tmp[ i ];
+                    tmp2.performance = action.payload.data.value;
+                    tmp2.output = action.payload.data.directionfrom === nodes[ mapIdToIndex[i] - 1 ];
+                    tmp2.active = action.payload.data.status;
+                    tmp[i] = tmp2;
+                    return tmp;
+                }
+                default:
+                    return state;
+            }
+        }
         default:
             return state;
     }

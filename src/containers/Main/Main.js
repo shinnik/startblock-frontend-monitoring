@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import classes from './Main.module.scss';
 import InnerPart from "../InnerPart/InnerPart";
 import {Box, Typography} from "@material-ui/core";
@@ -8,15 +8,27 @@ import {connect} from "react-redux";
 import useWindowSize from '@rehooks/window-size';
 import {power} from "../../constants/names";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import {WEBSOCKET_SERVER} from "../../constants/endpoints";
+import {WEBSOCKET_SERVER, WEBSOCKET_URIS} from "../../constants/endpoints";
 
-function Main({energyCells, connections, onToggle}) {
+
+function Main({energyCells, connections, onToggle, onMessage}) {
     let windowSize = useWindowSize();
-    const [message, setMessage] = useState({});
-
     useEffect(() => {
-        const webSocketClient = new W3CWebSocket(`${WEBSOCKET_SERVER}/cells`)
-        
+        let webSocketClients = [];
+        WEBSOCKET_URIS.forEach(value => {
+            const i = webSocketClients.push(new W3CWebSocket(`${WEBSOCKET_SERVER}/${value}`)) - 1;
+            webSocketClients[i].onopen = () => {
+                console.log(`Websocket connection to ${WEBSOCKET_SERVER}/${value} has been established.`);
+            };
+            webSocketClients[i].onmessage = (message) => {
+                try {
+                    const json = JSON.parse(message.data);
+                    onMessage({payload: {uri: value, data: json} });
+                } catch (e) {
+                    console.log(e);
+                }
+            };
+        })
     }, []);
 
     return (
@@ -40,6 +52,7 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         onToggle: (tumbler) => dispatch(actionCreators.onToggle(tumbler)),
+        onMessage: message => dispatch(actionCreators.onWebsocketMessage(message))
     }
 };
 

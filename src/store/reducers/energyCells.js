@@ -177,6 +177,65 @@ function energyCellsReducer(state = initialStore, action) {
                     return state;
             }
         }
+        case actionTypes.NEW_WEBSOCKET_MESSAGE: {
+            switch (action.payload.uri) {
+                case 'cells': {
+                    let tmp = Array.from(state);
+                    let tmp2 = tmp[action.payload.data.id-1];
+                    tmp2.profile.money = action.payload.data.value;
+                    tmp[action.payload.data.id-1] = {
+                        ...state[action.payload.data.id-1],
+                        ...tmp2
+                    };
+                    return tmp;
+                }
+                case 'arrows': {
+                    let tmp = Array.from(state);
+                    switch (action.payload.data.id) {
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        {
+                            let tmp2 = tmp[action.payload.data.id - 1];
+                            tmp2.net.performance = action.payload.data.value;
+                            tmp2.net.active = action.payload.data.status;
+                            tmp[action.payload.data.id - 1] = tmp2;
+                            return tmp;
+                        }
+                        case 5:
+                        case 9:
+                        case 7:
+                        case 11:
+                        {
+                            const i = [5, 9, 7, 11].indexOf(action.payload.data.id);
+                            let tmp2 = tmp[ i ];
+                            tmp2.generator.performance = action.payload.data.value;
+                            tmp2.generator.active = action.payload.data.status;
+                            tmp[ i ] = tmp2;
+                            return tmp;
+                        }
+                        case 6:
+                        case 10:
+                        case 8:
+                        case 12:
+                        {
+                            const i = [6, 10, 8, 12].indexOf(action.payload.data.id);
+                            let tmp2 = tmp[ i ];
+                            tmp2.load.performance = action.payload.data.value;
+                            tmp2.load.active = action.payload.data.status;
+                            tmp[ i ] = tmp2;
+                            return tmp;
+                        }
+                        default: {
+                            throw new Error('Undefined id of arrow.')
+                        }
+                    }
+                }
+                default:
+                    return state;
+            }
+        }
         default:
             return state;
     }

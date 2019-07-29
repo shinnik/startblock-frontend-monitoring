@@ -1,3 +1,4 @@
 export {
-    onToggle
+    onToggle,
+    onWebsocketMessage
 } from './innerPart';

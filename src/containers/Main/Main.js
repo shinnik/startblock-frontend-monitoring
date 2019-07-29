@@ -8,13 +8,15 @@ import {connect} from "react-redux";
 import useWindowSize from '@rehooks/window-size';
 import {power} from "../../constants/names";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import {WEBSOCKET_SERVER} from "../../constants/endpoints";
 
 function Main({energyCells, connections, onToggle}) {
     let windowSize = useWindowSize();
     const [message, setMessage] = useState({});
-    // const webSocketClient = new W3CWebSocket()
-    useEffect(() => {
 
+    useEffect(() => {
+        const webSocketClient = new W3CWebSocket(`${WEBSOCKET_SERVER}/cells`)
+        
     }, []);
 
     return (

@@ -183,7 +183,7 @@ function energyCellsReducer(state = initialStore, action) {
                 case 'cells': {
                     let tmp = Array.from(state);
                     let tmp2 = tmp[action.payload.data.id-1];
-                    tmp2.profile.money = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
+                    tmp2.profile.money = action.payload.data.value && Number(action.payload.data.value).toFixed(1);
                     tmp[action.payload.data.id-1] = {
                         ...state[action.payload.data.id-1],
                         ...tmp2

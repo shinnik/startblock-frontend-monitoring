@@ -5,7 +5,7 @@ import {Box, Typography} from "@material-ui/core";
 import {power} from "../../constants/names";
 
 
-function LabeledTumbler({direction, power: state, label, type, align, id, dispatch, koeff}) {
+function LabeledTumbler({direction, power: state, label, type, align, id, dispatch, koeff, noHover}) {
     const [labelOpacity, setLabelOpacity] = useState(0);
     const [hovered, setHovered] = useState(false);
 
@@ -13,15 +13,15 @@ function LabeledTumbler({direction, power: state, label, type, align, id, dispat
         <div className={`LabeledTumbler LabeledTumbler__${direction}`}>
 
                 <Box onMouseLeave={() => {
-                    setLabelOpacity(0);
-                    setHovered(false);
+                    !noHover && setLabelOpacity(0);
+                    !noHover && setHovered(false);
                 }}
                      onMouseEnter={() => {
-                         setLabelOpacity(1);
-                         setHovered(true);
+                         !noHover && setLabelOpacity(1);
+                         !noHover && setHovered(true);
                      }}
                      className={`Arrow__${type}`} >
-                    <Tumbler direction={direction} power={state} id={id} dispatch={dispatch} koeff={koeff} hovered={hovered}/>
+                    <Tumbler noHover={noHover} direction={direction} power={state} id={id} dispatch={dispatch} koeff={koeff} hovered={hovered}/>
                 </Box>
             <Box hidden={!state} className={id === 15 ? `Label__special Label__${type} Align_${align}` : `Label__${type} Align_${align}`}>
                 <Typography style={{fontFamily: 'Roboto Mono'}} display={"inline"} variant='caption' color='secondary'>{`${label}`}</Typography>

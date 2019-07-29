@@ -110,12 +110,12 @@ function tumblerSizes(direction, state, koeff) {
 
 
 
-function Tumbler({direction, power: state, id, dispatch, koeff, hovered}) {
+function Tumbler({direction, power: state, id, dispatch, koeff, hovered, noHover}) {
     const handle = () => {
         dispatch({id, state: !state})
     };
 
-        return <Box className={arrowClass(direction, state)}>
+        return <Box style={{pointerEvents: noHover ? "none" : "auto"}} className={arrowClass(direction, state)}>
                     <Arrow
                         className={classes.PureArrow}
                         direction={arrowDirection(direction)}

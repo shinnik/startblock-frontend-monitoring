@@ -34,7 +34,7 @@ function Branch({type, dispatch, power, label, id, direction, reversed}) {
                 <img src={imageData[type].src} alt={imageData[type].name}/>
             </Box>
             <Box className={reversed ? classes.Item3_r : classes.Item3}>
-                <LabeledTumbler type={'hu'} dispatch={dispatch} power={power} align={'c'} label={label} direction={direction} id={id} koeff={0.82} />
+                <LabeledTumbler noHover={type === 3} type={'hu'} dispatch={dispatch} power={power} align={'c'} label={label} direction={direction} id={id} koeff={0.82} />
             </Box>
         </div>
     );

@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: $x5 $x6 $x7 $x8;
   grid-template-rows: $y3 $y4 $y3;
+  cursor: default;
 }
 
 .Item1, .Item2, .Item3, .Item4 {

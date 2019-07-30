@@ -52,6 +52,11 @@
       background-color: rgba($border-color, 0.3);
       border-radius: 20px;
     }
+
+    &:active {
+      background-color: rgba($border-color, 0.4);
+      border-radius: 20px;
+    }
   }
 
   &__ru, &__rd, &__lu, &__ld {

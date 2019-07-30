@@ -117,6 +117,8 @@ function Tumbler({direction, power: state, id, dispatch, koeff, hovered, noHover
 
         return <Box style={{pointerEvents: noHover ? "none" : "auto"}} className={arrowClass(direction, state)}>
                     <Arrow
+                        stroke
+                        unclosed={true}
                         className={classes.PureArrow}
                         direction={arrowDirection(direction)}
                         {...tumblerSizes(direction, state, koeff)}

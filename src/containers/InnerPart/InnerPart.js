@@ -74,7 +74,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                             power={value.net.active}
                             id={[3, 5, 27, 29][index]}
                             dispatch={onToggle}
-                            koeff={0.65}
+                            koeff={0.67}
                         />
                     </Box>)
                 }

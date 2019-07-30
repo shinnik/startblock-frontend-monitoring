@@ -4,7 +4,7 @@ import {dots} from "../../constants/names";
 const initialStore = [
     {
         generator: {
-            type: 0,
+            type: 1,
             output: false,
             performance: dots,
             active: false,
@@ -44,7 +44,7 @@ const initialStore = [
     },
     {
         generator: {
-            type: 0,
+            type: 2,
             output: false,
             performance: dots,
             active: false,

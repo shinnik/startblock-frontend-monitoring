@@ -4,7 +4,7 @@ import Plot from "../../components/Plot/Plot";
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import PlotRequestModel from '../../models/Plot/plot';
 
-const client = new W3CWebSocket('wss://Onder2.herokuapp.com/cells');
+const client = new W3CWebSocket('wss://Onder2.herokuapp.com/plot');
 
 const PlotContainer = () => {
 
@@ -13,7 +13,7 @@ const PlotContainer = () => {
   const [internet, setInternet] = useState({});
 
   useEffect(() => {
-    PlotRequestModel.getInitialPoints().then(data => console.log('GET RESPONSE', data));
+    PlotRequestModel.getInitialPoints().then(data => console.log('GET RESPONSE', Object.values(data)));
   }, []);
 
   useEffect(() => {
@@ -21,16 +21,13 @@ const PlotContainer = () => {
       console.log('WebSocket Client Connected');
     };
     client.onmessage = (message) => {
-      console.log('WEBSOCKET MESSAGE', message);
+      // console.log('WEBSOCKET MESSAGE', message);
     };
   }, []);
-  const handleClick = () => {
-    client.send(JSON.stringify('PRIVET RUSLAN, A PUTIN HUILO'));
-  };
   return (
       <>
-          <button onClick={handleClick}>CLICK</button>
           <Plot traditionalData={traditional}
+                // traditionalDataCurrentValue={}
                 distributionData={distributed}
                 internetData={internet}/>
       </>

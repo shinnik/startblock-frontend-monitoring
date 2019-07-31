@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/startblock-frontend-monitoring/static/css/main.d978ad6b.chunk.css",
-    "main.js": "/startblock-frontend-monitoring/static/js/main.bc79e74d.chunk.js",
-    "main.js.map": "/startblock-frontend-monitoring/static/js/main.bc79e74d.chunk.js.map",
+    "main.js": "/startblock-frontend-monitoring/static/js/main.e13e83f7.chunk.js",
+    "main.js.map": "/startblock-frontend-monitoring/static/js/main.e13e83f7.chunk.js.map",
     "runtime~main.js": "/startblock-frontend-monitoring/static/js/runtime~main.c8cb4a1b.js",
     "runtime~main.js.map": "/startblock-frontend-monitoring/static/js/runtime~main.c8cb4a1b.js.map",
     "static/js/2.6e3950d2.chunk.js": "/startblock-frontend-monitoring/static/js/2.6e3950d2.chunk.js",
     "static/js/2.6e3950d2.chunk.js.map": "/startblock-frontend-monitoring/static/js/2.6e3950d2.chunk.js.map",
     "index.html": "/startblock-frontend-monitoring/index.html",
-    "precache-manifest.bd58e9905e7c69e13df79b016f7fb0f6.js": "/startblock-frontend-monitoring/precache-manifest.bd58e9905e7c69e13df79b016f7fb0f6.js",
+    "precache-manifest.1989dfbde7d9ff7fb3243ae5c54471b3.js": "/startblock-frontend-monitoring/precache-manifest.1989dfbde7d9ff7fb3243ae5c54471b3.js",
     "service-worker.js": "/startblock-frontend-monitoring/service-worker.js",
     "static/css/main.d978ad6b.chunk.css.map": "/startblock-frontend-monitoring/static/css/main.d978ad6b.chunk.css.map",
     "static/media/A.svg": "/startblock-frontend-monitoring/static/media/A.df8e9f1e.svg",

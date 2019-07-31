@@ -1,6 +1,9 @@
 .LogoContainer {
   display: flex;
   flex-direction: row;
+  @media screen and (min-width: 1900px) {
+    zoom: 1.3
+  }
 }
 
 .I {

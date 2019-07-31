@@ -7,6 +7,9 @@
     justify-content: center;
     margin: 20px 0 0 75px;
     //min-width: 700px;
+    @media screen and (min-width: 1900px) {
+      zoom: 1.4
+    }
   }
   &__header-container {
     display: flex;

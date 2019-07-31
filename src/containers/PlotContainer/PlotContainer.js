@@ -63,7 +63,7 @@ const PlotContainer = () => {
   const splicePlot = (point) => {
     console.log(point);
     //replace points where needed
-    if (point.id === 'internet') {
+    if (point.id === 'internet' && !_isEmpty(internet)) {
       const copy = [...internet];
       const currentCopy = [...internetCurrent];
       currentCopy.pop();
@@ -72,7 +72,7 @@ const PlotContainer = () => {
       copy.push(point.value);
       setInternet(copy);
       setInternetCurrent(currentCopy)
-    } else if (point.id === 'distributed') {
+    } else if (point.id === 'distributed' && !_isEmpty(distributed)) {
       const copy = [...distributed];
       const currentCopy = [...distributedCurrent];
       currentCopy.pop();
@@ -81,7 +81,7 @@ const PlotContainer = () => {
       copy.push(point.value);
       setDistributed(copy);
       setDistributedCurrent(currentCopy)
-    } else if (point.id === 'traditional') {
+    } else if (point.id === 'traditional' && !_isEmpty(traditional)) {
       const copy = [...traditional];
       const currentCopy = [...traditionalCurrent];
       currentCopy.pop();

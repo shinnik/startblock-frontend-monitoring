@@ -1,62 +1,112 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import _isEmpty from 'lodash/isEmpty';
+import _cloneDeep from 'lodash/cloneDeep';
 import Plot from "../../components/Plot/Plot";
-import generateMock from "../../helpers/generateMockPlotData";
+import { w3cwebsocket as W3CWebSocket } from 'websocket';
+import PlotRequestModel from '../../models/Plot/plot';
 
-export default class PlotContainer extends Component {
-    state = {
-        traditional: {},
-        distributed: {},
-        internet: {}
+const client = new W3CWebSocket('wss://Onder2.herokuapp.com/plot');
+
+
+const PlotContainer = () => {
+
+  const [traditional, setTraditional] = useState([]);
+  const [traditionalCurrent, setTraditionalCurrent] = useState([]);
+  const [distributed, setDistributed] = useState([]);
+  const [distributedCurrent, setDistributedCurrent] = useState([]);
+  const [internet, setInternet] = useState([]);
+  const [internetCurrent, setInternetCurrent] = useState([]);
+  const [labels, setLabels] = useState([]);
+
+    useEffect(() => {
+    PlotRequestModel.getInitialPoints().then(data => handleResponse(data));
+  }, []);
+
+  const separateData = (data) => {
+    console.log(data, 'FROM GET')
+      const pureData = Object.values(data);
+      const values = pureData.map(({ value }) => value);
+      const labels = pureData.map(({ time }) => time);
+      const last = values.map((value, index) => {
+        return index !== values.length - 1
+          ? null
+          : value });
+      return { values, labels, last }
+  }
+
+  const handleResponse = (data) => {
+    const separatedTraditional = separateData(data.traditional);
+    const separatedDistributed = separateData(data.distributed);
+    const separatedInternet = separateData(data.internet);
+    setLabels(separatedInternet.labels);
+    setTraditional(separatedTraditional.values);
+    setDistributed(separatedDistributed.values);
+    setInternet(separatedInternet.values);
+    setTraditionalCurrent(separatedTraditional.last);
+    setDistributedCurrent(separatedDistributed.last);
+    setInternetCurrent(separatedInternet.last)
+  };
+
+  useEffect(() => {
+    client.onopen = () => {
+      console.log('WebSocket Client Connected');
     };
-    initMocks() {
-        const mockOffset3 = generateMock(3);
-        const mockOffset5 = generateMock(5, 1.5);
-        const mockOffset6 = generateMock(6);
-        mockOffset3.last = mockOffset3.data.map((val, index) =>
-            index !== mockOffset3.data.length - 1
-                ? null
-                : mockOffset3.data[index]);
-        mockOffset5.last = mockOffset5.data.map((val, index) =>
-            index !== mockOffset5.data.length - 1
-                ? null
-                : mockOffset5.data[index]);
-        mockOffset6.last = mockOffset6.data.map((val, index) =>
-            index !== mockOffset6.data.length - 1
-                ? null
-                : mockOffset6.data[index]);
-        this.setState({traditional: mockOffset3, distributed: mockOffset5, internet: mockOffset6});
-    }
-    updateMock(mock, offset, factor) {
-        const copy = JSON.parse(JSON.stringify(mock));
-        const point = generateMock(offset, factor, 1);
-        const last = mock.data.map((val, index) =>
-            index !== mock.data.length - 1
-                ? null
-                : point.data);
-        copy.data.shift();
-        copy.data.push(point.data[0]);
-        copy.labels.shift();
-        copy.labels.push(point.labels[0]);
-        return { data: copy.data, labels: copy.labels, last: last }
+  }, []);
 
+  useEffect(() => {
+      client.onmessage = ({ data }) => {
+        const obj = JSON.parse(data);
+        splicePlot(obj);
+      }
+  }, []);
+
+  const splicePlot = (point) => {
+    console.log(point);
+    //replace points where needed
+    if (point.id === 'internet' && !_isEmpty(internet)) {
+      const copy = [...internet];
+      const currentCopy = [...internetCurrent];
+      currentCopy.pop();
+      currentCopy.push(point.value);
+      copy.shift();
+      copy.push(point.value);
+      setInternet(copy);
+      setInternetCurrent(currentCopy)
+    } else if (point.id === 'distributed' && !_isEmpty(distributed)) {
+      const copy = [...distributed];
+      const currentCopy = [...distributedCurrent];
+      currentCopy.pop();
+      currentCopy.push(point.value);
+      copy.shift();
+      copy.push(point.value);
+      setDistributed(copy);
+      setDistributedCurrent(currentCopy)
+    } else if (point.id === 'traditional' && !_isEmpty(traditional)) {
+      const copy = [...traditional];
+      const currentCopy = [...traditionalCurrent];
+      currentCopy.pop();
+      currentCopy.push(point.value);
+      copy.shift();
+      copy.push(point.value);
+      setTraditional(copy);
+      setTraditionalCurrent(currentCopy)
     }
-    componentDidMount() {
-        this.initMocks();
-        this.interval = setInterval(() => {
-            const newTraditional = this.updateMock(this.state.traditional, 3, 1);
-            const newDistributed = this.updateMock(this.state.distributed, 5, 1.5);
-            const newInternet = this.updateMock(this.state.internet, 6, 1);
-            this.setState({ traditional: newTraditional, distributed: newDistributed, internet: newInternet })
-        }, 60000);
-    }
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-    render() {
-        return (
-            <Plot traditionalData={this.state.traditional}
-                  distributionData={this.state.distributed}
-                  internetData={this.state.internet}/>
-        )
-    }
-}
+    const labelCopy = _cloneDeep(labels);
+    labelCopy.shift();
+    labelCopy.push(point.time);
+    setLabels(labelCopy);
+  }
+  return (
+      <>
+          <Plot traditionalData={traditional}
+                traditionalDataCurrent={traditionalCurrent}
+                distributionData={distributed}
+                distributionDataCurrent={distributedCurrent}
+                internetData={internet}
+                internetDataCurrent={internetCurrent}
+                labels={labels}/>
+      </>
+  )
+};
+
+export default PlotContainer;

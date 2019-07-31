@@ -1,9 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js';
 import PlotHeader from "../PlotHeader/PlotHeader";
-
-const testArr = new Array(600);
-testArr.fill(4);
 
 const Plot = ({ internetData,
                 distributionData,
@@ -13,8 +10,11 @@ const Plot = ({ internetData,
                 internetDataCurrent,
                 labels }) => {
     const plot = useRef(null);
+    const chartObject = useRef(null)
+    const [resized, setResized] = useState(false);
     const update = () => {
-        new Chart(plot.current, {
+      chartObject.current && chartObject.current.destroy();
+        const chart = new Chart(plot.current, {
             type: 'line',
             data: {
                 labels: labels,
@@ -28,7 +28,7 @@ const Plot = ({ internetData,
                     backgroundColor: 'rgb(235, 87, 87)',
                     radius: 0
                 },
-                {
+                { 
                     data: traditionalDataCurrent,
                     borderColor: 'rgb(235, 87, 87)',
                     borderWidth: 1,
@@ -133,8 +133,8 @@ const Plot = ({ internetData,
                         },
                         ticks: {
                             min: 0,
-                            stepSize: 2,
-                            max: 8,
+                            // stepSize: 2,
+                            // max: 1000,
                             beginAtZero: true,
                             // mirror: true,
                             padding: 15,
@@ -145,9 +145,11 @@ const Plot = ({ internetData,
                     }]
                 }
             }
-
         })
+        chartObject.current = chart;
     };
+
+    useEffect(() => window.onresize = () => { update(); setResized(!resized); console.log('RESIZED')}, [resized]);
     useEffect(() => update());
     return (
         <section style={{ width: '100%', height: '25%', backgroundColor: '#283148', position: 'absolute', bottom: '0px' }}>

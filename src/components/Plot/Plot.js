@@ -2,68 +2,76 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js';
 import PlotHeader from "../PlotHeader/PlotHeader";
 
-const Plot = ({ internetData, distributionData, traditionalData }) => {
-    const plot = useRef(null);
+const testArr = new Array(600);
+testArr.fill(4);
 
+const Plot = ({ internetData,
+                distributionData,
+                traditionalData,
+                traditionalDataCurrent,
+                distributionDataCurrent,
+                internetDataCurrent,
+                labels }) => {
+    const plot = useRef(null);
     const update = () => {
         new Chart(plot.current, {
             type: 'line',
             data: {
-                labels: traditionalData.labels,
+                labels: labels,
                 datasets: [{
                     label: 'Традиционная энергосистема',
-                    data: traditionalData.data,
-                    borderColor: 'goldenrod',
-                    borderWidth: 3,
-                    lineTension: 0,
-                    fill: false,
-                    backgroundColor: 'goldenrod',
-                    radius: 0
-                },
-                {
-                    data: traditionalData.last,
-                    borderColor: 'goldenrod',
-                    borderWidth: 3,
-                    lineTension: 0,
-                    fill: false,
-                    backgroundColor: 'goldenrod',
-                    radius: 3
-                },
-                {
-                    label: 'Распределенная генерация',
-                    data: distributionData.data,
+                    data: traditionalData,
                     borderColor: 'rgb(235, 87, 87)',
-                    borderWidth: 3,
+                    borderWidth: 1,
                     lineTension: 0,
                     fill: false,
                     backgroundColor: 'rgb(235, 87, 87)',
                     radius: 0
                 },
+                {
+                    data: traditionalDataCurrent,
+                    borderColor: 'rgb(235, 87, 87)',
+                    borderWidth: 1,
+                    lineTension: 0,
+                    fill: false,
+                    backgroundColor: 'rgb(235, 87, 87)',
+                    radius: 3
+                },
+                {
+                    label: 'Распределенная генерация',
+                    data: distributionData,
+                    borderColor: 'goldenrod',
+                    borderWidth: 1,
+                    lineTension: 0,
+                    fill: false,
+                    backgroundColor: 'goldenrod',
+                    radius: 0
+                },
                     {
-                        data: distributionData.last,
+                        data: distributionDataCurrent,
                         label: 'Текущее значение',
-                        borderColor: 'rgb(235, 87, 87)',
-                        borderWidth: 3,
+                        borderColor: 'goldenrod',
+                        borderWidth: 1,
                         lineTension: 0,
                         fill: false,
-                        backgroundColor: 'rgb(235, 87, 87)',
+                        backgroundColor: 'goldenrod',
                         radius: 3
                     },
                     {
                     label: 'Интернет энергии',
-                    data: internetData.data,
+                    data: internetData,
                     borderColor: 'rgb(50,205,50)',
-                    borderWidth: 3,
+                    borderWidth: 1,
                     lineTension: 0,
                     fill: false,
                     backgroundColor: 'rgb(50,205,50)',
                     radius: 0
                 },
                     {
-                        data: internetData.last,
+                        data: internetDataCurrent,
                         label: 'Текущее значение',
                         borderColor: 'rgb(50,205,50)',
-                        borderWidth: 3,
+                        borderWidth: 1,
                         lineTension: 0,
                         fill: false,
                         backgroundColor: 'rgb(50,205,50)',

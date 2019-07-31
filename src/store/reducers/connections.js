@@ -83,7 +83,7 @@ function connectionsReducer(state=initialStore, action) {
                 case 'arrowdirections': {
                     const i = [1, 4, 6, 5, 2, 3].indexOf(action.payload.data.id);
                     const mapIdToIndex = [1, 1, 1, 2, 2, 3];
-                    const nodes = ['enode1, enode2, enode3, enode4'];
+                    const nodes = ['enode1', 'enode2', 'enode3', 'enode4'];
                     let tmp = Array.from(state);
                     let tmp2 = tmp[ i ];
                     tmp2.performance = action.payload.data.value;

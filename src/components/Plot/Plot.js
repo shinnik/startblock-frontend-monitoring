@@ -153,7 +153,7 @@ const Plot = ({ internetData,
     useEffect(() => window.onresize = () => { update(); setResized(!resized)}, [resized]);
     useEffect(() => update());
     return (
-        <section style={{ width: '100%', height: '25%', backgroundColor: '#283148', position: 'absolute', bottom: '0px' }}>
+        <section style={{ width: '100%', height: '25%', backgroundColor: '#283148' }}>
             <PlotHeader/>
             <canvas style={{ width: '100%', height: '25%', backgroundColor: '#283148' }} ref={plot}></canvas>
         </section>

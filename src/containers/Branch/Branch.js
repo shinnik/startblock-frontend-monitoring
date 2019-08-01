@@ -9,11 +9,15 @@ const imageData = [
         src: 'images/solar.png',
     },
     {
+        name: 'Солнечная панель',
+        src: 'images/solar_mini.png',
+    },
+    {
         name: 'Бензо-генератор',
         src: 'images/benz.png',
     },
     {
-        name: 'Аккумулятор',
+        name: 'Аккумуля-тор',
         src: 'images/acc.png',
     },
     {
@@ -31,7 +35,7 @@ function Branch({type, dispatch, power, label, id, direction, reversed}) {
                 </Typography>
             </Box>
             <Box className={reversed ? classes.Item2_r : classes.Item2}>
-                <img src={imageData[type].src} alt={imageData[type].name}/>
+                <img style={{maxWidth: '100%', maxHeight: '100%'}} src={imageData[type].src} alt={imageData[type].name}/>
             </Box>
             <Box className={reversed ? classes.Item3_r : classes.Item3}>
                 <LabeledTumbler noHover={type === 3} type={'hu'} dispatch={dispatch} power={power} align={'c'} label={label} direction={direction} id={id} koeff={0.82} />

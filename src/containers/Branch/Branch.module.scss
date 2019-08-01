@@ -6,12 +6,12 @@
 }
 
 .Branch {
-  grid-template-columns: 180px 100px $tumbler-length*0.82+24px;
+  grid-template-columns: 156px 100px $tumbler-length*0.82+24px;
   justify-content: end;
 }
 
 .BranchReversed {
-  grid-template-columns:  0.82*$tumbler-length+24px 100px 180px;
+  grid-template-columns:  0.82*$tumbler-length+24px 100px 156px;
   justify-content: start;
 }
 
@@ -25,7 +25,7 @@
 
   &_r {
     grid-area: 1/3/1/3;
-    text-align: right;
+    text-align: left;
   }
 }
 
@@ -45,5 +45,8 @@
 }
 
 .Item2, .Item2_r {
-  zoom: 1.25;
+  width: $y2;
+  height: $y2;
+  align-items: center;
+  display: contents;
 }

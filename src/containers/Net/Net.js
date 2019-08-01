@@ -3,6 +3,7 @@ import {Box, Typography} from "@material-ui/core";
 import classes from './Net.module.scss';
 import {currency, power} from "../../constants/names";
 import {connect} from "react-redux";
+import EnergyRouterIcon from "../../components/Icon/EnergyRouterIcon/EnergyRouterIcon";
 
 class Net extends React.Component {
 
@@ -13,7 +14,9 @@ class Net extends React.Component {
                     <b>Сеть</b>
                 </Typography>
                 <div className={classes.Item2}/>
-                <div className={classes.Item3}/>
+                <div className={classes.Item3}>
+                    <EnergyRouterIcon/>
+                </div>
                 <div className={classes.Item4}/>
                 <Typography style={{fontFamily: 'Roboto Mono'}} variant={'body2'} color={'secondary'} className={classes.Item8}>
                     {this.props.sumPerformance}

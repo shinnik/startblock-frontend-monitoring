@@ -94,7 +94,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                 {
                     energyCells.map((value, index) => <Box key={index} className={energyCellLoadClassNames[index]}>
                         <Branch
-                            type={3}
+                            type={4}
                             id={[12, 13, 20, 25][index]}
                             label={value.load.performance}
                             dispatch={onToggle}

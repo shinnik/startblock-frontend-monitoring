@@ -18,8 +18,7 @@ let theme = createMuiTheme({
             '"Segoe UI Symbol"',
         ].join(','),
         body1: {
-            fontSize: '32px',
-            letterSpacing: '0.44px',
+            fontSize: '26px',
         },
         body2: {
             fontSize: '28px',
@@ -29,6 +28,9 @@ let theme = createMuiTheme({
         h5: {
             fontSize: '28px',
             lineHeight: '120%'
+        },
+        h4: {
+            fontSize: '44px',
         },
         caption: {
             fontSize: '26px',

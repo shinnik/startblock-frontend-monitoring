@@ -1,0 +1,13 @@
+@import "../../../constants/constants";
+
+.EnergyRouterIconContainer {
+    width: $x7;
+    height: $x7;
+    background: #EB5757;
+    box-shadow: 0 5.58107px 22.3243px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

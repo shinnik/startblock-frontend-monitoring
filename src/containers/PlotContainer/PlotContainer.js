@@ -28,20 +28,28 @@ const PlotContainer = () => {
   }, []);
 
   const separateData = (data) => {
-      const pureData = Object.values(data);
-      const values = pureData.map(({ value }) => value);
-      const labels = pureData.map(({ time }) => time);
-      const last = values.map((value, index) => {
+    console.log(data, 'FROM GET')
+      if (data) {
+        const pureData = Object.values(data);
+        const values = pureData.map(({ value }) => value);
+        const labels = pureData.map(({ time }) => time);
+        const last = values.map((value, index) => {
         return index !== values.length - 1
           ? null
           : value });
-      return { values, labels, last }
+        return { values, labels, last }
+      }
   }
 
   const handleResponse = (data) => {
-    const separatedTraditional = separateData(data.traditional);
-    const separatedDistributed = separateData(data.distributed);
-    const separatedInternet = separateData(data.internet);
+    const initialState = {
+      values: [],
+      last: [],
+      labels:[]
+    }
+    const separatedTraditional = separateData(data.traditional || initialState);
+    const separatedDistributed = separateData(data.distributed || initialState);
+    const separatedInternet = separateData(data.internet || initialState);
     setLabels(separatedInternet.labels);
     setTraditional(separatedTraditional.values);
     setDistributed(separatedDistributed.values);

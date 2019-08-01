@@ -1,37 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js';
 import PlotHeader from "../PlotHeader/PlotHeader";
 
-const Plot = ({ internetData, distributionData, traditionalData }) => {
+const Plot = ({ internetData,
+                distributionData,
+                traditionalData,
+                traditionalDataCurrent,
+                distributionDataCurrent,
+                internetDataCurrent,
+                labels }) => {
     const plot = useRef(null);
-
+    const chartObject = useRef(null);
+    const [resized, setResized] = useState(false);
     const update = () => {
-        new Chart(plot.current, {
+      chartObject.current && chartObject.current.destroy();
+        const chart = new Chart(plot.current, {
             type: 'line',
             data: {
-                labels: traditionalData.labels,
+                labels: labels,
                 datasets: [{
                     label: 'Традиционная энергосистема',
-                    data: traditionalData.data,
-                    borderColor: 'goldenrod',
-                    borderWidth: 3,
-                    lineTension: 0,
-                    fill: false,
-                    backgroundColor: 'goldenrod',
-                    radius: 0
-                },
-                {
-                    data: traditionalData.last,
-                    borderColor: 'goldenrod',
-                    borderWidth: 3,
-                    lineTension: 0,
-                    fill: false,
-                    backgroundColor: 'goldenrod',
-                    radius: 3
-                },
-                {
-                    label: 'Распределенная генерация',
-                    data: distributionData.data,
+                    data: traditionalData,
                     borderColor: 'rgb(235, 87, 87)',
                     borderWidth: 3,
                     lineTension: 0,
@@ -39,19 +28,39 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
                     backgroundColor: 'rgb(235, 87, 87)',
                     radius: 0
                 },
+                {
+                    label: 'Текущее значение',
+                    data: traditionalDataCurrent,
+                    borderColor: 'rgb(235, 87, 87)',
+                    borderWidth: 3,
+                    lineTension: 0,
+                    fill: false,
+                    backgroundColor: 'rgb(235, 87, 87)',
+                    radius: 3
+                },
+                {
+                    label: 'Распределенная генерация',
+                    data: distributionData,
+                    borderColor: 'goldenrod',
+                    borderWidth: 3,
+                    lineTension: 0,
+                    fill: false,
+                    backgroundColor: 'goldenrod',
+                    radius: 0
+                },
                     {
-                        data: distributionData.last,
+                        data: distributionDataCurrent,
                         label: 'Текущее значение',
-                        borderColor: 'rgb(235, 87, 87)',
+                        borderColor: 'goldenrod',
                         borderWidth: 3,
                         lineTension: 0,
                         fill: false,
-                        backgroundColor: 'rgb(235, 87, 87)',
+                        backgroundColor: 'goldenrod',
                         radius: 3
                     },
                     {
                     label: 'Интернет энергии',
-                    data: internetData.data,
+                    data: internetData,
                     borderColor: 'rgb(50,205,50)',
                     borderWidth: 3,
                     lineTension: 0,
@@ -60,7 +69,7 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
                     radius: 0
                 },
                     {
-                        data: internetData.last,
+                        data: internetDataCurrent,
                         label: 'Текущее значение',
                         borderColor: 'rgb(50,205,50)',
                         borderWidth: 3,
@@ -125,8 +134,8 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
                         },
                         ticks: {
                             min: 0,
-                            stepSize: 2,
-                            max: 8,
+                            // stepSize: 2,
+                            // max: 1000,
                             beginAtZero: true,
                             // mirror: true,
                             padding: 15,
@@ -137,9 +146,11 @@ const Plot = ({ internetData, distributionData, traditionalData }) => {
                     }]
                 }
             }
-
         })
+        chartObject.current = chart;
     };
+
+    useEffect(() => window.onresize = () => { update(); setResized(!resized)}, [resized]);
     useEffect(() => update());
     return (
         <section style={{ width: '100%', height: '25%', backgroundColor: '#283148', position: 'absolute', bottom: '0px' }}>

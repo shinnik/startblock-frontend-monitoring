@@ -10,7 +10,7 @@ const Plot = ({ internetData,
                 internetDataCurrent,
                 labels }) => {
     const plot = useRef(null);
-    const chartObject = useRef(null)
+    const chartObject = useRef(null);
     const [resized, setResized] = useState(false);
     const update = () => {
       chartObject.current && chartObject.current.destroy();
@@ -28,7 +28,7 @@ const Plot = ({ internetData,
                     backgroundColor: 'rgb(235, 87, 87)',
                     radius: 0
                 },
-                { 
+                {
                     data: traditionalDataCurrent,
                     borderColor: 'rgb(235, 87, 87)',
                     borderWidth: 1,
@@ -149,7 +149,7 @@ const Plot = ({ internetData,
         chartObject.current = chart;
     };
 
-    useEffect(() => window.onresize = () => { update(); setResized(!resized); console.log('RESIZED')}, [resized]);
+    useEffect(() => window.onresize = () => { update(); setResized(!resized)}, [resized]);
     useEffect(() => update());
     return (
         <section style={{ width: '100%', height: '25%', backgroundColor: '#283148', position: 'absolute', bottom: '0px' }}>

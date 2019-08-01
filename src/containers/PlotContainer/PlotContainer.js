@@ -19,11 +19,15 @@ const PlotContainer = () => {
   const [labels, setLabels] = useState([]);
 
     useEffect(() => {
-    PlotRequestModel.getInitialPoints().then(data => handleResponse(data));
+    // get points and subscribe on new points after
+    PlotRequestModel.getInitialPoints().then(data => handleResponse(data)).then(() =>
+        client.onmessage = ({ data }) => {
+        const obj = JSON.parse(data);
+        splicePlot(obj);
+    });
   }, []);
 
   const separateData = (data) => {
-    console.log(data, 'FROM GET')
       const pureData = Object.values(data);
       const values = pureData.map(({ value }) => value);
       const labels = pureData.map(({ time }) => time);
@@ -53,15 +57,15 @@ const PlotContainer = () => {
     };
   }, []);
 
-  useEffect(() => {
-      client.onmessage = ({ data }) => {
-        const obj = JSON.parse(data);
-        splicePlot(obj);
-      }
-  }, []);
+  // useEffect(() => {
+  //     client.onmessage = ({ data }) => {
+  //       const obj = JSON.parse(data);
+  //       splicePlot(obj);
+  //     }
+  // }, []);
 
   const splicePlot = (point) => {
-    console.log(point);
+    console.log(point, traditional);
     //replace points where needed
     if (point.id === 'internet' && !_isEmpty(internet)) {
       const copy = [...internet];
@@ -88,10 +92,12 @@ const PlotContainer = () => {
       currentCopy.push(point.value);
       copy.shift();
       copy.push(point.value);
+      console.log(copy === currentCopy);
       setTraditional(copy);
       setTraditionalCurrent(currentCopy)
     }
     const labelCopy = _cloneDeep(labels);
+    console.log(labelCopy === labels);
     labelCopy.shift();
     labelCopy.push(point.time);
     setLabels(labelCopy);

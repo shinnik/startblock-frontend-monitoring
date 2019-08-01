@@ -125,7 +125,7 @@ function Tumbler({direction, power: state, id, dispatch, koeff, hovered, noHover
                         fill={state ? '#EB5757' : '#D0D0D0'}
                         onClick={handle}
                     />
-            {hovered && <Box onClick={handle} ><PowerSettingsNew style={{backgroundColor: state ? '#EB5757' : '#878787', width: constants.triangleSize, height: constants.triangleSize, alignSelf: 'center', justifySelf: 'center'}} className={powerIconClass(direction)}/> </Box>}
+            {hovered && <Box onClick={handle} ><PowerSettingsNew style={{backgroundColor: state ? '#EB5757' : '#878787', width: constants.triangleSize, height: constants.triangleSize}} className={powerIconClass(direction)}/> </Box>}
         </Box>;
 }
 

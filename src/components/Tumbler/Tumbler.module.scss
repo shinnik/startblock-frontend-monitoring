@@ -81,11 +81,6 @@
 
 
 .PowerIcon {
-  &__Right, &__Left, &__Up, &__Down,
-  &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
-    width: $triangle-size;
-    height: $triangle-size;
-  }
 
   &__Right {
     background-color: $border-color;

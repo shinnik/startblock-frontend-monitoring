@@ -2,8 +2,9 @@ import React from 'react';
 import classes from './InnerPart.module.scss';
 import EnergyCell from "../../components/EnergyCell/EnergyCell";
 import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
-import {Box} from "@material-ui/core";
+import {Box, Typography} from "@material-ui/core";
 import Branch from "../Branch/Branch";
+import {power} from "../../constants/names";
 
 const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
 const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
@@ -104,7 +105,11 @@ function InnerPart({onToggle, connections, energyCells}) {
                         />
                         </Box>)
                 }
-                <div  className={classes.Item1} />
+                <div className={classes.Item1} >
+                    <Typography variant={'body2'} color={"secondary"}>
+                        Все значения в {power}
+                    </Typography>
+                </div>
             </div>
         );
 }

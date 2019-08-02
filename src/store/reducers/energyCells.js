@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import {dots} from "../../constants/names";
-import * as typeNames from "../../containers/Branch/typeNames";
+import * as typeNames from "../../constants/generatorTypeNames";
 
 
 const initialStore = [

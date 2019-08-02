@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Branch.module.scss';
 import {Box, Typography} from "@material-ui/core";
 import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
-import * as typeNames from "./typeNames";
+import * as typeNames from "../../constants/generatorTypeNames";
 
 const imageData = {
     [typeNames.ACCUMULATOR]: {

@@ -3,7 +3,7 @@ import {Box, Typography} from "@material-ui/core";
 import classes from './Net.module.scss';
 import {currency, power} from "../../constants/names";
 import {connect} from "react-redux";
-import EnergyRouterIcon from "../../components/Icon/EnergyRouterIcon/EnergyRouterIcon";
+import EnergyRouterIcon from "../../components/EnergyRouterIcon/EnergyRouterIcon";
 
 class Net extends React.Component {
 

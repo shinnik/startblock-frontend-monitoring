@@ -7,7 +7,7 @@ import * as actionCreators from "../../store/actions";
 import {connect} from "react-redux";
 import useWindowSize from '@rehooks/window-size';
 import {WEBSOCKET_URIS} from "../../constants/endpoints";
-import WebSocketClients from "./WebSocketClients";
+import WebSocketClients from "../../middlewares/WebSocketClients/WebSocketClients";
 
 const WS = new WebSocketClients(WEBSOCKET_URIS);
 

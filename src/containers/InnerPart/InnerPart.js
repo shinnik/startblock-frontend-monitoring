@@ -5,7 +5,7 @@ import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
 import {Box, Typography} from "@material-ui/core";
 import Branch from "../Branch/Branch";
 import {power} from "../../constants/names";
-import {LOAD} from "../Branch/typeNames";
+import {LOAD} from "../../constants/generatorTypeNames";
 
 
 const energyCellClassNames = [classes.Cell8, classes.Cell10, classes.Cell21, classes.Cell23];

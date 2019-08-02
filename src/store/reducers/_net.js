@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import {updateObject} from "../../utils/updateObject";
+import {updateObject} from "../../helpers/updateObject";
 import {dots} from "../../constants/names";
 
 const initialStore = {

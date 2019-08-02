@@ -81,6 +81,11 @@
 
 
 .PowerIcon {
+  &__Right, &__Left, &__Up, &__Down,
+  &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
+    justify-self: center;
+    align-self: center;
+  }
 
   &__Right {
     background-color: $border-color;
@@ -116,7 +121,6 @@
     position: absolute;
     left: 20-$triangle-size*0.5;
     bottom: 60px;
-
   }
 
   &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {

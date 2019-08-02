@@ -18,7 +18,7 @@ function Main({energyCells, connections, onMessage}) {
     }, []);
 
     return (
-        <Box style={{height: '60%', zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >
+        <Box style={{height: '55%', zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >
                 <Net/>
                 <InnerPart onToggle={args => WS.sendSpecific(args)} energyCells={energyCells} connections={connections}/>
         </Box>

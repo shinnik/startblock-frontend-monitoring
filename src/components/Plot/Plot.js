@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js';
 import PlotHeader from "../PlotHeader/PlotHeader";
+import styles from './Plot.module.scss';
 
 const Plot = ({ internetData,
                 distributionData,
@@ -12,6 +13,8 @@ const Plot = ({ internetData,
     const plot = useRef(null);
     const chartObject = useRef(null);
     const [resized, setResized] = useState(false);
+    // console.log(internetData, 'internetData');
+    // console.log(labels, 'labels');
     const update = () => {
       chartObject.current && chartObject.current.destroy();
         const chart = new Chart(plot.current, {
@@ -97,16 +100,16 @@ const Plot = ({ internetData,
                 layout: {
                     padding: {
                         top: 55,
-                        bottom: 10,
-                        right: 70,
-                        left: 70
+                        bottom: 0,
+                        right: 45,
+                        left: 65
                     }
                 },
                 scales: {
                     xAxes: [{
                         gridLines: {
                             color: 'rgb(0, 0, 0, 0)',
-                            zeroLineColor: 'rgb(255, 255, 255, 0.4)'
+                            zeroLineColor: '#343434'
                         },
                         ticks: {
                             autoSkip: true,
@@ -114,7 +117,7 @@ const Plot = ({ internetData,
                             maxTicksLimit: 8,
                             maxRotation: 0,
                             minRotation: 0,
-                            fontColor: 'rgb(255, 255, 255, 0.8)',
+                            fontColor: '#343434',
                             fontFamily: "'Manrope', sans-serif",
                             fontSize: 12
                         },
@@ -125,12 +128,12 @@ const Plot = ({ internetData,
                             display: true,
                             labelString: 'MIPTik/кВт⋅ч',
                             fontFamily: "'Manrope', sans-serif",
-                            fontColor: 'rgb(255, 255, 255, 0.8)',
+                            fontColor: '#343434',
                             fontSize: 12,
                         },
                         gridLines: {
                             color: 'rgb(0, 0, 0, 0)',
-                            zeroLineColor: 'rgb(255, 255, 255, 0.4)'
+                            zeroLineColor: '#343434'
                         },
                         ticks: {
                             min: 0,
@@ -140,7 +143,7 @@ const Plot = ({ internetData,
                             // mirror: true,
                             padding: 15,
                             fontFamily: "'Manrope', sans-serif",
-                            fontColor: 'rgb(255, 255, 255, 0.8)',
+                            fontColor: '#343434',
                             fontSize: 12
                         }
                     }]
@@ -153,9 +156,9 @@ const Plot = ({ internetData,
     useEffect(() => window.onresize = () => { update(); setResized(!resized)}, [resized]);
     useEffect(() => update());
     return (
-        <section style={{ width: '100%', height: '25%', backgroundColor: '#283148' }}>
+        <section className={styles['section']}>
             <PlotHeader/>
-            <canvas style={{ width: '100%', height: '25%', backgroundColor: '#283148' }} ref={plot}></canvas>
+            <canvas className={styles['plot']} ref={plot}></canvas>
         </section>
     )
 };

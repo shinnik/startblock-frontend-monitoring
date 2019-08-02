@@ -7,11 +7,36 @@ import Branch from "../Branch/Branch";
 import {power} from "../../constants/names";
 import {LOAD} from "../Branch/typeNames";
 
+
 const energyCellClassNames = [classes.Cell8, classes.Cell10, classes.Cell21, classes.Cell23];
 const energyCellNetClassNames = [classes.Cell3, classes.Cell5, classes.Cell27, classes.Cell29];
 const energyCellConnections = [classes.Cell9, classes.Cell15, classes.Cell16, classes.Cell160, classes.Cell17, classes.Cell22];
 const energyCellGeneratorClassNames = [classes.Cell7, classes.Cell11, classes.Cell19, classes.Cell24];
 const energyCellLoadClassNames = [classes.Cell12, classes.Cell13, classes.Cell20, classes.Cell25];
+
+/* There are some abbreviations:
+
+    Where to place label relatively to tumbler:
+    hu - horizontal up
+    hd - horizontal down
+    vl - vertical left
+    vr - vertical right
+
+    How to align label relatively to tumbler:
+    c - align center
+    up - align start
+    down - align end
+
+    Tumbler direction:
+    r - right
+    l - left
+    u - up
+    d - down
+    rd - right down
+    lu - left up
+    ru - right up
+    ld - left down
+ */
 const connectionTypes = [() => 'hu', () => 'vl', x => x, x => x, () => 'vr', () => 'hd'];
 const connectionAlignments = [() => 'c', x => x ? 'up' : 'down', () => undefined, () => undefined, x => x ? 'up' : 'down', () => 'c'];
 const connectionDirections = [
@@ -22,6 +47,7 @@ const connectionDirections = [
     x => x ? 'd' : 'u',
     x => x ? 'r' : 'l'
 ];
+
 
 function arrowLengthCoefficients(cell_id) {
     switch (cell_id) {
@@ -42,6 +68,7 @@ function arrowLengthCoefficients(cell_id) {
 
 function InnerPart({onToggle, connections, energyCells}) {
     return (
+
             <div className={classes.InnerPart}>
                 {
                     energyCells.map((value, index) => <EnergyCell

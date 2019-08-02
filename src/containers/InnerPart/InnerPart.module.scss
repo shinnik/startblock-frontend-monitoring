@@ -1,5 +1,10 @@
 @import "../../constants/constants";
 
+/*
+  InnerPart component fragmented to cells. Every cell has his own id, which called as "cell_id".
+  More detailed fragmentation you can see in documentation.
+ */
+
 .InnerPart {
   position: relative;
   display: grid;
@@ -11,26 +16,6 @@
   border-top: $tumbler-thickness solid $border-color;
   width: $x1 + $x2 + $x3 + $x40 + $x3*0.5 + 0.6mm;
   height: 2*$y1 + 4*$y2 + $x4;
-
-  //&::after {
-  //  content: '';
-  //  width: 3px;
-  //  height: 5px;
-  //  background-color: $border-color;
-  //  position: absolute;
-  //  top: -5px;
-  //  right: -3px;
-  //}
-  //
-  //&::before {
-  //  content: '';
-  //  width: 3px;
-  //  height: 5px;
-  //  background-color: $border-color;
-  //  position: absolute;
-  //  bottom: -5px;
-  //  right: -3px;
-  //}
 }
 
 .Cell8 {

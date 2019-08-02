@@ -33,122 +33,122 @@
   //}
 }
 
-.Item8 {
+.Cell8 {
   grid-area: 2/3/4/4;
 }
 
-.Item10 {
+.Cell10 {
   grid-area: 2/5/4/6;
 }
 
-.Item21 {
+.Cell21 {
   grid-area: 5/3/7/4;
 }
 
-.Item23 {
+.Cell23 {
   grid-area: 5/5/7/6;
 }
 
-.Item3 {
+.Cell3 {
   grid-area: 1/3/1/3;
 }
 
-.Item5 {
+.Cell5 {
   grid-area: 1/5/1/5;
 }
 
-.Item27 {
+.Cell27 {
   grid-area: 7/3/7/3;
 }
 
-.Item29 {
+.Cell29 {
   grid-area: 7/5/7/5;
 }
 
-.Item16 {
+.Cell16 {
   grid-area: 4/4/4/4;
 }
 
-.Item160 {
+.Cell160 {
   grid-area: 4/4/4/4;
 }
 
-.Item9 {
+.Cell9 {
   grid-area: 2/4/4/5
 }
 
-.Item15 {
+.Cell15 {
   grid-area: 4/3/4/3;
 }
 
-.Item17 {
+.Cell17 {
   grid-area: 4/5/4/5;
 }
 
-.Item22 {
+.Cell22 {
   grid-area: 5/4/7/5;
 }
 
-.Item8, .Item10, .Item21, .Item23 {
+.Cell8, .Cell10, .Cell21, .Cell23 {
   width: 158px;
   height: 135px;
   z-index: 1;
   cursor: default;
 }
 
-.Item3, .Item5, .Item27, .Item29, .Item15, .Item17 {
+.Cell3, .Cell5, .Cell27, .Cell29, .Cell15, .Cell17 {
   justify-self: center;
   align-self: center;
 }
 
-.Item9, .Item22 {
+.Cell9, .Cell22 {
   align-self: center;
   justify-self: center;
 }
 
-.Item16 {
+.Cell16 {
   align-self: center;
   justify-self: center;
 }
 
-.Item160 {
+.Cell160 {
   align-self: center;
   justify-self: center;
 }
 
-.Item7 {
+.Cell7 {
   grid-area: 2/2/2/2;
 }
 
-.Item12 {
+.Cell12 {
   grid-area: 3/2/3/2;
 }
 
-.Item11 {
+.Cell11 {
   grid-area: 2/6/2/6;
 }
 
-.Item13 {
+.Cell13 {
   grid-area: 3/6/3/6;
 }
 
-.Item19 {
+.Cell19 {
   grid-area: 5/2/5/2;
 }
 
-.Item20 {
+.Cell20 {
   grid-area: 6/2/6/2;
 }
 
-.Item24 {
+.Cell24 {
   grid-area: 5/6/5/6;
 }
 
-.Item25 {
+.Cell25 {
   grid-area: 6/6/6/6;
 }
 
-.Item1 {
+.Cell1 {
   grid-area: 1/1/8/2;
   width: $x1;
 }
@@ -156,34 +156,34 @@
 
 //----
 
-.Item7,
-.Item12,
-.Item11,
-.Item13,
-.Item19,
-.Item20,
-.Item24,
-.Item25 {
+.Cell7,
+.Cell12,
+.Cell11,
+.Cell13,
+.Cell19,
+.Cell20,
+.Cell24,
+.Cell25 {
   align-self: center;
   cursor: default;
 }
 
-.Item3, .Item5, .Item7, .Item8, .Item9, .Item10, .Item11,
-.Item12, .Item13, .Item15, .Item16, .Item17, .Item19,
-.Item20, .Item21, .Item22, .Item23, .Item24, .Item25,
-.Item27, .Item29 {
+.Cell3, .Cell5, .Cell7, .Cell8, .Cell9, .Cell10, .Cell11,
+.Cell12, .Cell13, .Cell15, .Cell16, .Cell17, .Cell19,
+.Cell20, .Cell21, .Cell22, .Cell23, .Cell24, .Cell25,
+.Cell27, .Cell29 {
   position: relative;
 }
 
-.Item11, .Item7, .Item19, .Item24 {
+.Cell11, .Cell7, .Cell19, .Cell24 {
   margin-bottom: 24px;
 }
 
-.Item13, .Item12, .Item20, .Item25 {
+.Cell13, .Cell12, .Cell20, .Cell25 {
   margin-top: 32px;
 }
 
-.Item1 {
+.Cell1 {
   align-items: flex-end;
   display: flex;
   white-space: pre;

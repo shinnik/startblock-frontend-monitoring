@@ -10,18 +10,6 @@ const initialStore = {
 
 function _netReducer(state=initialStore, action) {
     switch (action.type) {
-        case actionTypes.SET_MODE: {
-            if (action.mode === 'limited_network')
-                return {
-                    ...state,
-                    performance: state.limitedPerformance
-                };
-            else
-                return {
-                    ...state,
-                    performance: state.defaultPerformance
-                };
-        }
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
             if (action.payload.uri === 'router') {
                 return updateObject(state, {

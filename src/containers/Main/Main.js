@@ -12,13 +12,14 @@ import WebSocketClients from "./WebSocketClients";
 const WS = new WebSocketClients(WEBSOCKET_URIS);
 
 function Main({energyCells, connections, onMessage}) {
-    let windowSize = useWindowSize();
+    let windowSize = useWindowSize();  // this hook makes component responsive to viewport width
     useEffect(() => {
         WS.setHandler(onMessage);
+        return () => WS.close();
     }, []);
 
     return (
-        <Box style={{height: '55%', zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >
+        <Box style={{zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >
                 <Net/>
                 <InnerPart onToggle={args => WS.sendSpecific(args)} energyCells={energyCells} connections={connections}/>
         </Box>
@@ -34,7 +35,6 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // onToggle: (tumbler) => dispatch(actionCreators.onToggle(tumbler)),
         onMessage: message => dispatch(actionCreators.onWebsocketMessage(message))
     }
 };

@@ -10,18 +10,18 @@ class Net extends React.Component {
     render() {
         return (
             <div className={classes.Net}>
-                <Typography variant={'h4'} className={classes.Item1}>
+                <Typography variant={'h4'} className={classes.Cell1}>
                     <b>Сеть</b>
                 </Typography>
-                <div className={classes.Item2}/>
-                <div className={classes.Item3}>
+                <div className={classes.Cell2}/>
+                <div className={classes.Cell3}>
                     <EnergyRouterIcon/>
                 </div>
-                <div className={classes.Item4}/>
-                <Typography style={{fontFamily: 'Roboto Mono'}} variant={'body2'} color={'secondary'} className={classes.Item8}>
+                <div className={classes.Cell4}/>
+                <Typography style={{fontFamily: 'Roboto Mono'}} variant={'body2'} color={'secondary'} className={classes.Cell8}>
                     {this.props.sumPerformance}
                 </Typography>
-                <Box className={classes.Item7}>
+                <Box className={classes.Cell7}>
                     <Typography>
                         Энергороутер
                     </Typography>
@@ -32,7 +32,7 @@ class Net extends React.Component {
                         {` ${power}`}
                     </Typography>
                 </Box>
-                <Box className={classes.Item5}>
+                <Box className={classes.Cell5}>
                     <Typography style={{fontFamily: 'Roboto Mono'}}>
                         {`${this.props.money}`}
                     </Typography>

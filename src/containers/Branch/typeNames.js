@@ -1,0 +1,5 @@
+export const SOLAR_PANEL_DOUBLE = 'SOLAR_PANEL_DOUBLE';
+export const SOLAR_PANEL = 'SOLAR_PANEL';
+export const BENZOGENERATOR = 'BENZOGENERATOR';
+export const ACCUMULATOR = 'ACCUMULATOR';
+export const LOAD = 'LOAD';

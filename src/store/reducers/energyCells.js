@@ -1,10 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 import {dots} from "../../constants/names";
+import * as typeNames from "../../containers/Branch/typeNames";
+
 
 const initialStore = [
     {
         generator: {
-            type: 3,
+            type: typeNames.ACCUMULATOR,
             output: false,
             performance: dots,
             active: false,
@@ -24,7 +26,7 @@ const initialStore = [
     },
     {
         generator: {
-            type: 0,
+            type: typeNames.SOLAR_PANEL_DOUBLE,
             output: false,
             performance: dots,
             active: false,
@@ -44,7 +46,7 @@ const initialStore = [
     },
     {
         generator: {
-            type: 2,
+            type: typeNames.BENZOGENERATOR,
             output: false,
             performance: dots,
             active: false,
@@ -64,7 +66,7 @@ const initialStore = [
     },
     {
         generator: {
-            type: 1,
+            type: typeNames.SOLAR_PANEL,
             output: false,
             performance: dots,
             active: false,

@@ -3,22 +3,22 @@ import {WEBSOCKET_SERVER} from "../../constants/endpoints";
 
 class WebSocketClients {
     constructor(endpoints) {
-        console.log('Creating websocket clients...');
+        // console.log('Creating websocket clients...');
         this.sockets = [];
         this.handler = () => {};
         this.endpoints = endpoints;
         endpoints.forEach(value => {
             const socket = new W3CWebSocket(`${WEBSOCKET_SERVER}/${value}`);
             socket.onopen = () => {
-                console.log(`Websocket connection to ${WEBSOCKET_SERVER}/${value} has been established.`);
+                // console.log(`Websocket connection to ${WEBSOCKET_SERVER}/${value} has been established.`);
             };
             socket.onmessage = (message) => {
-                console.log(`Got message: ${message.data} from ${WEBSOCKET_SERVER}/${value}`);
+                // console.log(`Got message: ${message.data} from ${WEBSOCKET_SERVER}/${value}`);
                 try {
                     const json = JSON.parse(message.data);
                     this.handler({payload: {uri: value, data: json} });
                 } catch (e) {
-                    console.log(e);
+                    // console.log(e);
                 }
             };
             this.sockets.push(socket);
@@ -31,7 +31,7 @@ class WebSocketClients {
 
     send(message, topic) {
         const msg = JSON.stringify(Object.assign(message, {time: new Date()}));
-        console.log(`Sending ${msg} to topic ${topic}`);
+        // console.log(`Sending ${msg} to topic ${topic}`);
         this.sockets[ this.endpoints.indexOf(topic) ].send(msg);
     }
 

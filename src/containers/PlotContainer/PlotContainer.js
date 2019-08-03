@@ -27,7 +27,6 @@ class PlotContainer extends Component {
     // get points and subscribe on new points after
     PlotRequestModel.getInitialPoints().then(data => this.handleResponse(data)).then(() =>
         client.onmessage = ({ data }) => {
-        console.log(this.state.labels, 'LABS');  
         const obj = JSON.parse(data);
         this.splicePlot(obj);
     });

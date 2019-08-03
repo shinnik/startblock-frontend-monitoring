@@ -64,6 +64,11 @@ let theme = createMuiTheme({
             root: {
                 height: '60px'
             }
+        },
+        MuiInputLabel: {
+            root: {
+                fontSize: '18px'
+            }
         }
     }
 });

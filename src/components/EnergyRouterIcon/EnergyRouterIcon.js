@@ -1,5 +1,5 @@
 import React from 'react';
-import group from '../energyRouterIcons/group.svg';
+import group from '../Icon/icons/group.svg';
 import classes from './EnergyRouterIcon.module.scss';
 
 function EnergyRouterIcon() {

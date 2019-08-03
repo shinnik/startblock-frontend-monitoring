@@ -5,12 +5,38 @@ import LabeledTumbler from "../../components/LabeledTumbler/LabeledTumbler";
 import {Box, Typography} from "@material-ui/core";
 import Branch from "../Branch/Branch";
 import {power} from "../../constants/names";
+import {LOAD} from "../../constants/generatorTypeNames";
 
-const energyCellClassNames = [classes.Item8, classes.Item10, classes.Item21, classes.Item23];
-const energyCellNetClassNames = [classes.Item3, classes.Item5, classes.Item27, classes.Item29];
-const energyCellConnections = [classes.Item9, classes.Item15, classes.Item16, classes.Item160, classes.Item17, classes.Item22];
-const energyCellGeneratorClassNames = [classes.Item7, classes.Item11, classes.Item19, classes.Item24];
-const energyCellLoadClassNames = [classes.Item12, classes.Item13, classes.Item20, classes.Item25];
+
+const energyCellClassNames = [classes.Cell8, classes.Cell10, classes.Cell21, classes.Cell23];
+const energyCellNetClassNames = [classes.Cell3, classes.Cell5, classes.Cell27, classes.Cell29];
+const energyCellConnections = [classes.Cell9, classes.Cell15, classes.Cell16, classes.Cell160, classes.Cell17, classes.Cell22];
+const energyCellGeneratorClassNames = [classes.Cell7, classes.Cell11, classes.Cell19, classes.Cell24];
+const energyCellLoadClassNames = [classes.Cell12, classes.Cell13, classes.Cell20, classes.Cell25];
+
+/* There are some abbreviations:
+
+    Where to place label relatively to tumbler:
+    hu - horizontal up
+    hd - horizontal down
+    vl - vertical left
+    vr - vertical right
+
+    How to align label relatively to tumbler:
+    c - align center
+    up - align start
+    down - align end
+
+    Tumbler direction:
+    r - right
+    l - left
+    u - up
+    d - down
+    rd - right down
+    lu - left up
+    ru - right up
+    ld - left down
+ */
 const connectionTypes = [() => 'hu', () => 'vl', x => x, x => x, () => 'vr', () => 'hd'];
 const connectionAlignments = [() => 'c', x => x ? 'up' : 'down', () => undefined, () => undefined, x => x ? 'up' : 'down', () => 'c'];
 const connectionDirections = [
@@ -22,16 +48,17 @@ const connectionDirections = [
     x => x ? 'r' : 'l'
 ];
 
-function koeffs(id) {
-    switch (id) {
-        case 1:
-        case 6:
+
+function arrowLengthCoefficients(cell_id) {
+    switch (cell_id) {
+        case 9:
+        case 22:
             return 1.12;
-        case 3:
-        case 4:
+        case 16:
+        case 160:
             return 1.55;
-        case 2:
-        case 5:
+        case 15:
+        case 17:
             return 0.97;
         default:
             return 1;
@@ -40,8 +67,8 @@ function koeffs(id) {
 
 
 function InnerPart({onToggle, connections, energyCells}) {
-
     return (
+
             <div className={classes.InnerPart}>
                 {
                     energyCells.map((value, index) => <EnergyCell
@@ -59,9 +86,9 @@ function InnerPart({onToggle, connections, energyCells}) {
                             align={connectionAlignments[index](connectionDirections[index](value.output))}
                             label={`${value.performance}`}
                             direction={connectionDirections[index](value.output)}
-                            id={[9, 15, 16, 160, 17, 22][index]}
+                            cell_id={[9, 15, 16, 160, 17, 22][index]}
                             dispatch={onToggle}
-                            koeff={koeffs(index+1)}
+                            koeff={arrowLengthCoefficients([9, 15, 16, 160, 17, 22][index])}
                         />
                     </Box>)
                 }
@@ -73,7 +100,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                             align={index <= 1 ? 'down' : 'up'}
                             type={'vr'}
                             power={value.net.active}
-                            id={[3, 5, 27, 29][index]}
+                            cell_id={[3, 5, 27, 29][index]}
                             dispatch={onToggle}
                             koeff={0.67}
                         />
@@ -83,7 +110,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                     energyCells.map((value, index) => <Box key={index} className={energyCellGeneratorClassNames[index]}>
                         <Branch
                             type={value.generator.type}
-                            id={[7, 11, 19, 24][index]}
+                            cell_id={[7, 11, 19, 24][index]}
                             label={value.generator.performance}
                             dispatch={onToggle}
                             power={value.generator.active}
@@ -95,8 +122,8 @@ function InnerPart({onToggle, connections, energyCells}) {
                 {
                     energyCells.map((value, index) => <Box key={index} className={energyCellLoadClassNames[index]}>
                         <Branch
-                            type={4}
-                            id={[12, 13, 20, 25][index]}
+                            type={LOAD}
+                            cell_id={[12, 13, 20, 25][index]}
                             label={value.load.performance}
                             dispatch={onToggle}
                             power={value.load.active}
@@ -105,7 +132,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                         />
                         </Box>)
                 }
-                <div className={classes.Item1} >
+                <div className={classes.Cell1} >
                     <Typography variant={'body2'} color={"secondary"}>
                         Все значения в {power}
                     </Typography>

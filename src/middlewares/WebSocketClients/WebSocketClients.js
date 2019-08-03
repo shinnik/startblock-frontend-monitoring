@@ -69,6 +69,14 @@ class WebSocketClients {
                 break;
         }
     }
+
+    close() {
+        console.log('Closing websocket clients...');
+        this.sockets.forEach(value => {
+            value.close()
+        });
+        console.log('Websocket clients have been closed.');
+    }
 }
 
 export default WebSocketClients;

@@ -15,11 +15,11 @@
   justify-content: start;
 }
 
-.Item1, .Item2, .Item3, .Item1_r, .Item2_r, .Item3_r {
+.Cell1, .Cell2, .Cell3, .Cell1_r, .Cell2_r, .Cell3_r {
   align-self: center;
 }
 
-.Item1 {
+.Cell1 {
   grid-area: 1/1/1/1;
   text-align: left;
 
@@ -29,14 +29,14 @@
   }
 }
 
-.Item2 {
+.Cell2 {
   grid-area: 1/2/1/2;
   &_r {
     grid-area: 1/2/1/2;
   }
 }
 
-.Item3 {
+.Cell3 {
   grid-area: 1/3/1/3;
 
   &_r {
@@ -44,7 +44,7 @@
   }
 }
 
-.Item2, .Item2_r {
+.Cell2, .Cell2_r {
   width: $y2;
   height: $y2;
   align-items: center;

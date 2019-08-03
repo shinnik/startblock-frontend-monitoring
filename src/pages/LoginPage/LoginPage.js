@@ -28,8 +28,6 @@ const LoginPage = ({ loggedIn, setLogged }) => {
         setPassword(e.target.value);
     };
     const onClick = () => {
-        console.log(password.toString());
-        // setLogged(true);
         axios.get(`https://onder2.herokuapp.com/login?password=${password}`)
         .then(({ data }) => {
                 setLogged(data);

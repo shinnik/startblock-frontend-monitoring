@@ -1,7 +1,7 @@
 import {w3cwebsocket as W3CWebSocket} from "websocket";
 import {WEBSOCKET_SERVER} from "../../constants/endpoints";
 
-const LOGS = false;
+const LOGS = true;
 
 class WebSocketClients {
     constructor(endpoints) {

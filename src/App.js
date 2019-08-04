@@ -10,7 +10,7 @@ import HeaderContainer from "./containers/HeaderContainer/HeaderContainer";
 
 function App() {
 
-  const [loggedIn, setLogged] = useState(false);
+  const [loggedIn, setLogged] = useState(true);
 
   return (
     <ThemeProvider theme={theme}>

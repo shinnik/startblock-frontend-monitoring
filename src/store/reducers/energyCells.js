@@ -22,7 +22,8 @@ const initialStore = [
         profile: {
             name: 'Alpha',
             money: dots
-        }
+        },
+        active: false
     },
     {
         generator: {
@@ -42,7 +43,8 @@ const initialStore = [
         profile: {
             name: 'Beta',
             money: dots
-        }
+        },
+        active: false
     },
     {
         generator: {
@@ -62,7 +64,8 @@ const initialStore = [
         profile: {
             name: 'Gamma',
             money: dots
-        }
+        },
+        active: false
     },
     {
         generator: {
@@ -82,7 +85,8 @@ const initialStore = [
         profile: {
             name: 'Delta',
             money: dots
-        }
+        },
+        active: false
     },
 ];
 
@@ -182,6 +186,12 @@ function energyCellsReducer(state = initialStore, action) {
         }
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
             switch (action.payload.uri) {
+                case 'agents': {
+                    let tmp = Array.from(state);
+                    console.log('data: ', action.payload.data);
+                    tmp[action.payload.data.id - 1].active = action.payload.data.status;
+                    return tmp;
+                }
                 case 'cells': {
                     let tmp = Array.from(state);
                     let tmp2 = tmp[action.payload.data.id-1];

@@ -53,6 +53,12 @@ let theme = createMuiTheme({
                 color: 'white',
                 boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
                 borderRadius: '11.1621px',
+            },
+            elevation2: {
+                backgroundColor: '#F0F0F0',
+                color: '#000000',
+                boxShadow: '0px 5.58107px 22.3243px rgba(0, 0, 0, 0.3)',
+                borderRadius: '11.1621px',
             }
         },
         MuiTableCell: {

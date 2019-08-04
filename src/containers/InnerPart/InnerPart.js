@@ -75,6 +75,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                         key={index}
                         {...value.profile}
                         className={energyCellClassNames[index]}
+                        active={value.active}
                     >
                     </EnergyCell>)
                 }

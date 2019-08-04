@@ -39,7 +39,7 @@ function Branch({type, dispatch, power, label, cell_id, direction, reversed}) {
                 <img style={{maxWidth: '100%', maxHeight: '100%'}} src={imageData[type].src} alt={imageData[type].name}/>
             </Box>
             <Box className={reversed ? classes.Cell3_r : classes.Cell3}>
-                <LabeledTumbler noHover={type === typeNames.LOAD} type={'hu'} dispatch={dispatch} power={power} align={'c'} label={label} direction={direction} id={cell_id} koeff={0.82} />
+                <LabeledTumbler noHover={type === typeNames.LOAD} type={'hu'} dispatch={dispatch} power={power} align={'c'} label={label} direction={direction} cell_id={cell_id} koeff={0.82} />
             </Box>
         </div>
     );

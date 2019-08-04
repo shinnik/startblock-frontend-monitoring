@@ -28,7 +28,6 @@ function App() {
               <Redirect to={!loggedIn ? '/login' : '/'}/>
             </Switch>
           </Router>
-            
         </div>
     </ThemeProvider>
   );

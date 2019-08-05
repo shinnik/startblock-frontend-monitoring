@@ -11,7 +11,7 @@ class WebSocketClients {
         this.endpoints = endpoints;
     }
 
-    init() {
+    run() {
         this.endpoints.forEach(value => {
             const socket = new W3CWebSocket(`${WEBSOCKET_SERVER}/${value}`);
             socket.onopen = () => {

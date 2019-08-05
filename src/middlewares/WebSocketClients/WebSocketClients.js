@@ -9,7 +9,10 @@ class WebSocketClients {
         this.sockets = [];
         this.handler = () => {};
         this.endpoints = endpoints;
-        endpoints.forEach(value => {
+    }
+
+    init() {
+        this.endpoints.forEach(value => {
             const socket = new W3CWebSocket(`${WEBSOCKET_SERVER}/${value}`);
             socket.onopen = () => {
                 LOGS && console.log(`Websocket connection to ${WEBSOCKET_SERVER}/${value} has been established.`);

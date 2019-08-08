@@ -6,7 +6,7 @@
     "npm": "6.4.1",
     "node": ">10.10.0"
   },
-  "homepage": "http://35.246.179.108",
+  "homepage": "https://shinnik.github.io/startblock-frontend-monitoring",
   "dependencies": {
     "@material-ui/core": "^4.2.0",
     "@material-ui/icons": "^4.2.1",

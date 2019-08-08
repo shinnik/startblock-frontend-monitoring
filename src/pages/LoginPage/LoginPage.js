@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import styles from "./LoginPage.module.scss";
 import logo from './logo-color.svg';
+import {BACKEND_IP} from "../../constants/endpoints";
 
 const EntryButton = withStyles(() => (
     {
@@ -28,7 +29,7 @@ const LoginPage = ({ loggedIn, setLogged }) => {
         setPassword(e.target.value);
     };
     const onClick = () => {
-        axios.get(`https://onder2.herokuapp.com/login?password=${password}`)
+        axios.get(`http://${BACKEND_IP}/login?password=${password}`)
         .then(({ data }) => {
                 setLogged(data);
             });
@@ -46,9 +47,9 @@ const LoginPage = ({ loggedIn, setLogged }) => {
                             onInput={onPasswordInput}
                     />
                 </div>
-                <EntryButton 
-                        color="primary" 
-                        variant="contained" 
+                <EntryButton
+                        color="primary"
+                        variant="contained"
                         onClick={onClick}>
                     Войти
                 </EntryButton>

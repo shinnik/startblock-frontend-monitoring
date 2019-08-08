@@ -4,8 +4,9 @@ import _cloneDeep from 'lodash/cloneDeep';
 import Plot from "../../components/Plot/Plot";
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import PlotRequestModel from '../../models/Plot/plot';
+import {BACKEND_IP} from "../../constants/endpoints";
 
-const client = new W3CWebSocket('wss://Onder2.herokuapp.com/plot');
+const client = new W3CWebSocket(`wss://${BACKEND_IP}/plot`);
 
 
 class PlotContainer extends Component {

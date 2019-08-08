@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import buttons from '../../models/buttons';
 import styles from './ButtonsGroup.module.scss';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import {BACKEND_IP} from "../../constants/endpoints";
 
 const ID_MAP = {
     'regular': 1,
@@ -11,7 +12,7 @@ const ID_MAP = {
     'no_neighbors': 4
 };
 
-const client = new W3CWebSocket('wss://onder2.herokuapp.com/preset');
+const client = new W3CWebSocket(`wss://${BACKEND_IP}/preset`);
 
 const ButtonsGroup = ({ setMode, mode }) => {
 

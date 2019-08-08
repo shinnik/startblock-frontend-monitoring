@@ -29,7 +29,7 @@ const LoginPage = ({ loggedIn, setLogged }) => {
         setPassword(e.target.value);
     };
     const onClick = () => {
-        axios.get(`http://${BACKEND_IP}/login?password=${password}`)
+        axios.get(`https://${BACKEND_IP}/login?password=${password}`)
         .then(({ data }) => {
                 setLogged(data);
             });

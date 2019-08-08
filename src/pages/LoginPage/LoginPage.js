@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import styles from "./LoginPage.module.scss";
 import logo from './logo-color.svg';
-import {BACKEND_IP} from "../../constants/endpoints";
+import {BACKEND_IP, LOGIN_URL} from "../../constants/endpoints";
 
 const EntryButton = withStyles(() => (
     {
@@ -29,7 +29,7 @@ const LoginPage = ({ loggedIn, setLogged }) => {
         setPassword(e.target.value);
     };
     const onClick = () => {
-        axios.get(`https://${BACKEND_IP}/login?password=${password}`)
+        axios.get(`${LOGIN_URL}/login?password=${password}`)
         .then(({ data }) => {
                 setLogged(data);
             });

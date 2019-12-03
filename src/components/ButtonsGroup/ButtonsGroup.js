@@ -12,7 +12,7 @@ const ID_MAP = {
     'no_neighbors': 4
 };
 
-const client = new W3CWebSocket(`wss://${BACKEND_IP}/preset`);
+const client = new W3CWebSocket(`ws://${BACKEND_IP}/preset`);
 
 const ButtonsGroup = ({ setMode, mode }) => {
 
@@ -29,7 +29,7 @@ const ButtonsGroup = ({ setMode, mode }) => {
     const handleClick = (e) => {
         client.send(JSON.stringify({ time: Date.now(), value: ID_MAP[e.target.id] }));
         // remove when receiving will work:
-        setMode(e.target.id)
+        // setMode(e.target.id)
     };
     return (
         <div className={styles['buttons-group__container']}>

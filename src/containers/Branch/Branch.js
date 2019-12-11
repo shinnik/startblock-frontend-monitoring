@@ -6,7 +6,7 @@ import * as typeNames from "../../constants/generatorTypeNames";
 
 const imageData = {
     [typeNames.ACCUMULATOR]: {
-        name: 'Аккумуля-тор',
+        name: 'Накопитель',
         src: 'images/acc.png',
     },
     [typeNames.BENZOGENERATOR]: {

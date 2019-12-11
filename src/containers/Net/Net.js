@@ -19,14 +19,14 @@ class Net extends React.Component {
                 </div>
                 <div className={classes.Cell4}/>
                 <Typography style={{fontFamily: 'Roboto Mono'}} variant={'body2'} color={'secondary'} className={classes.Cell8}>
-                    {this.props.sumPerformance}
+                    {this.props.sumPerformance && (+this.props.sumPerformance).toFixed(2)}
                 </Typography>
                 <Box className={classes.Cell7}>
                     <Typography>
                         Энергороутер
                     </Typography>
                     <Typography display={"inline"} style={{fontFamily: 'Roboto Mono'}} variant={"body2"} color={'secondary'}>
-                        {`${this.props.performance}`}
+                        {`${this.props.performance && (+this.props.performance).toFixed(2)}`}
                     </Typography>
                     <Typography display={"inline"} variant={"body2"} color={'secondary'}>
                         {` ${power}`}
@@ -34,7 +34,7 @@ class Net extends React.Component {
                 </Box>
                 <Box className={classes.Cell5}>
                     <Typography style={{fontFamily: 'Roboto Mono'}}>
-                        {`${this.props.money}`}
+                        {`${this.props.money && (+this.props.money).toFixed(2)}`}
                     </Typography>
                     <Typography >
                         {`${currency}`}

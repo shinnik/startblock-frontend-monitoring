@@ -85,7 +85,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                             power={value.active}
                             type={connectionTypes[index](connectionDirections[index](value.output))}
                             align={connectionAlignments[index](connectionDirections[index](value.output))}
-                            label={`${value.performance}`}
+                            label={`${value.performance && (+value.performance).toFixed(2)}`}
                             direction={connectionDirections[index](value.output)}
                             cell_id={[9, 15, 16, 160, 17, 22][index]}
                             dispatch={onToggle}
@@ -97,7 +97,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                     energyCells.map((value, index) => <Box key={index} className={energyCellNetClassNames[index]}>
                         <LabeledTumbler
                             direction={index <= 1 ? 'd' : 'u'}
-                            label={value.net.performance}
+                            label={value.net.performance && (+value.net.performance).toFixed(2)}
                             align={index <= 1 ? 'down' : 'up'}
                             type={'vr'}
                             power={value.net.active}
@@ -112,7 +112,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                         <Branch
                             type={value.generator.type}
                             cell_id={[7, 11, 19, 24][index]}
-                            label={value.generator.performance}
+                            label={value.generator.performance && (+value.generator.performance).toFixed(2)}
                             dispatch={onToggle}
                             power={value.generator.active}
                             direction={index % 2 === 0 ? (value.generator.output ? 'l' : 'r') : (value.generator.output ? 'r' : 'l')}
@@ -125,7 +125,7 @@ function InnerPart({onToggle, connections, energyCells}) {
                         <Branch
                             type={LOAD}
                             cell_id={[12, 13, 20, 25][index]}
-                            label={value.load.performance}
+                            label={value.load.performance && (+value.load.performance).toFixed(2)}
                             dispatch={onToggle}
                             power={value.load.active}
                             direction={index % 2 === 0 ? ('l') : ('r')}

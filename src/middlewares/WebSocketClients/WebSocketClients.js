@@ -57,10 +57,8 @@ class WebSocketClients {
     }
 
     send(message, topic) {
-        const msg = JSON.stringify(Object.assign(message, { time: new Date() }));
+        const msg = JSON.stringify({ type: topic, data: { ...message, time: new Date() } });
         LOGS && console.log(`Sending ${msg} to topic ${topic}`);
-        console.log(WebSocketClients.socket)
-        console.log(topic, msg);
         WebSocketClients.socket.send(msg);
     }
 

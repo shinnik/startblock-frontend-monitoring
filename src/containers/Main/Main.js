@@ -1,28 +1,30 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import classes from './Main.module.scss';
 import InnerPart from "../InnerPart/InnerPart";
-import {Box} from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import Net from "../Net/Net";
 import * as actionCreators from "../../store/actions";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import useWindowSize from '@rehooks/window-size';
-import {WEBSOCKET_URIS} from "../../constants/endpoints";
+import { WEBSOCKET_URIS } from "../../constants/endpoints";
 import WebSocketClients from "../../middlewares/WebSocketClients/WebSocketClients";
 
-const WS = new WebSocketClients(WEBSOCKET_URIS);
 
-function Main({energyCells, connections, onMessage}) {
+const WS = new WebSocketClients();
+
+function Main({ energyCells, connections, onMessage }) {
     let windowSize = useWindowSize();  // this hook makes component responsive to viewport width
     useEffect(() => {
         WS.run();
-        WS.setHandler(onMessage);
+        WebSocketClients.setHandler({ type: 'default', exec: onMessage })
+        console.log(WebSocketClients.handlers, 'hndlrs')
         return () => WS.close();
-    }, []);
+    }, [onMessage]);
 
     return (
-        <Box style={{zoom: Math.min(windowSize.innerWidth/2800, 1)}} className={classes.Main} >
-                <Net/>
-                <InnerPart onToggle={args => WS.sendSpecific(args)} energyCells={energyCells} connections={connections}/>
+        <Box style={{ zoom: Math.min(windowSize.innerWidth / 2800, 1) }} className={classes.Main} >
+            <Net />
+            <InnerPart onToggle={args => WS.sendSpecific(args)} energyCells={energyCells} connections={connections} />
         </Box>
     );
 }

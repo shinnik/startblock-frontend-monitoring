@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
-import {updateObject} from "../../helpers/updateObject";
-import {dots} from "../../constants/names";
+import { updateObject } from "../../helpers/updateObject";
+import { dots } from "../../constants/names";
 
 const initialStore = {
     money: dots,
@@ -8,10 +8,10 @@ const initialStore = {
     sumPerformance: dots
 };
 
-function _netReducer(state=initialStore, action) {
+function _netReducer(state = initialStore, action) {
     switch (action.type) {
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
-            if (action.payload.uri === 'router') {
+            if (action.payload.type === 'router') {
                 return updateObject(state, {
                     sumPerformance: action.payload.data.power && Number(action.payload.data.power).toFixed(3),
                     money: action.payload.data.balance && Number(action.payload.data.balance).toFixed(1),

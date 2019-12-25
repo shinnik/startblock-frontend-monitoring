@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import {dots} from "../../constants/names";
+import { dots } from "../../constants/names";
 
 const initialStore = [
     {
@@ -34,7 +34,7 @@ const initialStore = [
     },
 ];
 
-function connectionsReducer(state=initialStore, action) {
+function connectionsReducer(state = initialStore, action) {
     switch (action.type) {
         case actionTypes.SET_MODE: {
             switch (action.mode) {
@@ -69,9 +69,9 @@ function connectionsReducer(state=initialStore, action) {
                 case 17:
                 case 22: {
                     let tmp = Array.from(state);
-                    let tmp2 = Object.assign({}, tmp[ [9, 15, 16, 160, 17, 22].indexOf(action.payload.id) ]);
+                    let tmp2 = Object.assign({}, tmp[[9, 15, 16, 160, 17, 22].indexOf(action.payload.id)]);
                     tmp2.active = !tmp2.active;
-                    tmp[ [9, 15, 16, 160, 17, 22].indexOf(action.payload.id) ] = tmp2;
+                    tmp[[9, 15, 16, 160, 17, 22].indexOf(action.payload.id)] = tmp2;
                     return tmp;
                 }
                 default:
@@ -79,15 +79,15 @@ function connectionsReducer(state=initialStore, action) {
             }
         }
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
-            switch (action.payload.uri) {
+            switch (action.payload.type) {
                 case 'arrowdirections': {
                     const i = [1, 4, 6, 5, 2, 3].indexOf(action.payload.data.id);
                     const mapIdToIndex = [1, 1, 1, 2, 2, 3];
                     const nodes = ['enode1', 'enode2', 'enode3', 'enode4'];
                     let tmp = Array.from(state);
-                    let tmp2 = tmp[ i ];
+                    let tmp2 = tmp[i];
                     tmp2.performance = action.payload.data.value;
-                    tmp2.output = action.payload.data.directionfrom === nodes[ mapIdToIndex[i] - 1 ];
+                    tmp2.output = action.payload.data.directionfrom === nodes[mapIdToIndex[i] - 1];
                     tmp2.active = action.payload.data.status;
                     tmp[i] = tmp2;
                     return tmp;

@@ -3,11 +3,9 @@ import _isEmpty from 'lodash/isEmpty';
 import _cloneDeep from 'lodash/cloneDeep';
 import Plot from "../../components/Plot/Plot";
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
+import WebSocketClients from "../../middlewares/WebSocketClients/WebSocketClients";
 import PlotRequestModel from '../../models/Plot/plot';
 import { BACKEND_IP } from "../../constants/endpoints";
-
-const client = new W3CWebSocket(`ws://${BACKEND_IP}/plot`);
-
 
 class PlotContainer extends Component {
 
@@ -22,15 +20,15 @@ class PlotContainer extends Component {
   }
 
   componentDidMount() {
-    client.onopen = () => {
-      console.log('WebSocket Client Connected');
-    };
     // get points and subscribe on new points after
     PlotRequestModel.getInitialPoints().then(data => this.handleResponse(data)).then(() =>
-      client.onmessage = ({ data }) => {
-        const obj = JSON.parse(data);
-        this.splicePlot(obj);
-      });
+      WebSocketClients.setHandler({
+        type: 'plot',
+        exec: ({ payload: { data } }) => {
+          const obj = JSON.parse(data);
+          this.splicePlot(obj);
+        }
+      }));
   }
 
 
@@ -107,6 +105,7 @@ class PlotContainer extends Component {
   render() {
     const { internet, internetCurrent, traditional, traditionalCurrent,
       distributed, distributedCurrent, labels } = this.state;
+    console.log(WebSocketClients.handlers)
     return (
       <>
         <Plot traditionalData={traditional}

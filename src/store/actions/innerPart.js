@@ -11,6 +11,7 @@ export const onToggle = (tumbler) => {
 };
 
 export const onWebsocketMessage = (message) => {
+    console.log(message);
     return {
         type: actionTypes.NEW_WEBSOCKET_MESSAGE,
         ...message

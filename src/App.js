@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import {ThemeProvider} from "@material-ui/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import theme from './styles/theme';
 import Main from "./containers/Main/Main";
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -10,25 +10,25 @@ import HeaderContainer from "./containers/HeaderContainer/HeaderContainer";
 
 function App() {
 
-  const [loggedIn, setLogged] = useState(false);
+  const [loggedIn, setLogged] = useState(true);
 
   return (
     <ThemeProvider theme={theme}>
-        <div className={classes.App}>
-          <Router basename={process.env.PUBLIC_URL}>
-            <Switch>
-              {loggedIn && <Route exact path='/' component={() => (
-                <Fragment>
-                  <HeaderContainer/>
-                  <Main/>
-                  <PlotContainer/>
-                </Fragment>
-              )} />}
-              <Route exact path='/login' component={() => <LoginPage loggedIn={loggedIn} setLogged={setLogged}/>}/>
-              <Redirect to={!loggedIn ? '/login' : '/'}/>
-            </Switch>
-          </Router>
-        </div>
+      <div className={classes.App}>
+        <Router basename={process.env.PUBLIC_URL}>
+          <Switch>
+            {loggedIn && <Route exact path='/' component={() => (
+              <Fragment>
+                <HeaderContainer />
+                <Main />
+                <PlotContainer />
+              </Fragment>
+            )} />}
+            <Route exact path='/login' component={() => <LoginPage loggedIn={loggedIn} setLogged={setLogged} />} />
+            <Redirect to={!loggedIn ? '/login' : '/'} />
+          </Switch>
+        </Router>
+      </div>
     </ThemeProvider>
   );
 }

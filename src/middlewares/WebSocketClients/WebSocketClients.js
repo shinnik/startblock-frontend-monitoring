@@ -1,43 +1,67 @@
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { WEBSOCKET_SERVER } from "../../constants/endpoints";
 
-const LOGS = false;
+const LOGS = true;
 
 class WebSocketClients {
+
+    static handlers = {};
+    static socket = null;
+
     constructor(endpoints) {
         LOGS && console.log('Creating websocket clients...');
-        this.sockets = [];
         this.handler = () => { };
-        this.endpoints = endpoints;
     }
 
     run() {
-        this.endpoints.forEach(value => {
-            const socket = new W3CWebSocket(`${WEBSOCKET_SERVER}/${value}`);
-            socket.onopen = () => {
-                LOGS && console.log(`Websocket connection to ${WEBSOCKET_SERVER}/${value} has been established.`);
-            };
-            socket.onmessage = (message) => {
-                LOGS && console.log(`Got message: ${message.data} from ${WEBSOCKET_SERVER}/${value}`);
-                try {
-                    const json = JSON.parse(message.data);
-                    this.handler({ payload: { uri: value, data: json } });
-                } catch (e) {
-                    LOGS && console.log(e);
+        const socket = new W3CWebSocket(`${WEBSOCKET_SERVER}/`);
+        socket.onopen = () => {
+            LOGS && console.log(`Websocket connection to ${WEBSOCKET_SERVER}/ has been established.`);
+        };
+        socket.onmessage = (message) => {
+            LOGS && console.log(`Got message: ${message.data} from ${WEBSOCKET_SERVER}/`);
+            try {
+                const json = JSON.parse(message.data);
+                if (Array.isArray(json.data)) {
+                    json.data.forEach(() => {
+                        const handler = this.handlers[json.type] || this.handler.default;
+                        handler({ payload: { type: json.type, data: json.data } });
+                    });
+                } else {
+                    this.handler({ payload: { type: json.type, data: json.data } })
                 }
-            };
-            this.sockets.push(socket);
-        })
+            } catch (e) {
+                LOGS && console.log(e);
+            }
+        };
+        WebSocketClients.setSocket(socket);
     }
 
-    setHandler(handler) {
-        this.handler = handler;
+    static setSocket(socket) {
+        this.socket = socket
+    }
+
+    static setHandler(handler) {
+        if (!handler || !handler.exec) {
+            throw new Error('Handler must have exec property to handle with');
+        }
+        if (handler.type) {
+            this.handlers[handler.type] = handler.exec
+        } else {
+            if (!this.handlers.default) {
+                this.handlers.default = handler.exec
+            } else {
+                throw new Error('Default handler is already specified. Please, specify type')
+            }
+        }
     }
 
     send(message, topic) {
         const msg = JSON.stringify(Object.assign(message, { time: new Date() }));
         LOGS && console.log(`Sending ${msg} to topic ${topic}`);
-        this.sockets[this.endpoints.indexOf(topic)].send(msg);
+        console.log(WebSocketClients.socket)
+        console.log(topic, msg);
+        WebSocketClients.socket.send(msg);
     }
 
     sendSpecific(args) {
@@ -75,9 +99,9 @@ class WebSocketClients {
 
     close() {
         console.log('Closing websocket clients...');
-        this.sockets.forEach(value => {
-            value.close()
-        });
+        this.socket.close();
+        this.handlers = [];
+        this.socket = null;
         console.log('Websocket clients have been closed.');
     }
 }

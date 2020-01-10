@@ -15,8 +15,9 @@ const WS = new WebSocketClients();
 function Main({ energyCells, connections, onMessage }) {
     let windowSize = useWindowSize();  // this hook makes component responsive to viewport width
     useEffect(() => {
+        // WebSocketClients.setHandler({ type: 'default', exec: onMessage })
+        WebSocketClients.setHandler({ type: 'default', exec: () => { } })
         WS.run();
-        WebSocketClients.setHandler({ type: 'default', exec: onMessage })
         console.log(WebSocketClients.handlers, 'hndlrs')
         return () => WS.close();
     }, [onMessage]);

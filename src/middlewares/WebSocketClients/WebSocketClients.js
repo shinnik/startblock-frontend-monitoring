@@ -1,7 +1,7 @@
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { WEBSOCKET_SERVER } from "../../constants/endpoints";
 
-const LOGS = true;
+const LOGS = false;
 
 class WebSocketClients {
 
@@ -20,18 +20,19 @@ class WebSocketClients {
         };
         socket.onmessage = (message) => {
             LOGS && console.log(`Got message: ${message.data} from ${WEBSOCKET_SERVER}/`);
-            try {
-                const json = JSON.parse(message.data);
-                if (Array.isArray(json.data)) {
-                    json.data.forEach(() => {
-                        const handler = this.handlers[json.type] || this.handler.default;
-                        handler({ payload: { type: json.type, data: json.data } });
-                    });
+
+            const json = JSON.parse(message.data);
+            if (Array.isArray(json.data)) {
+                json.data.forEach(() => {
+                    const handler = WebSocketClients.handlers[json.type] || WebSocketClients.handlers.default;
+                    handler({ payload: { type: json.type, data: json.data } });
+                });
+            } else {
+                if (WebSocketClients.handlers[json.type]) {
+                    WebSocketClients.handlers[json.type]({ payload: { type: json.type, data: json.data } })
                 } else {
-                    this.handler({ payload: { type: json.type, data: json.data } })
+                    WebSocketClients.handlers.default({ payload: { type: json.type, data: json.data } })
                 }
-            } catch (e) {
-                LOGS && console.log(e);
             }
         };
         WebSocketClients.setSocket(socket);
@@ -46,10 +47,10 @@ class WebSocketClients {
             throw new Error('Handler must have exec property to handle with');
         }
         if (handler.type) {
-            this.handlers[handler.type] = handler.exec
+            WebSocketClients.handlers[handler.type] = handler.exec
         } else {
-            if (!this.handlers.default) {
-                this.handlers.default = handler.exec
+            if (!WebSocketClients.handlers.default) {
+                WebSocketClients.handlers.default = handler.exec
             } else {
                 throw new Error('Default handler is already specified. Please, specify type')
             }

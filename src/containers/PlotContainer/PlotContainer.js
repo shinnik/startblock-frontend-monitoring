@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import _isEmpty from 'lodash/isEmpty';
-import _cloneDeep from 'lodash/cloneDeep';
 import Plot from "../../components/Plot/Plot";
 import WebSocketClients from "../../middlewares/WebSocketClients/WebSocketClients";
 import PlotRequestModel from '../../models/Plot/plot';
@@ -22,9 +20,8 @@ class PlotContainer extends Component {
     PlotRequestModel.getInitialPoints().then(data => this.handleResponse(data)).then(() =>
       WebSocketClients.setHandler({
         type: 'plot',
-        exec: ({ payload: { data } }) => {
-          const obj = JSON.parse(data);
-          this.splicePlot(obj);
+        exec: ({ payload: { data: points } }) => {
+          this.serializePoints(points);
         }
       }));
   }
@@ -64,54 +61,36 @@ class PlotContainer extends Component {
     });
   }
 
-  splicePlot = (point) => {
+  serializePoints = (points) => {
     //replace points where needed
     const { internet, internetCurrent, traditional, traditionalCurrent,
       distributed, distributedCurrent, labels } = this.state;
-    if (point.id === 'internet' && !_isEmpty(internet)) {
-      const copy = [...internet];
-      const currentCopy = [...internetCurrent];
-      currentCopy.pop();
-      currentCopy.push(point.value);
-      copy.shift();
-      copy.push(point.value);
-      this.setState({ internet: copy, internetCurrent: currentCopy });
-    } else if (point.id === 'distributed' && !_isEmpty(distributed)) {
-      const copy = [...distributed];
-      const currentCopy = [...distributedCurrent];
-      currentCopy.pop();
-      currentCopy.push(point.value);
-      copy.shift();
-      copy.push(point.value);
-      this.setState({ distributed: copy, distributedCurrent: currentCopy });
-    } else if (point.id === 'traditional' && !_isEmpty(traditional)) {
-      const copy = [...traditional];
-      const currentCopy = [...traditionalCurrent];
-      currentCopy.pop();
-      currentCopy.push(point.value);
-      copy.shift();
-      copy.push(point.value);
-      this.setState({ traditional: copy, traditionalCurrent: currentCopy });
-    }
-    const labelCopy = [...labels];
-    labelCopy.shift();
-    labelCopy.push(point.time);
-    this.setState({ labels: labelCopy });
+    const [, ...internetWithoutFirst] = internet;
+    const [, ...distributedWithoutFirst] = distributed;
+    const [, ...traditionalWithoutFirst] = traditional;
+    const [, ...labelsWithoutFirst] = labels;
+    this.setState({
+      internet: [...internetWithoutFirst, points.internet.value],
+      internetCurrent: [...internetCurrent.slice(0, -1), points.internet.value],
+      distributed: [...distributedWithoutFirst, points.distributed.value],
+      distributedCurrent: [...distributedCurrent.slice(0, -1), points.distributed.value],
+      traditional: [...traditionalWithoutFirst, points.traditional.value],
+      traditionalCurrent: [...traditionalCurrent.slice(0, -1), points.traditional.value],
+      labels: [...labelsWithoutFirst, points.internet.time]
+    });
   }
 
   render() {
     const { internet, internetCurrent, traditional, traditionalCurrent,
       distributed, distributedCurrent, labels } = this.state;
     return (
-      <>
-        <Plot traditionalData={traditional}
-          traditionalDataCurrent={traditionalCurrent}
-          distributionData={distributed}
-          distributionDataCurrent={distributedCurrent}
-          internetData={internet}
-          internetDataCurrent={internetCurrent}
-          labels={labels} />
-      </>
+      <Plot traditionalData={traditional}
+        traditionalDataCurrent={traditionalCurrent}
+        distributionData={distributed}
+        distributionDataCurrent={distributedCurrent}
+        internetData={internet}
+        internetDataCurrent={internetCurrent}
+        labels={labels} />
     )
   }
 };

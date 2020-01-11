@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { dots } from "../../constants/names";
+import {dots} from "../../constants/names";
 import * as typeNames from "../../constants/generatorTypeNames";
 
 
@@ -185,65 +185,62 @@ function energyCellsReducer(state = initialStore, action) {
             }
         }
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
+            // console.log('energuCell NEW_WEBSOCKET_MESSAGE:', action.payload);
             switch (action.payload.type) {
-                case 'agents': {
-                    let tmp = Array.from(state);
-                    console.log('data: ', action.payload.data);
-                    tmp[action.payload.data.id - 1].active = action.payload.data.status;
-                    return tmp;
-                }
                 case 'cells': {
-                    let tmp = Array.from(state);
-                    let tmp2 = tmp[action.payload.data.id - 1];
-                    tmp2.profile.money = action.payload.data.value && Number(action.payload.data.value).toFixed(1);
-                    tmp[action.payload.data.id - 1] = {
-                        ...state[action.payload.data.id - 1],
-                        ...tmp2
-                    };
+                    let tmp = [...state];
+                    for (const cell in action.payload.data) {
+                        if (action.payload.data.hasOwnProperty(cell)) {
+                            tmp[action.payload.data[cell].id - 1].profile.money = action.payload.data[cell].value && Number(action.payload.data[cell].value).toFixed(1);
+                            tmp[action.payload.data[cell].id - 1].active = action.payload.data[cell].status;
+                        }
+                    }
                     return tmp;
                 }
                 case 'arrows': {
-                    let tmp = Array.from(state);
-                    switch (action.payload.data.id) {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                            {
-                                let tmp2 = tmp[action.payload.data.id - 1];
-                                tmp2.net.performance = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
-                                tmp2.net.active = action.payload.data.status;
-                                tmp[action.payload.data.id - 1] = tmp2;
-                                return tmp;
+                    let tmp = [...state];
+                    for (const cell in action.payload.data) {
+                        if (action.payload.data.hasOwnProperty(cell)) {
+                            switch (action.payload.data[cell].id) {
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4: {
+                                    let tmp2 = tmp[action.payload.data[cell].id - 1];
+                                    tmp2.net.performance = action.payload.data[cell].value && Number(action.payload.data[cell].value).toFixed(3);
+                                    tmp2.net.active = action.payload.data[cell].status;
+                                    tmp[action.payload.data.id - 1] = tmp2;
+                                    break;
+                                }
+                                case 5:
+                                case 9:
+                                case 7:
+                                case 11: {
+                                    const i = [5, 9, 7, 11].indexOf(action.payload.data[cell].id);
+                                    let tmp2 = tmp[i];
+                                    tmp2.generator.performance = action.payload.data[cell].value && Number(action.payload.data[cell].value).toFixed(3);
+                                    tmp2.generator.active = action.payload.data[cell].status;
+                                    tmp[i] = tmp2;
+                                    break;
+                                }
+                                case 6:
+                                case 10:
+                                case 8:
+                                case 12: {
+                                    const i = [6, 10, 8, 12].indexOf(action.payload.data[cell].id);
+                                    let tmp2 = tmp[i];
+                                    tmp2.load.performance = action.payload.data[cell].value && Number(action.payload.data[cell].value).toFixed(3);
+                                    tmp2.load.active = action.payload.data[cell].status;
+                                    tmp[i] = tmp2;
+                                    break;
+                                }
+                                default: {
+                                    throw new Error('Undefined id of arrow.')
+                                }
                             }
-                        case 5:
-                        case 9:
-                        case 7:
-                        case 11:
-                            {
-                                const i = [5, 9, 7, 11].indexOf(action.payload.data.id);
-                                let tmp2 = tmp[i];
-                                tmp2.generator.performance = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
-                                tmp2.generator.active = action.payload.data.status;
-                                tmp[i] = tmp2;
-                                return tmp;
-                            }
-                        case 6:
-                        case 10:
-                        case 8:
-                        case 12:
-                            {
-                                const i = [6, 10, 8, 12].indexOf(action.payload.data.id);
-                                let tmp2 = tmp[i];
-                                tmp2.load.performance = action.payload.data.value && Number(action.payload.data.value).toFixed(3);
-                                tmp2.load.active = action.payload.data.status;
-                                tmp[i] = tmp2;
-                                return tmp;
-                            }
-                        default: {
-                            throw new Error('Undefined id of arrow.')
                         }
                     }
+                    return tmp;
                 }
                 default:
                     return state;

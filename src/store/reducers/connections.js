@@ -36,30 +36,30 @@ const initialStore = [
 
 function connectionsReducer(state = initialStore, action) {
     switch (action.type) {
-        case actionTypes.SET_MODE: {
-            switch (action.mode) {
-                case 'no_neighbors': {
-                    let tmp = Array.from(state);
-                    tmp.forEach((value, index, array) => {
-                        array[index] = Object.assign({}, value);
-                        array[index].active = false;
-                    });
-                    return tmp;
-                }
-                case 'limited_network':
-                case 'no_network':
-                case 'regular': {
-                    let tmp = Array.from(state);
-                    tmp.forEach((value, index, array) => {
-                        array[index] = Object.assign({}, value);
-                        array[index].active = true;
-                    });
-                    return tmp;
-                }
-                default:
-                    throw new Error('Unknown mode.')
-            }
-        }
+        // case actionTypes.SET_MODE: {
+        //     switch (action.mode) {
+        //         case 'no_neighbors': {
+        //             let tmp = Array.from(state);
+        //             tmp.forEach((value, index, array) => {
+        //                 array[index] = Object.assign({}, value);
+        //                 array[index].active = false;
+        //             });
+        //             return tmp;
+        //         }
+        //         case 'limited_network':
+        //         case 'no_network':
+        //         case 'regular': {
+        //             let tmp = Array.from(state);
+        //             tmp.forEach((value, index, array) => {
+        //                 array[index] = Object.assign({}, value);
+        //                 array[index].active = true;
+        //             });
+        //             return tmp;
+        //         }
+        //         default:
+        //             throw new Error('Unknown mode.')
+        //     }
+        // }
         case actionTypes.TUMBLER_TOGGLE: {
             switch (action.payload.id) {
                 case 9:
@@ -80,17 +80,18 @@ function connectionsReducer(state = initialStore, action) {
         }
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
             switch (action.payload.type) {
-                case 'arrowdirections': {
+                case 'arrowDirections': {
                     let tmp = [...state];
                     for (const arrowdir in action.payload.data) {
                         if (action.payload.data.hasOwnProperty(arrowdir)) {
+                            console.log(action.payload.data[arrowdir]);
                             const i = [1, 4, 6, 5, 2, 3].indexOf(action.payload.data[arrowdir].id);
                             const mapIdToIndex = [1, 1, 1, 2, 2, 3];
-                            const nodes = ['enode1', 'enode2', 'enode3', 'enode4'];
+                            const nodes = ['Agent1', 'Agent2', 'Agent3', 'Agent4'];
                             let tmp2 = tmp[i];
-                            tmp2.performance = action.payload.data.value;
-                            tmp2.output = action.payload.data.directionfrom === nodes[mapIdToIndex[i] - 1];
-                            tmp2.active = action.payload.data.status;
+                            tmp2.performance = action.payload.data[arrowdir].value;
+                            tmp2.output = action.payload.data[arrowdir].directionfrom === nodes[mapIdToIndex[i] - 1];
+                            tmp2.active = action.payload.data[arrowdir].status;
                             tmp[i] = tmp2;
                         }
                     }

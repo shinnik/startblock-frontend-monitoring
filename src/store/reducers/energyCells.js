@@ -92,56 +92,56 @@ const initialStore = [
 
 function energyCellsReducer(state = initialStore, action) {
     switch (action.type) {
-        case actionTypes.SET_MODE: {
-            switch (action.mode) {
-                case 'no_neighbors':
-                case 'regular': {
-                    let tmp = Array.from(state);
-                    tmp.forEach((value, index, array) => {
-                        let tmp2 = Object.assign({}, array[index]);
-                        tmp2.generator = Object.assign({}, tmp2.generator);
-                        tmp2.net = Object.assign({}, tmp2.net);
-                        tmp2.load = Object.assign({}, tmp2.load);
-                        tmp2.generator.active = true;
-                        tmp2.net.active = true;
-                        tmp2.load.active = true;
-                        array[index] = tmp2;
-                    });
-                    return tmp;
-                }
-                case 'limited_network':
-                    {
-                        let tmp = Array.from(state);
-                        tmp.forEach((value, index, array) => {
-                            let tmp2 = Object.assign({}, array[index]);
-                            tmp2.generator = Object.assign({}, tmp2.generator);
-                            tmp2.net = Object.assign({}, tmp2.net);
-                            tmp2.load = Object.assign({}, tmp2.load);
-                            tmp2.generator.active = true;
-                            tmp2.net.active = true;
-                            tmp2.load.active = true;
-                            array[index] = tmp2;
-                        });
-                        return tmp;
-                    }
-                case 'no_network': {
-                    let tmp = Array.from(state);
-                    tmp.forEach((value, index, array) => {
-                        let tmp2 = Object.assign({}, array[index]);
-                        tmp2.generator = Object.assign({}, tmp2.generator);
-                        tmp2.net = Object.assign({}, tmp2.net);
-                        tmp2.load = Object.assign({}, tmp2.load);
-                        tmp2.generator.active = true;
-                        tmp2.net.active = false;
-                        tmp2.load.active = true;
-                        array[index] = tmp2;
-                    });
-                    return tmp;
-                }
-                default:
-                    throw new Error('Unknown mode');
-            }
-        }
+        // case actionTypes.SET_MODE: {
+        //     switch (action.mode) {
+        //         case 'no_neighbors':
+        //         case 'regular': {
+        //             let tmp = Array.from(state);
+        //             tmp.forEach((value, index, array) => {
+        //                 let tmp2 = Object.assign({}, array[index]);
+        //                 tmp2.generator = Object.assign({}, tmp2.generator);
+        //                 tmp2.net = Object.assign({}, tmp2.net);
+        //                 tmp2.load = Object.assign({}, tmp2.load);
+        //                 tmp2.generator.active = true;
+        //                 tmp2.net.active = true;
+        //                 tmp2.load.active = true;
+        //                 array[index] = tmp2;
+        //             });
+        //             return tmp;
+        //         }
+        //         case 'limited_network':
+        //             {
+        //                 let tmp = Array.from(state);
+        //                 tmp.forEach((value, index, array) => {
+        //                     let tmp2 = Object.assign({}, array[index]);
+        //                     tmp2.generator = Object.assign({}, tmp2.generator);
+        //                     tmp2.net = Object.assign({}, tmp2.net);
+        //                     tmp2.load = Object.assign({}, tmp2.load);
+        //                     tmp2.generator.active = true;
+        //                     tmp2.net.active = true;
+        //                     tmp2.load.active = true;
+        //                     array[index] = tmp2;
+        //                 });
+        //                 return tmp;
+        //             }
+        //         case 'no_network': {
+        //             let tmp = Array.from(state);
+        //             tmp.forEach((value, index, array) => {
+        //                 let tmp2 = Object.assign({}, array[index]);
+        //                 tmp2.generator = Object.assign({}, tmp2.generator);
+        //                 tmp2.net = Object.assign({}, tmp2.net);
+        //                 tmp2.load = Object.assign({}, tmp2.load);
+        //                 tmp2.generator.active = true;
+        //                 tmp2.net.active = false;
+        //                 tmp2.load.active = true;
+        //                 array[index] = tmp2;
+        //             });
+        //             return tmp;
+        //         }
+        //         default:
+        //             throw new Error('Unknown mode');
+        //     }
+        // }
         case actionTypes.TUMBLER_TOGGLE: {
             switch (action.payload.id) {
                 case 7:

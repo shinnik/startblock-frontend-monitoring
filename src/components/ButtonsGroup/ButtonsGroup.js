@@ -28,7 +28,7 @@ const ButtonsGroup = ({ setMode, mode }) => {
         styles['buttons-group__button--active']
     );
     const handleClick = (e) => {
-        client.send(JSON.stringify({ time: Date.now(), value: ID_MAP[e.target.id] }), 'preset');
+        client.send({ time: Date.now(), value: ID_MAP[e.target.id] }, 'preset');
         // remove when receiving will work:
         setMode(e.target.id)
     };

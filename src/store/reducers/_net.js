@@ -13,9 +13,9 @@ function _netReducer(state = initialStore, action) {
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
             if (action.payload.type === 'router') {
                 return updateObject(state, {
-                    sumPerformance: action.payload.data.power && Number(action.payload.data.power).toFixed(3),
-                    money: action.payload.data.balance && Number(action.payload.data.balance).toFixed(1),
-                    performance: action.payload.data.energy && Number(action.payload.data.energy).toFixed(3)
+                    sumPerformance: action.payload.data.data.power && Number(action.payload.data.data.power).toFixed(3),
+                    money: action.payload.data.data.balance && Number(action.payload.data.data.balance).toFixed(1),
+                    performance: action.payload.data.data.energy && Number(action.payload.data.data.energy).toFixed(3)
                 })
             }
             return state;

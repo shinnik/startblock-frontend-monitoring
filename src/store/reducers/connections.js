@@ -81,15 +81,19 @@ function connectionsReducer(state = initialStore, action) {
         case actionTypes.NEW_WEBSOCKET_MESSAGE: {
             switch (action.payload.type) {
                 case 'arrowdirections': {
-                    const i = [1, 4, 6, 5, 2, 3].indexOf(action.payload.data.id);
-                    const mapIdToIndex = [1, 1, 1, 2, 2, 3];
-                    const nodes = ['enode1', 'enode2', 'enode3', 'enode4'];
-                    let tmp = Array.from(state);
-                    let tmp2 = tmp[i];
-                    tmp2.performance = action.payload.data.value;
-                    tmp2.output = action.payload.data.directionfrom === nodes[mapIdToIndex[i] - 1];
-                    tmp2.active = action.payload.data.status;
-                    tmp[i] = tmp2;
+                    let tmp = [...state];
+                    for (const arrowdir in action.payload.data) {
+                        if (action.payload.data.hasOwnProperty(arrowdir)) {
+                            const i = [1, 4, 6, 5, 2, 3].indexOf(action.payload.data[arrowdir].id);
+                            const mapIdToIndex = [1, 1, 1, 2, 2, 3];
+                            const nodes = ['enode1', 'enode2', 'enode3', 'enode4'];
+                            let tmp2 = tmp[i];
+                            tmp2.performance = action.payload.data.value;
+                            tmp2.output = action.payload.data.directionfrom === nodes[mapIdToIndex[i] - 1];
+                            tmp2.active = action.payload.data.status;
+                            tmp[i] = tmp2;
+                        }
+                    }
                     return tmp;
                 }
                 default:

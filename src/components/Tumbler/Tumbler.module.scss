@@ -83,6 +83,8 @@
 .PowerIcon {
   &__Right, &__Left, &__Up, &__Down,
   &__RightUp, &__RightDown, &__LeftUp, &__LeftDown {
+    background-image: url('./power-settings-icon.svg');
+    background-size: cover;
     justify-self: center;
     align-self: center;
   }
